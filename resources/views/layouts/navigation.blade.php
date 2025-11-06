@@ -38,20 +38,23 @@
                             <!-- [INI 6 ITEM ANDA]
                                  Ganti href="#" dengan route() yang sesuai
                             -->
-                            <x-dropdown-link href="#">
-                                {{ __('Manajemen User & Role') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link href="#">
+                            <x-dropdown-link href="/ManajemenBuku">
                                 {{ __('Manajemen Buku') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="#">
+                            <x-dropdown-link href="/ManajemenKategori">
                                 {{ __('Manajemen Kategori') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="#">
+                            <x-dropdown-link href="/ManajemenAnggota">
                                 {{ __('Manajemen Anggota') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="#">
+                            <x-dropdown-link href="/ManajemenPeminjaman">
                                 {{ __('Manajemen Peminjaman') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="/ManajemenPengembalian">
+                                {{ __('Manajemen Pengembalian') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="/ManajemenUser&Role">
+                                {{ __('Manajemen User & Role') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>

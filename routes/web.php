@@ -12,19 +12,39 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile.notification')->name('profile.notification');
+    Route::get('/profile/notification',[ProfileController::class, 'notification'])->name('profile.notification');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/manajemen', function () {
-        return view('manajemen');
-    })->name('manajemen');
+    Route::get('/ManajemenBuku', function () {
+        return view('ManajemenBuku');
+    })->name('ManajemenBuku');
 
     Route::get('/LaporanPeminjaman', function () {
         return view('LaporanPeminjaman');
     })->name('LaporanPeminjaman');
 
+    Route::get('/ManajemenKategori', function () {
+        return view('ManajemenKategori');
+    })->name('ManajemenKategori');
+
+    Route::get('/ManajemenAnggota', function () {
+        return view('ManajemenAnggota');
+    })->name('ManajemenAnggota');
+
+    Route::get('/ManajemenPeminjaman', function () {
+        return view('ManajemenPeminjaman');
+    })->name('ManajemenPeminjaman');
+
+    Route::get('/ManajemenPengembalian', function () {
+        return view('ManajemenPengembalian');
+    })->name('ManajemenPengembalian');
+
+    Route::get('/ManajemenUser&Role', function () {
+        return view('ManajemenUser&Role');
+    })->name('ManajemenUser&Role');
+    
 });
 
 require __DIR__.'/auth.php';
