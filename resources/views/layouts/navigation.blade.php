@@ -61,7 +61,7 @@
                 </div>
 
                  <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('LaporanPeminjaman')" :active="request()->routeIs('LaporanPeminjamann')">
+                    <x-nav-link :href="route('LaporanPeminjaman')" :active="request()->routeIs('LaporanPeminjaman')">
                         {{ __('Laporan Peminjaman') }}
                     </x-nav-link>
                 </div>
@@ -88,9 +88,9 @@
 
                     <x-slot name="content">
 <!-- ... existing code ... -->
-                        <x-responsive-nav-link :href="route('profile.notification')">
+                        <x-dropdown-link :href="route('profile.notification')">
                             {{ __('Notification') }}
-                        </x-responsive-nav-link>
+                        </x-dropdown-link>
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
