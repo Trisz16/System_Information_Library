@@ -16,7 +16,7 @@ class ProfileController extends Controller
      */
     public function notification(Request $request): View
     {
-        return view('profile.notification', [
+        return view('profile/notification', [
             'user' => $request->user(),
         ]);
     }
