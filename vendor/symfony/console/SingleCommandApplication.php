@@ -57,7 +57,11 @@ class SingleCommandApplication extends Command
         $application->setAutoExit($this->autoExit);
         // Fix the usage of the command displayed with "--help"
         $this->setName($_SERVER['argv'][0]);
+<<<<<<< HEAD
         $application->addCommand($this);
+=======
+        $application->add($this);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $application->setDefaultCommand($this->getName(), true);
 
         $this->running = true;

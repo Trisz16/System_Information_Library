@@ -80,8 +80,13 @@ class ProfilerListener implements EventSubscriberInterface
         }
 
         $request = $event->getRequest();
+<<<<<<< HEAD
         if (null !== $this->collectParameter && null !== $collectParameterValue = $request->attributes->get($this->collectParameter) ?? $request->query->get($this->collectParameter) ?? $request->request->get($this->collectParameter)) {
             filter_var($collectParameterValue, \FILTER_VALIDATE_BOOL) ? $this->profiler->enable() : $this->profiler->disable();
+=======
+        if (null !== $this->collectParameter && null !== $collectParameterValue = $request->get($this->collectParameter)) {
+            true === $collectParameterValue || filter_var($collectParameterValue, \FILTER_VALIDATE_BOOL) ? $this->profiler->enable() : $this->profiler->disable();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         $exception = $this->exception;
@@ -129,6 +134,7 @@ class ProfilerListener implements EventSubscriberInterface
             $this->profiler->saveProfile($this->profiles[$request]);
         }
 
+<<<<<<< HEAD
         $this->reset();
     }
 
@@ -137,6 +143,10 @@ class ProfilerListener implements EventSubscriberInterface
         $this->profiles = new \SplObjectStorage();
         $this->parents = new \SplObjectStorage();
         $this->exception = null;
+=======
+        $this->profiles = new \SplObjectStorage();
+        $this->parents = new \SplObjectStorage();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     public static function getSubscribedEvents(): array

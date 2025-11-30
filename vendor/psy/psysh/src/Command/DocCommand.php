@@ -11,11 +11,15 @@
 
 namespace Psy\Command;
 
+<<<<<<< HEAD
 use Psy\Configuration;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Psy\Formatter\DocblockFormatter;
 use Psy\Formatter\ManualFormatter;
 use Psy\Formatter\SignatureFormatter;
 use Psy\Input\CodeArgument;
+<<<<<<< HEAD
 use Psy\ManualUpdater\ManualUpdate;
 use Psy\Output\ShellOutput;
 use Psy\Reflection\ReflectionConstant;
@@ -23,6 +27,11 @@ use Psy\Reflection\ReflectionLanguageConstruct;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputDefinition;
+=======
+use Psy\Output\ShellOutput;
+use Psy\Reflection\ReflectionConstant;
+use Psy\Reflection\ReflectionLanguageConstruct;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -34,6 +43,7 @@ class DocCommand extends ReflectingCommand
 {
     const INHERIT_DOC_TAG = '{@inheritdoc}';
 
+<<<<<<< HEAD
     private ?Configuration $config = null;
 
     /**
@@ -46,6 +56,8 @@ class DocCommand extends ReflectingCommand
         $this->config = $config;
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     /**
      * {@inheritdoc}
      */
@@ -56,8 +68,12 @@ class DocCommand extends ReflectingCommand
             ->setAliases(['rtfm', 'man'])
             ->setDefinition([
                 new InputOption('all', 'a', InputOption::VALUE_NONE, 'Show documentation for superclasses as well as the current class.'),
+<<<<<<< HEAD
                 new InputOption('update-manual', null, InputOption::VALUE_OPTIONAL, 'Download and install the latest PHP manual (optional language code)', false),
                 new CodeArgument('target', CodeArgument::OPTIONAL, 'Function, class, instance, constant, method or property to document.'),
+=======
+                new CodeArgument('target', CodeArgument::REQUIRED, 'Function, class, instance, constant, method or property to document.'),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             ])
             ->setDescription('Read the documentation for an object, class, constant, method or property.')
             ->setHelp(
@@ -72,8 +88,11 @@ e.g.
 <return>>>> doc Psy\Shell::debug</return>
 <return>>>> \$s = new Psy\Shell</return>
 <return>>>> doc \$s->run</return>
+<<<<<<< HEAD
 <return>>>> doc --update-manual</return>
 <return>>>> doc --update-manual=fr</return>
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 HELP
             );
     }
@@ -85,6 +104,7 @@ HELP
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+<<<<<<< HEAD
         if ($input->getOption('update-manual') !== false) {
             return $this->handleUpdateManual($input, $output);
         }
@@ -94,6 +114,9 @@ HELP
             throw new RuntimeException('Not enough arguments (missing: "target").');
         }
 
+=======
+        $value = $input->getArgument('target');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (ReflectionLanguageConstruct::isLanguageConstruct($value)) {
             $reflector = new ReflectionLanguageConstruct($value);
             $doc = $this->getManualDocById($value);
@@ -125,7 +148,11 @@ HELP
         }
 
         // Implicit --all if the original docblock has an {@inheritdoc} tag.
+<<<<<<< HEAD
         if ($input->getOption('all') || ($doc && \stripos($doc, self::INHERIT_DOC_TAG) !== false)) {
+=======
+        if ($input->getOption('all') || \stripos($doc, self::INHERIT_DOC_TAG) !== false) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $parent = $reflector;
             foreach ($this->getParentReflectors($reflector) as $parent) {
                 $output->writeln('');
@@ -156,6 +183,7 @@ HELP
         return 0;
     }
 
+<<<<<<< HEAD
     /**
      * Handle the manual update operation.
      *
@@ -201,6 +229,8 @@ HELP
         }
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     private function getManualDoc($reflector)
     {
         switch (\get_class($reflector)) {

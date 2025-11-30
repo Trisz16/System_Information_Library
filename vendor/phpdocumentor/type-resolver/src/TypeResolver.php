@@ -18,17 +18,23 @@ use InvalidArgumentException;
 use phpDocumentor\Reflection\PseudoTypes\ArrayShape;
 use phpDocumentor\Reflection\PseudoTypes\ArrayShapeItem;
 use phpDocumentor\Reflection\PseudoTypes\CallableString;
+<<<<<<< HEAD
 use phpDocumentor\Reflection\PseudoTypes\Conditional;
 use phpDocumentor\Reflection\PseudoTypes\ConditionalForParameter;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use phpDocumentor\Reflection\PseudoTypes\ConstExpression;
 use phpDocumentor\Reflection\PseudoTypes\False_;
 use phpDocumentor\Reflection\PseudoTypes\FloatValue;
 use phpDocumentor\Reflection\PseudoTypes\HtmlEscapedString;
 use phpDocumentor\Reflection\PseudoTypes\IntegerRange;
 use phpDocumentor\Reflection\PseudoTypes\IntegerValue;
+<<<<<<< HEAD
 use phpDocumentor\Reflection\PseudoTypes\IntMask;
 use phpDocumentor\Reflection\PseudoTypes\IntMaskOf;
 use phpDocumentor\Reflection\PseudoTypes\KeyOf;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use phpDocumentor\Reflection\PseudoTypes\List_;
 use phpDocumentor\Reflection\PseudoTypes\ListShape;
 use phpDocumentor\Reflection\PseudoTypes\ListShapeItem;
@@ -43,12 +49,18 @@ use phpDocumentor\Reflection\PseudoTypes\Numeric_;
 use phpDocumentor\Reflection\PseudoTypes\NumericString;
 use phpDocumentor\Reflection\PseudoTypes\ObjectShape;
 use phpDocumentor\Reflection\PseudoTypes\ObjectShapeItem;
+<<<<<<< HEAD
 use phpDocumentor\Reflection\PseudoTypes\OffsetAccess;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use phpDocumentor\Reflection\PseudoTypes\PositiveInteger;
 use phpDocumentor\Reflection\PseudoTypes\StringValue;
 use phpDocumentor\Reflection\PseudoTypes\TraitString;
 use phpDocumentor\Reflection\PseudoTypes\True_;
+<<<<<<< HEAD
 use phpDocumentor\Reflection\PseudoTypes\ValueOf;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use phpDocumentor\Reflection\Types\AggregatedType;
 use phpDocumentor\Reflection\Types\Array_;
 use phpDocumentor\Reflection\Types\ArrayKey;
@@ -119,7 +131,10 @@ use function in_array;
 use function sprintf;
 use function strpos;
 use function strtolower;
+<<<<<<< HEAD
 use function substr;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use function trim;
 
 final class TypeResolver
@@ -263,7 +278,11 @@ final class TypeResolver
                             ...array_map(
                                 function (ArrayShapeItemNode $item) use ($context): ArrayShapeItem {
                                     return new ArrayShapeItem(
+<<<<<<< HEAD
                                         $item->keyName !== null ? (string) $item->keyName : null,
+=======
+                                        (string) $item->keyName,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                                         $this->createType($item->valueType, $context),
                                         $item->optional
                                     );
@@ -358,6 +377,7 @@ final class TypeResolver
                 return new This();
 
             case ConditionalTypeNode::class:
+<<<<<<< HEAD
                 return new Conditional(
                     $type->negated,
                     $this->createType($type->subjectType, $context),
@@ -381,6 +401,10 @@ final class TypeResolver
                     $this->createType($type->offset, $context)
                 );
 
+=======
+            case ConditionalTypeForParameterNode::class:
+            case OffsetAccessTypeNode::class:
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             default:
                 return new Mixed_();
         }
@@ -434,6 +458,7 @@ final class TypeResolver
                 return new IntegerRange((string) $type->genericTypes[0], (string) $type->genericTypes[1]);
 
             case 'iterable':
+<<<<<<< HEAD
                 return new Iterable_(...array_reverse($this->createTypesByTypeNodes($type->genericTypes, $context)));
 
             case 'key-of':
@@ -453,6 +478,18 @@ final class TypeResolver
 
             case 'self':
                 return new Self_(...$this->createTypesByTypeNodes($type->genericTypes, $context));
+=======
+                return new Iterable_(
+                    ...array_reverse(
+                        array_map(
+                            function (TypeNode $genericType) use ($context): Type {
+                                return $this->createType($genericType, $context);
+                            },
+                            $type->genericTypes
+                        )
+                    )
+                );
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             default:
                 $collectionType = $this->createType($type->type, $context);
@@ -462,7 +499,18 @@ final class TypeResolver
 
                 return new Collection(
                     $collectionType->getFqsen(),
+<<<<<<< HEAD
                     ...array_reverse($this->createTypesByTypeNodes($type->genericTypes, $context))
+=======
+                    ...array_reverse(
+                        array_map(
+                            function (TypeNode $genericType) use ($context): Type {
+                                return $this->createType($genericType, $context);
+                            },
+                            $type->genericTypes
+                        )
+                    )
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 );
         }
     }
@@ -628,7 +676,18 @@ final class TypeResolver
     /** @param TypeNode[] $typeNodes */
     private function createArray(array $typeNodes, Context $context): Array_
     {
+<<<<<<< HEAD
         $types = array_reverse($this->createTypesByTypeNodes($typeNodes, $context));
+=======
+        $types = array_reverse(
+            array_map(
+                function (TypeNode $node) use ($context): Type {
+                    return $this->createType($node, $context);
+                },
+                $typeNodes
+            )
+        );
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if (isset($types[1]) === false) {
             return new Array_(...$types);
@@ -703,6 +762,7 @@ final class TypeResolver
 
         return $type;
     }
+<<<<<<< HEAD
 
     /**
      * @param TypeNode[] $nodes
@@ -718,4 +778,6 @@ final class TypeResolver
             $nodes
         );
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

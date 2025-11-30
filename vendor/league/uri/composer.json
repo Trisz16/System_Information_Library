@@ -5,12 +5,17 @@
     "keywords": [
         "url",
         "uri",
+<<<<<<< HEAD
         "urn",
         "uri-template",
         "rfc2141",
         "rfc3986",
         "rfc3987",
         "rfc8141",
+=======
+        "rfc3986",
+        "rfc3987",
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         "rfc6570",
         "psr-7",
         "parse_url",
@@ -24,7 +29,12 @@
         "parse_str",
         "query-string",
         "querystring",
+<<<<<<< HEAD
         "hostname"
+=======
+        "hostname",
+        "uri-template"
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     ],
     "license": "MIT",
     "homepage": "https://uri.thephpleague.com",
@@ -48,8 +58,12 @@
     ],
     "require": {
         "php": "^8.1",
+<<<<<<< HEAD
         "league/uri-interfaces": "^7.6",
         "psr/http-factory": "^1"
+=======
+        "league/uri-interfaces": "^7.5"
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     },
     "autoload": {
         "psr-4": {
@@ -61,6 +75,7 @@
     },
     "suggest": {
         "ext-bcmath": "to improve IPV4 host parsing",
+<<<<<<< HEAD
         "ext-dom": "to convert the URI into an HTML anchor tag",
         "ext-fileinfo": "to create Data URI from file contennts",
         "ext-gmp": "to improve IPV4 host parsing",
@@ -72,6 +87,15 @@
         "php-64bit": "to improve IPV4 host parsing",
         "symfony/polyfill-intl-idn": "to handle IDN host via the Symfony polyfill if ext-intl is not present",
         "rowbot/url": "to handle WHATWG URL"
+=======
+        "ext-fileinfo": "to create Data URI from file contennts",
+        "ext-gmp": "to improve IPV4 host parsing",
+        "ext-intl": "to handle IDN host with the best performance",
+        "jeremykendall/php-domain-parser": "to resolve Public Suffix and Top Level Domain",
+        "league/uri-components" : "Needed to easily manipulate URI objects components",
+        "php-64bit": "to improve IPV4 host parsing",
+        "symfony/polyfill-intl-idn": "to handle IDN host via the Symfony polyfill if ext-intl is not present"
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     },
     "extra": {
         "branch-alias": {

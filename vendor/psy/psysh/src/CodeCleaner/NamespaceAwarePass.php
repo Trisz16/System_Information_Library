@@ -14,6 +14,7 @@ namespace Psy\CodeCleaner;
 use PhpParser\Node;
 use PhpParser\Node\Name;
 use PhpParser\Node\Name\FullyQualified as FullyQualifiedName;
+<<<<<<< HEAD
 use PhpParser\Node\Stmt\GroupUse;
 use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Use_;
@@ -23,11 +24,18 @@ use Psy\CodeCleaner;
  * Abstract namespace-aware code cleaner pass.
  *
  * Tracks both namespace and use statement aliases for proper name resolution.
+=======
+use PhpParser\Node\Stmt\Namespace_;
+
+/**
+ * Abstract namespace-aware code cleaner pass.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  */
 abstract class NamespaceAwarePass extends CodeCleanerPass
 {
     protected array $namespace = [];
     protected array $currentScope = [];
+<<<<<<< HEAD
     protected array $aliases = [];
     protected ?CodeCleaner $cleaner = null;
 
@@ -38,6 +46,8 @@ abstract class NamespaceAwarePass extends CodeCleanerPass
     {
         $this->cleaner = $cleaner;
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     /**
      * @todo should this be final? Extending classes should be sure to either
@@ -67,6 +77,7 @@ abstract class NamespaceAwarePass extends CodeCleanerPass
     {
         if ($node instanceof Namespace_) {
             $this->namespace = isset($node->name) ? $this->getParts($node->name) : [];
+<<<<<<< HEAD
 
             // Only restore use statement aliases for PsySH re-injected namespaces.
             // Explicit namespace declarations start with a clean slate.
@@ -116,6 +127,8 @@ abstract class NamespaceAwarePass extends CodeCleanerPass
             }
 
             $this->aliases = [];
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         return null;
@@ -124,8 +137,11 @@ abstract class NamespaceAwarePass extends CodeCleanerPass
     /**
      * Get a fully-qualified name (class, function, interface, etc).
      *
+<<<<<<< HEAD
      * Resolves use statement aliases before applying namespace.
      *
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @param mixed $name
      */
     protected function getFullyQualifiedName($name): string
@@ -134,6 +150,7 @@ abstract class NamespaceAwarePass extends CodeCleanerPass
             return \implode('\\', $this->getParts($name));
         }
 
+<<<<<<< HEAD
         // Check if this name matches a use statement alias
         if ($name instanceof Name) {
             $nameParts = $this->getParts($name);
@@ -148,6 +165,8 @@ abstract class NamespaceAwarePass extends CodeCleanerPass
             }
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if ($name instanceof Name) {
             $name = $this->getParts($name);
         } elseif (!\is_array($name)) {

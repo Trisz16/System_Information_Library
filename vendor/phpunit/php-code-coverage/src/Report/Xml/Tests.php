@@ -10,7 +10,10 @@
 namespace SebastianBergmann\CodeCoverage\Report\Xml;
 
 use function assert;
+<<<<<<< HEAD
 use function sprintf;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use DOMElement;
 use SebastianBergmann\CodeCoverage\CodeCoverage;
 
@@ -35,7 +38,11 @@ final readonly class Tests
     {
         $node = $this->contextNode->appendChild(
             $this->contextNode->ownerDocument->createElementNS(
+<<<<<<< HEAD
                 Facade::XML_NAMESPACE,
+=======
+                'https://schema.phpunit.de/coverage/1.0',
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 'test',
             ),
         );
@@ -45,6 +52,9 @@ final readonly class Tests
         $node->setAttribute('name', $test);
         $node->setAttribute('size', $result['size']);
         $node->setAttribute('status', $result['status']);
+<<<<<<< HEAD
         $node->setAttribute('time', sprintf('%F', $result['time']));
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

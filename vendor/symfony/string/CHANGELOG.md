@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 8.0
 ---
 
@@ -11,6 +12,8 @@ CHANGELOG
 
  * Deprecate implementing `__sleep/wakeup()` on string implementations
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 7.3
 ---
 
@@ -55,7 +58,11 @@ CHANGELOG
  * added `LazyString` which provides memoizing stringable objects
  * The component is not marked as `@experimental` anymore
  * added the `s()` helper method to get either an `UnicodeString` or `ByteString` instance,
+<<<<<<< HEAD
    depending of the input string UTF-8 compliance
+=======
+   depending of the input string UTF-8 compliancy
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * added `$cut` parameter to `Symfony\Component\String\AbstractString::truncate()`
  * added `AbstractString::containsAny()`
  * allow passing a string of custom characters to `ByteString::fromRandom()`

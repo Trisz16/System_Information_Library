@@ -95,7 +95,11 @@ HELP
      *
      * @throws \InvalidArgumentException if there is no exception to throw
      *
+<<<<<<< HEAD
      * @param string|null $code
+=======
+     * @param string $code
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @return Arg[]
      */

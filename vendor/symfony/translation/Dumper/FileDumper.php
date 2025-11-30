@@ -49,7 +49,11 @@ abstract class FileDumper implements DumperInterface
             $fullpath = $options['path'].'/'.$this->getRelativePath($domain, $messages->getLocale());
             if (!file_exists($fullpath)) {
                 $directory = \dirname($fullpath);
+<<<<<<< HEAD
                 if (!file_exists($directory) && !@mkdir($directory, 0o777, true)) {
+=======
+                if (!file_exists($directory) && !@mkdir($directory, 0777, true)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     throw new RuntimeException(\sprintf('Unable to create directory "%s".', $directory));
                 }
             }

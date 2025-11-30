@@ -53,7 +53,11 @@ trait ServiceSubscriberTrait
                 throw new \LogicException(\sprintf('Cannot use "%s" on methods without a return type in "%s::%s()".', SubscribedService::class, $method->name, self::class));
             }
 
+<<<<<<< HEAD
             /** @var SubscribedService $attribute */
+=======
+            /* @var SubscribedService $attribute */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $attribute = $attribute->newInstance();
             $attribute->key ??= self::class.'::'.$method->name;
             $attribute->type ??= $returnType instanceof \ReflectionNamedType ? $returnType->getName() : (string) $returnType;

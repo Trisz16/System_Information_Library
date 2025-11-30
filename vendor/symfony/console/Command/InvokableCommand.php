@@ -13,6 +13,7 @@ namespace Symfony\Component\Console\Command;
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Attribute\Argument;
+<<<<<<< HEAD
 use Symfony\Component\Console\Attribute\Interact;
 use Symfony\Component\Console\Attribute\MapInput;
 use Symfony\Component\Console\Attribute\Option;
@@ -23,6 +24,13 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Interaction\Interaction;
+=======
+use Symfony\Component\Console\Attribute\Option;
+use Symfony\Component\Console\Exception\LogicException;
+use Symfony\Component\Console\Exception\RuntimeException;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputInterface;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -35,6 +43,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class InvokableCommand implements SignalableCommandInterface
 {
+<<<<<<< HEAD
     private readonly ?SignalableCommandInterface $signalableCommand;
     private readonly \ReflectionFunction $invokable;
     /**
@@ -43,14 +52,26 @@ class InvokableCommand implements SignalableCommandInterface
     private ?array $interactions = null;
     private bool $triggerDeprecations = false;
     private $code;
+=======
+    private readonly \Closure $code;
+    private readonly ?SignalableCommandInterface $signalableCommand;
+    private readonly \ReflectionFunction $reflection;
+    private bool $triggerDeprecations = false;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     public function __construct(
         private readonly Command $command,
         callable $code,
     ) {
+<<<<<<< HEAD
         $this->code = $code;
         $this->signalableCommand = $code instanceof SignalableCommandInterface ? $code : null;
         $this->invokable = new \ReflectionFunction($this->getClosure($code));
+=======
+        $this->code = $this->getClosure($code);
+        $this->signalableCommand = $code instanceof SignalableCommandInterface ? $code : null;
+        $this->reflection = new \ReflectionFunction($this->code);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -58,7 +79,11 @@ class InvokableCommand implements SignalableCommandInterface
      */
     public function __invoke(InputInterface $input, OutputInterface $output): int
     {
+<<<<<<< HEAD
         $statusCode = $this->invokable->invoke(...$this->getParameters($this->invokable, $input, $output));
+=======
+        $statusCode = ($this->code)(...$this->getParameters($input, $output));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if (!\is_int($statusCode)) {
             if ($this->triggerDeprecations) {
@@ -67,7 +92,11 @@ class InvokableCommand implements SignalableCommandInterface
                 return 0;
             }
 
+<<<<<<< HEAD
             throw new \TypeError(\sprintf('The command "%s" must return an integer value in the "%s" method, but "%s" was returned.', $this->command->getName(), $this->invokable->getName(), get_debug_type($statusCode)));
+=======
+            throw new \TypeError(\sprintf('The command "%s" must return an integer value in the "%s" method, but "%s" was returned.', $this->command->getName(), $this->reflection->getName(), get_debug_type($statusCode)));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         return $statusCode;
@@ -81,6 +110,7 @@ class InvokableCommand implements SignalableCommandInterface
      */
     public function configure(InputDefinition $definition): void
     {
+<<<<<<< HEAD
         foreach ($this->invokable->getParameters() as $parameter) {
             if ($argument = Argument::tryFrom($parameter)) {
                 $definition->addArgument($argument->toInputArgument());
@@ -105,15 +135,25 @@ class InvokableCommand implements SignalableCommandInterface
                 foreach ($input->getOptions() as $option) {
                     $definition->addOption($option->toInputOption());
                 }
+=======
+        foreach ($this->reflection->getParameters() as $parameter) {
+            if ($argument = Argument::tryFrom($parameter)) {
+                $definition->addArgument($argument->toInputArgument());
+            } elseif ($option = Option::tryFrom($parameter)) {
+                $definition->addOption($option->toInputOption());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
         }
     }
 
+<<<<<<< HEAD
     public function getCode(): callable
     {
         return $this->code;
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     private function getClosure(callable $code): \Closure
     {
         if (!$code instanceof \Closure) {
@@ -138,10 +178,17 @@ class InvokableCommand implements SignalableCommandInterface
         return $code;
     }
 
+<<<<<<< HEAD
     private function getParameters(\ReflectionFunction $function, InputInterface $input, OutputInterface $output): array
     {
         $parameters = [];
         foreach ($function->getParameters() as $parameter) {
+=======
+    private function getParameters(InputInterface $input, OutputInterface $output): array
+    {
+        $parameters = [];
+        foreach ($this->reflection->getParameters() as $parameter) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             if ($argument = Argument::tryFrom($parameter)) {
                 $parameters[] = $argument->resolveValue($input);
 
@@ -154,12 +201,15 @@ class InvokableCommand implements SignalableCommandInterface
                 continue;
             }
 
+<<<<<<< HEAD
             if ($in = MapInput::tryFrom($parameter)) {
                 $parameters[] = $in->resolveValue($input);
 
                 continue;
             }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $type = $parameter->getType();
 
             if (!$type instanceof \ReflectionNamedType) {
@@ -175,7 +225,10 @@ class InvokableCommand implements SignalableCommandInterface
             $parameters[] = match ($type->getName()) {
                 InputInterface::class => $input,
                 OutputInterface::class => $output,
+<<<<<<< HEAD
                 Cursor::class => new Cursor($output),
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 SymfonyStyle::class => new SymfonyStyle($input, $output),
                 Application::class => $this->command->getApplication(),
                 default => throw new RuntimeException(\sprintf('Unsupported type "%s" for parameter "$%s".', $type->getName(), $parameter->getName())),
@@ -194,6 +247,7 @@ class InvokableCommand implements SignalableCommandInterface
     {
         return $this->signalableCommand?->handleSignal($signal, $previousExitCode) ?? false;
     }
+<<<<<<< HEAD
 
     public function isInteractive(): bool
     {
@@ -244,4 +298,6 @@ class InvokableCommand implements SignalableCommandInterface
             }
         }
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

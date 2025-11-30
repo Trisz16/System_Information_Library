@@ -161,10 +161,15 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
      * Get the URI's path.
      *
      * Empty or missing paths are returned as a single "/".
+<<<<<<< HEAD
      *
      * @return non-empty-string
      */
     public function path(): string
+=======
+     */
+    public function path(): ?string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $path = trim((string) $this->uri->getPath(), '/');
 

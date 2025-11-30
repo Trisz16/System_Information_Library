@@ -64,6 +64,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     protected $routeResolver;
 
     /**
+<<<<<<< HEAD
      * The cached "Accept" header value.
      *
      * @var string|null
@@ -71,6 +72,8 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     protected $cachedAcceptHeader;
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Create a new Illuminate HTTP request from server variables.
      *
      * @return static
@@ -364,6 +367,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     }
 
     /**
+<<<<<<< HEAD
      * {@inheritdoc}
      */
     #[\Override]
@@ -381,6 +385,8 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Merge new input into the current request's input array.
      *
      * @param  array  $input

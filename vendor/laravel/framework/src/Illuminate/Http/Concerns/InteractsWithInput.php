@@ -118,6 +118,7 @@ trait InteractsWithInput
      * Retrieve input from the request as a Fluent object instance.
      *
      * @param  array|string|null  $key
+<<<<<<< HEAD
      * @param  array  $default
      * @return \Illuminate\Support\Fluent
      */
@@ -126,6 +127,13 @@ trait InteractsWithInput
         $value = is_array($key) ? $this->only($key) : $this->input($key);
 
         return new Fluent($value ?? $default);
+=======
+     * @return \Illuminate\Support\Fluent
+     */
+    public function fluent($key = null)
+    {
+        return new Fluent(is_array($key) ? $this->only($key) : $this->input($key));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**

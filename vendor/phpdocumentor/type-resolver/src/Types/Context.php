@@ -28,7 +28,11 @@ use function trim;
  * own application it is possible to generate a Context class using the ContextFactory; this will analyze the file in
  * which an associated class resides for its namespace and imports.
  *
+<<<<<<< HEAD
  * @see ContextFactory::createFromReflector()
+=======
+ * @see ContextFactory::createFromClassReflector()
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * @see ContextFactory::createForNamespace()
  *
  * @psalm-immutable

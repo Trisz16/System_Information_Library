@@ -142,6 +142,7 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
      */
     protected function doGenerate(array $variables, array $defaults, array $requirements, array $tokens, array $parameters, string $name, int $referenceType, array $hostTokens, array $requiredSchemes = []): string
     {
+<<<<<<< HEAD
         $queryParameters = [];
 
         if (isset($parameters['_query'])) {
@@ -154,6 +155,8 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
             }
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $variables = array_flip($variables);
         $mergedParams = array_replace($defaults, $this->context->getParameters(), $parameters);
 
@@ -272,7 +275,10 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
 
         // add a query string if needed
         $extra = array_udiff_assoc(array_diff_key($parameters, $variables), $defaults, fn ($a, $b) => $a == $b ? 0 : 1);
+<<<<<<< HEAD
         $extra = array_merge($extra, $queryParameters);
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         array_walk_recursive($extra, $caster = static function (&$v) use (&$caster) {
             if (\is_object($v)) {

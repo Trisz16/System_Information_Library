@@ -90,6 +90,7 @@ final class TranslationPullCommand extends Command
                 new InputOption('as-tree', null, InputOption::VALUE_REQUIRED, 'Write messages as a tree-like structure. Needs --format=yaml. The given value defines the level where to switch to inline YAML'),
             ])
             ->setHelp(<<<'EOF'
+<<<<<<< HEAD
                 The <info>%command.name%</> command pulls translations from the given provider. Only
                 new translations are pulled, existing ones are not overwritten.
 
@@ -105,6 +106,23 @@ final class TranslationPullCommand extends Command
                 Local translations for the specified domains and locale are deleted if they're not present on the provider and overwritten if it's the case.
                 Local translations for others domains and locales are ignored.
                 EOF
+=======
+The <info>%command.name%</> command pulls translations from the given provider. Only
+new translations are pulled, existing ones are not overwritten.
+
+You can overwrite existing translations (and remove the missing ones on local side) by using the <comment>--force</> flag:
+
+  <info>php %command.full_name% --force provider</>
+
+Full example:
+
+  <info>php %command.full_name% provider --force --domains=messages --domains=validators --locales=en</>
+
+This command pulls all translations associated with the <comment>messages</> and <comment>validators</> domains for the <comment>en</> locale.
+Local translations for the specified domains and locale are deleted if they're not present on the provider and overwritten if it's the case.
+Local translations for others domains and locales are ignored.
+EOF
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             )
         ;
     }

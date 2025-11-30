@@ -234,8 +234,12 @@ class QuestionHelper extends Helper
     /**
      * Autocompletes a question.
      *
+<<<<<<< HEAD
      * @param resource                  $inputStream
      * @param callable(string):string[] $autocomplete
+=======
+     * @param resource $inputStream
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     private function autocomplete(OutputInterface $output, Question $question, $inputStream, callable $autocomplete): string
     {
@@ -265,7 +269,11 @@ class QuestionHelper extends Helper
             if (false === $c || ('' === $ret && '' === $c && null === $question->getDefault())) {
                 // Restore the terminal so it behaves normally again
                 $inputHelper->finish();
+<<<<<<< HEAD
                 throw new MissingInputException('Aborted while asking: '.$question->getQuestion());
+=======
+                throw new MissingInputException('Aborted.');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             } elseif ("\177" === $c) { // Backspace Character
                 if (0 === $numMatches && 0 !== $i) {
                     --$i;
@@ -379,6 +387,7 @@ class QuestionHelper extends Helper
             return $entered;
         }
 
+<<<<<<< HEAD
         if (false === $lastCommaPos = strrpos($entered, ',')) {
             return $entered;
         }
@@ -386,6 +395,14 @@ class QuestionHelper extends Helper
         $lastChoice = trim(substr($entered, $lastCommaPos + 1));
 
         return '' !== $lastChoice ? $lastChoice : $entered;
+=======
+        $choices = explode(',', $entered);
+        if ('' !== $lastChoice = trim($choices[\count($choices) - 1])) {
+            return $lastChoice;
+        }
+
+        return $entered;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -500,6 +517,7 @@ class QuestionHelper extends Helper
      */
     private function readInput($inputStream, Question $question): string|false
     {
+<<<<<<< HEAD
         if (null !== $question->getTimeout() && $this->isInteractiveInput($inputStream)) {
             $read = [$inputStream];
             $write = null;
@@ -512,6 +530,8 @@ class QuestionHelper extends Helper
             }
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (!$question->isMultiline()) {
             $cp = $this->setIOCodepage();
             $ret = fgets($inputStream, 4096);
@@ -591,7 +611,11 @@ class QuestionHelper extends Helper
 
         // For seekable and writable streams, add all the same data to the
         // cloned stream and then seek to the same offset.
+<<<<<<< HEAD
         if (true === $seekable && !\in_array($mode, ['r', 'rb', 'rt'], true)) {
+=======
+        if (true === $seekable && !\in_array($mode, ['r', 'rb', 'rt'])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $offset = ftell($inputStream);
             rewind($inputStream);
             stream_copy_to_stream($inputStream, $cloneStream);

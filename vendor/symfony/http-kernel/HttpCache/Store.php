@@ -43,7 +43,11 @@ class Store implements StoreInterface
         protected string $root,
         private array $options = [],
     ) {
+<<<<<<< HEAD
         if (!is_dir($this->root) && !@mkdir($this->root, 0o777, true) && !is_dir($this->root)) {
+=======
+        if (!is_dir($this->root) && !@mkdir($this->root, 0777, true) && !is_dir($this->root)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             throw new \RuntimeException(\sprintf('Unable to create the store directory (%s).', $this->root));
         }
         $this->keyCache = new \SplObjectStorage();
@@ -75,7 +79,11 @@ class Store implements StoreInterface
 
         if (!isset($this->locks[$key])) {
             $path = $this->getPath($key);
+<<<<<<< HEAD
             if (!is_dir(\dirname($path)) && false === @mkdir(\dirname($path), 0o777, true) && !is_dir(\dirname($path))) {
+=======
+            if (!is_dir(\dirname($path)) && false === @mkdir(\dirname($path), 0777, true) && !is_dir(\dirname($path))) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 return $path;
             }
             $h = fopen($path, 'c');
@@ -375,7 +383,11 @@ class Store implements StoreInterface
                 return false;
             }
         } else {
+<<<<<<< HEAD
             if (!is_dir(\dirname($path)) && false === @mkdir(\dirname($path), 0o777, true) && !is_dir(\dirname($path))) {
+=======
+            if (!is_dir(\dirname($path)) && false === @mkdir(\dirname($path), 0777, true) && !is_dir(\dirname($path))) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 return false;
             }
 
@@ -401,7 +413,11 @@ class Store implements StoreInterface
             }
         }
 
+<<<<<<< HEAD
         @chmod($path, 0o666 & ~umask());
+=======
+        @chmod($path, 0666 & ~umask());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return true;
     }
@@ -423,6 +439,7 @@ class Store implements StoreInterface
      */
     protected function generateCacheKey(Request $request): string
     {
+<<<<<<< HEAD
         $key = $request->getUri();
 
         if ('QUERY' === $request->getMethod()) {
@@ -432,6 +449,9 @@ class Store implements StoreInterface
         }
 
         return 'md'.hash('sha256', $key);
+=======
+        return 'md'.hash('sha256', $request->getUri());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**

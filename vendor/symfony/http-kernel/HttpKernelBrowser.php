@@ -94,6 +94,7 @@ class HttpKernelBrowser extends AbstractBrowser
         }
 
         $code = <<<EOF
+<<<<<<< HEAD
             <?php
 
             error_reporting($errorReporting);
@@ -103,6 +104,17 @@ class HttpKernelBrowser extends AbstractBrowser
             \$kernel = unserialize($kernel);
             \$request = unserialize($request);
             EOF;
+=======
+<?php
+
+error_reporting($errorReporting);
+
+$requires
+
+\$kernel = unserialize($kernel);
+\$request = unserialize($request);
+EOF;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return $code.$this->getHandleScript();
     }
@@ -110,6 +122,7 @@ class HttpKernelBrowser extends AbstractBrowser
     protected function getHandleScript(): string
     {
         return <<<'EOF'
+<<<<<<< HEAD
             $response = $kernel->handle($request);
 
             if ($kernel instanceof Symfony\Component\HttpKernel\TerminableInterface) {
@@ -118,6 +131,16 @@ class HttpKernelBrowser extends AbstractBrowser
 
             echo serialize($response);
             EOF;
+=======
+$response = $kernel->handle($request);
+
+if ($kernel instanceof Symfony\Component\HttpKernel\TerminableInterface) {
+    $kernel->terminate($request, $response);
+}
+
+echo serialize($response);
+EOF;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     protected function filterRequest(DomRequest $request): Request
@@ -180,6 +203,7 @@ class HttpKernelBrowser extends AbstractBrowser
      */
     protected function filterResponse(object $response): DomResponse
     {
+<<<<<<< HEAD
         $content = '';
         ob_start(static function ($chunk) use (&$content) {
             $content .= $chunk;
@@ -192,6 +216,12 @@ class HttpKernelBrowser extends AbstractBrowser
         } finally {
             ob_end_clean();
         }
+=======
+        // this is needed to support StreamedResponse
+        ob_start();
+        $response->sendContent();
+        $content = ob_get_clean();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return new DomResponse($content, $response->getStatusCode(), $response->headers->all());
     }

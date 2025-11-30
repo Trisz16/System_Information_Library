@@ -138,6 +138,7 @@ trait CompilesConditionals
     }
 
     /**
+<<<<<<< HEAD
      * Compile the has-stack statements into valid PHP.
      *
      * @param  string  $expression
@@ -149,6 +150,8 @@ trait CompilesConditionals
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Compile the section-missing statements into valid PHP.
      *
      * @param  string  $expression

@@ -15,23 +15,33 @@ namespace League\Uri;
 
 use Deprecated;
 use JsonSerializable;
+<<<<<<< HEAD
 use League\Uri\Contracts\Conditionable;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use League\Uri\Contracts\UriException;
 use League\Uri\Contracts\UriInterface;
 use League\Uri\Exceptions\SyntaxError;
 use League\Uri\UriTemplate\TemplateCanNotBeExpanded;
 use Psr\Http\Message\UriInterface as Psr7UriInterface;
 use Stringable;
+<<<<<<< HEAD
 use Uri\Rfc3986\Uri as Rfc3986Uri;
 use Uri\WhatWg\Url as WhatWgUrl;
 
 use function is_bool;
 use function ltrim;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
 /**
  * @phpstan-import-type InputComponentMap from UriString
  */
+<<<<<<< HEAD
 final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Conditionable
+=======
+final class Http implements Stringable, Psr7UriInterface, JsonSerializable
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 {
     private readonly UriInterface $uri;
 
@@ -81,6 +91,7 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
     /**
      * Create a new instance from a string or a stringable object.
      */
+<<<<<<< HEAD
     public static function new(Rfc3986Uri|WhatwgUrl|Stringable|string $uri = ''): self
     {
         return new self(Uri::new($uri));
@@ -96,6 +107,11 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
         } catch (UriException) {
             return null;
         }
+=======
+    public static function new(Stringable|string $uri = ''): self
+    {
+        return self::fromComponents(UriString::parse($uri));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -139,6 +155,19 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Create a new instance from a URI and a Base URI.
+     *
+     * The returned URI must be absolute.
+     */
+    public static function fromBaseUri(Stringable|string $uri, Stringable|string|null $baseUri = null): self
+    {
+        return new self(Uri::fromBaseUri($uri, $baseUri));
+    }
+
+    /**
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Creates a new instance from a template.
      *
      * @throws TemplateCanNotBeExpanded if the variables are invalid or missing
@@ -149,6 +178,7 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
         return new self(Uri::fromTemplate($template, $variables));
     }
 
+<<<<<<< HEAD
     /**
      * Returns a new instance from a URI and a Base URI.or null on failure.
      *
@@ -159,6 +189,8 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
         return null !== ($uri = Uri::parse($uri, $baseUri)) ? new self($uri) : null;
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getScheme(): string
     {
         return $this->uri->getScheme() ?? '';
@@ -186,12 +218,16 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
 
     public function getPath(): string
     {
+<<<<<<< HEAD
         $path = $this->uri->getPath();
 
         return match (true) {
             str_starts_with($path, '//') => '/'.ltrim($path, '/'),
             default => $path,
         };
+=======
+        return $this->uri->getPath();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     public function getQuery(): string
@@ -233,6 +269,7 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
         };
     }
 
+<<<<<<< HEAD
     public function when(callable|bool $condition, callable $onSuccess, ?callable $onFail = null): static
     {
         if (!is_bool($condition)) {
@@ -246,6 +283,8 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
         } ?? $this;
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function withScheme(string $scheme): self
     {
         return $this->newInstance($this->uri->withScheme($this->filterInput($scheme)));
@@ -284,6 +323,7 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
     /**
      * DEPRECATION WARNING! This method will be removed in the next major point release.
      *
+<<<<<<< HEAD
      * @deprecated Since version 7.6.0
      * @codeCoverageIgnore
      * @see Http::parse()
@@ -301,6 +341,8 @@ final class Http implements Stringable, Psr7UriInterface, JsonSerializable, Cond
     /**
      * DEPRECATION WARNING! This method will be removed in the next major point release.
      *
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @deprecated Since version 7.0.0
      * @codeCoverageIgnore
      * @see Http::new()

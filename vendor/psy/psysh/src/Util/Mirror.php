@@ -36,9 +36,15 @@ class Mirror
      * @throws \Psy\Exception\RuntimeException when a $member specified but not present on $value
      * @throws \InvalidArgumentException       if $value is something other than an object or class/function name
      *
+<<<<<<< HEAD
      * @param mixed       $value  Class or function name, or variable instance
      * @param string|null $member Optional: property, constant or method name (default: null)
      * @param int         $filter (default: CONSTANT | METHOD | PROPERTY | STATIC_PROPERTY)
+=======
+     * @param mixed  $value  Class or function name, or variable instance
+     * @param string $member Optional: property, constant or method name (default: null)
+     * @param int    $filter (default: CONSTANT | METHOD | PROPERTY | STATIC_PROPERTY)
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @return \Reflector
      */

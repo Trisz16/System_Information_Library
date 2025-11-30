@@ -84,6 +84,7 @@ abstract class DataCollector implements DataCollectorInterface
         ] + ReflectionCaster::UNSET_CLOSURE_FILE_INFO;
     }
 
+<<<<<<< HEAD
     public function __serialize(): array
     {
         if (self::class === (new \ReflectionMethod($this, '__sleep'))->class || self::class !== (new \ReflectionMethod($this, '__serialize'))->class) {
@@ -151,6 +152,29 @@ abstract class DataCollector implements DataCollectorInterface
     public function __wakeup(): void
     {
         trigger_deprecation('symfony/http-kernel', '7.4', 'Calling "%s::__wakeup()" is deprecated, use "__unserialize()" instead.', get_debug_type($this));
+=======
+    public function __sleep(): array
+    {
+        return ['data'];
+    }
+
+    public function __wakeup(): void
+    {
+    }
+
+    /**
+     * @internal to prevent implementing \Serializable
+     */
+    final protected function serialize(): void
+    {
+    }
+
+    /**
+     * @internal to prevent implementing \Serializable
+     */
+    final protected function unserialize(string $data): void
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**

@@ -46,6 +46,11 @@ class ArgumentMetadata
 
     /**
      * Returns the type of the argument.
+<<<<<<< HEAD
+=======
+     *
+     * The type is the PHP class in 5.5+ and additionally the basic type in PHP 7.0+.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function getType(): ?string
     {

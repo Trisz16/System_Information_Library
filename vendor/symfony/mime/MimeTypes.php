@@ -135,7 +135,11 @@ final class MimeTypes implements MimeTypesInterface
     /**
      * A map of MIME types and their default extensions.
      *
+<<<<<<< HEAD
      * Updated from upstream on 2025-11-15.
+=======
+     * Updated from upstream on 2024-11-09.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @see Resources/bin/update_mime_types.php
      */
@@ -158,7 +162,10 @@ final class MimeTypes implements MimeTypesInterface
         'application/automationml-amlx+zip' => ['amlx'],
         'application/bat' => ['bat'],
         'application/bdoc' => ['bdoc'],
+<<<<<<< HEAD
         'application/buildstream+yaml' => ['bst'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/bzip2' => ['bz2', 'bz'],
         'application/calendar+xml' => ['xcs'],
         'application/cbor' => ['cbor'],
@@ -204,7 +211,10 @@ final class MimeTypes implements MimeTypesInterface
         'application/gpx+xml' => ['gpx'],
         'application/gxf' => ['gxf'],
         'application/gzip' => ['gz'],
+<<<<<<< HEAD
         'application/har+json' => ['har'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/hjson' => ['hjson'],
         'application/hta' => ['hta'],
         'application/hyperstudio' => ['stk'],
@@ -219,7 +229,11 @@ final class MimeTypes implements MimeTypesInterface
         'application/java-byte-code' => ['class'],
         'application/java-serialized-object' => ['ser'],
         'application/java-vm' => ['class'],
+<<<<<<< HEAD
         'application/javascript' => ['js', 'cjs', 'jsm', 'mjs'],
+=======
+        'application/javascript' => ['js', 'jsm', 'mjs'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/jrd+json' => ['jrd'],
         'application/json' => ['json', 'map'],
         'application/json-patch+json' => ['json-patch'],
@@ -340,7 +354,10 @@ final class MimeTypes implements MimeTypesInterface
         'application/smil+xml' => ['smi', 'smil', 'sml', 'kino'],
         'application/sparql-query' => ['rq', 'qs'],
         'application/sparql-results+xml' => ['srx'],
+<<<<<<< HEAD
         'application/spdx+json' => ['spdx.json'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/sql' => ['sql'],
         'application/srgs' => ['gram'],
         'application/srgs+xml' => ['grxml'],
@@ -356,7 +373,10 @@ final class MimeTypes implements MimeTypesInterface
         'application/toml' => ['toml'],
         'application/trig' => ['trig'],
         'application/ttml+xml' => ['ttml'],
+<<<<<<< HEAD
         'application/typescript' => ['cts', 'mts', 'ts'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/ubjson' => ['ubj'],
         'application/urc-ressheet+xml' => ['rsheet'],
         'application/urc-targetdesc+xml' => ['td'],
@@ -397,7 +417,10 @@ final class MimeTypes implements MimeTypesInterface
         'application/vnd.apple.numbers' => ['numbers'],
         'application/vnd.apple.pages' => ['pages'],
         'application/vnd.apple.pkpass' => ['pkpass'],
+<<<<<<< HEAD
         'application/vnd.apple.pkpasses' => ['pkpasses'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/vnd.aristanetworks.swi' => ['swi'],
         'application/vnd.astraea-software.iota' => ['iota'],
         'application/vnd.audiograph' => ['aep'],
@@ -432,8 +455,11 @@ final class MimeTypes implements MimeTypesInterface
         'application/vnd.cups-ppd' => ['ppd'],
         'application/vnd.curl.car' => ['car'],
         'application/vnd.curl.pcurl' => ['pcurl'],
+<<<<<<< HEAD
         'application/vnd.cyclonedx+json' => ['cdx.json'],
         'application/vnd.cyclonedx+xml' => ['cdx.xml'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/vnd.dart' => ['dart'],
         'application/vnd.data-vision.rdz' => ['rdz'],
         'application/vnd.dbf' => ['dbf'],
@@ -816,9 +842,13 @@ final class MimeTypes implements MimeTypesInterface
         'application/x-abiword' => ['abw', 'abw.CRASHED', 'abw.gz', 'zabw'],
         'application/x-ace' => ['ace'],
         'application/x-ace-compressed' => ['ace'],
+<<<<<<< HEAD
         'application/x-alpine-package-keeper-package' => ['apk'],
         'application/x-alz' => ['alz'],
         'application/x-amf' => ['amf'],
+=======
+        'application/x-alz' => ['alz'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/x-amiga-disk-format' => ['adf'],
         'application/x-amipro' => ['sam'],
         'application/x-annodex' => ['anx'],
@@ -935,8 +965,11 @@ final class MimeTypes implements MimeTypesInterface
         'application/x-font-woff' => ['woff'],
         'application/x-frame' => ['fm'],
         'application/x-freearc' => ['arc'],
+<<<<<<< HEAD
         'application/x-freedesktop-appstream-component' => ['metainfo.xml', 'appdata.xml'],
         'application/x-freedesktop-appstream-releases' => ['releases.xml'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/x-futuresplash' => ['spl'],
         'application/x-gameboy-color-rom' => ['gbc', 'cgb'],
         'application/x-gameboy-rom' => ['gb', 'sgb'],
@@ -1001,7 +1034,11 @@ final class MimeTypes implements MimeTypesInterface
         'application/x-java-keystore' => ['jks', 'ks'],
         'application/x-java-pack200' => ['pack'],
         'application/x-java-vm' => ['class'],
+<<<<<<< HEAD
         'application/x-javascript' => ['js', 'cjs', 'jsm', 'mjs'],
+=======
+        'application/x-javascript' => ['js', 'jsm', 'mjs'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/x-jbuilder-project' => ['jpr', 'jpx'],
         'application/x-karbon' => ['karbon'],
         'application/x-kchart' => ['chrt'],
@@ -1110,7 +1147,11 @@ final class MimeTypes implements MimeTypesInterface
         'application/x-partial-download' => ['wkdownload', 'crdownload', 'part'],
         'application/x-pc-engine-rom' => ['pce'],
         'application/x-pcap' => ['pcap', 'cap', 'dmp'],
+<<<<<<< HEAD
         'application/x-pcapng' => ['pcapng', 'scap', 'ntar'],
+=======
+        'application/x-pcapng' => ['pcapng', 'ntar'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/x-pdf' => ['pdf'],
         'application/x-perl' => ['pl', 'pm', 'PL', 'al', 'perl', 'pod', 't'],
         'application/x-photoshop' => ['psd'],
@@ -1269,10 +1310,13 @@ final class MimeTypes implements MimeTypesInterface
         'application/x-zoo' => ['zoo'],
         'application/x-zpaq' => ['zpaq'],
         'application/x-zstd-compressed-tar' => ['tar.zst', 'tzst'],
+<<<<<<< HEAD
         'application/x.sf3-archive' => ['ar.sf3', 'sf3'],
         'application/x.sf3-log' => ['log.sf3', 'sf3'],
         'application/x.sf3-table' => ['tab.sf3', 'sf3'],
         'application/x.sf3-text' => ['txt.sf3', 'sf3'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'application/xaml+xml' => ['xaml'],
         'application/xcap-att+xml' => ['xav'],
         'application/xcap-caps+xml' => ['xca'],
@@ -1366,7 +1410,10 @@ final class MimeTypes implements MimeTypesInterface
         'audio/x-dff' => ['dff'],
         'audio/x-dsd' => ['dsf'],
         'audio/x-dsf' => ['dsf'],
+<<<<<<< HEAD
         'audio/x-dsp' => ['dsm', 'dsp'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'audio/x-dts' => ['dts'],
         'audio/x-dtshd' => ['dtshd'],
         'audio/x-flac' => ['flac'],
@@ -1426,7 +1473,10 @@ final class MimeTypes implements MimeTypesInterface
         'audio/x-xi' => ['xi'],
         'audio/x-xm' => ['xm'],
         'audio/x-xmf' => ['xmf'],
+<<<<<<< HEAD
         'audio/x.sf3' => ['au.sf3', 'sf3'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'audio/xm' => ['xm'],
         'audio/xmf' => ['xmf'],
         'chemical/x-cdx' => ['cdx'],
@@ -1526,7 +1576,10 @@ final class MimeTypes implements MimeTypesInterface
         'image/vnd.ms-photo' => ['wdp', 'jxr', 'hdp'],
         'image/vnd.net-fpx' => ['npx'],
         'image/vnd.pco.b16' => ['b16'],
+<<<<<<< HEAD
         'image/vnd.radiance' => ['hdr', 'pic', 'rgbe', 'xyze'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'image/vnd.rn-realpix' => ['rp'],
         'image/vnd.tencent.tap' => ['tap'],
         'image/vnd.valve.source.texture' => ['vtf'],
@@ -1560,7 +1613,10 @@ final class MimeTypes implements MimeTypesInterface
         'image/x-gimp-gih' => ['gih'],
         'image/x-gimp-pat' => ['pat'],
         'image/x-gzeps' => ['eps.gz', 'epsi.gz', 'epsf.gz'],
+<<<<<<< HEAD
         'image/x-hdr' => ['hdr', 'pic', 'rgbe', 'xyze'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'image/x-icb' => ['tga', 'icb', 'tpic', 'vda', 'vst'],
         'image/x-icns' => ['icns'],
         'image/x-ico' => ['ico'],
@@ -1591,7 +1647,10 @@ final class MimeTypes implements MimeTypesInterface
         'image/x-pcx' => ['pcx'],
         'image/x-pentax-pef' => ['pef'],
         'image/x-pfm' => ['pfm'],
+<<<<<<< HEAD
         'image/x-phm' => ['phm'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'image/x-photo-cd' => ['pcd'],
         'image/x-photoshop' => ['psd'],
         'image/x-pict' => ['pic', 'pct', 'pict', 'pict1', 'pict2'],
@@ -1623,8 +1682,11 @@ final class MimeTypes implements MimeTypesInterface
         'image/x-xpm' => ['xpm'],
         'image/x-xwindowdump' => ['xwd'],
         'image/x.djvu' => ['djvu', 'djv'],
+<<<<<<< HEAD
         'image/x.sf3' => ['img.sf3', 'sf3'],
         'image/x.sf3-vector' => ['vec.sf3', 'sf3'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'message/disposition-notification' => ['disposition-notification'],
         'message/global' => ['u8msg'],
         'message/global-delivery-status' => ['u8dsn'],
@@ -1664,8 +1726,11 @@ final class MimeTypes implements MimeTypesInterface
         'model/vnd.valve.source.compiled-map' => ['bsp'],
         'model/vnd.vtu' => ['vtu'],
         'model/vrml' => ['wrl', 'vrml', 'vrm'],
+<<<<<<< HEAD
         'model/x.sf3' => ['mod.sf3', 'sf3'],
         'model/x.sf3-physics' => ['phys.sf3', 'sf3'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'model/x.stl-ascii' => ['stl'],
         'model/x.stl-binary' => ['stl'],
         'model/x3d+binary' => ['x3db', 'x3dbz'],
@@ -1687,8 +1752,13 @@ final class MimeTypes implements MimeTypesInterface
         'text/html' => ['html', 'htm', 'shtml'],
         'text/ico' => ['ico'],
         'text/jade' => ['jade'],
+<<<<<<< HEAD
         'text/javascript' => ['js', 'mjs', 'cjs', 'jsm'],
         'text/jscript' => ['cjs', 'js', 'jsm', 'mjs'],
+=======
+        'text/javascript' => ['js', 'mjs', 'jsm'],
+        'text/jscript' => ['js', 'jsm', 'mjs'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'text/jscript.encode' => ['jse'],
         'text/jsx' => ['jsx'],
         'text/julia' => ['jl'],
@@ -1736,7 +1806,10 @@ final class MimeTypes implements MimeTypesInterface
         'text/vnd.senx.warpscript' => ['mc2'],
         'text/vnd.sun.j2me.app-descriptor' => ['jad'],
         'text/vnd.trolltech.linguist' => ['ts'],
+<<<<<<< HEAD
         'text/vnd.typst' => ['typ'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'text/vnd.wap.wml' => ['wml'],
         'text/vnd.wap.wmlscript' => ['wmls'],
         'text/vtt' => ['vtt'],
@@ -1766,7 +1839,10 @@ final class MimeTypes implements MimeTypesInterface
         'text/x-devicetree-binary' => ['dtb'],
         'text/x-devicetree-source' => ['dts', 'dtsi'],
         'text/x-diff' => ['diff', 'patch'],
+<<<<<<< HEAD
         'text/x-dockerfile' => ['Dockerfile'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'text/x-dsl' => ['dsl'],
         'text/x-dsrc' => ['d', 'di'],
         'text/x-dtd' => ['dtd'],
@@ -1811,24 +1887,34 @@ final class MimeTypes implements MimeTypesInterface
         'text/x-mpsub' => ['sub'],
         'text/x-mrml' => ['mrml', 'mrl'],
         'text/x-ms-regedit' => ['reg'],
+<<<<<<< HEAD
         'text/x-ms-visualstudio.project' => ['dsp'],
         'text/x-ms-visualstudio.workspace' => ['dsw'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'text/x-mup' => ['mup', 'not'],
         'text/x-nfo' => ['nfo'],
         'text/x-nim' => ['nim'],
         'text/x-nimscript' => ['nims', 'nimble'],
         'text/x-nix' => ['nix'],
+<<<<<<< HEAD
         'text/x-nsis' => ['nsi', 'nsh'],
         'text/x-nu' => ['nu'],
         'text/x-nushell' => ['nu'],
+=======
+        'text/x-nu' => ['nu'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'text/x-objc++src' => ['mm'],
         'text/x-objcsrc' => ['m'],
         'text/x-ocaml' => ['ml', 'mli'],
         'text/x-ocl' => ['ocl'],
         'text/x-octave' => ['m'],
         'text/x-ooc' => ['ooc'],
+<<<<<<< HEAD
         'text/x-opencl-c++src' => ['clcpp'],
         'text/x-opencl-csrc' => ['cl'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'text/x-opencl-src' => ['cl'],
         'text/x-opml' => ['opml'],
         'text/x-opml+xml' => ['opml'],
@@ -1846,7 +1932,10 @@ final class MimeTypes implements MimeTypesInterface
         'text/x-reject' => ['rej'],
         'text/x-rpm-spec' => ['spec'],
         'text/x-rst' => ['rst'],
+<<<<<<< HEAD
         'text/x-ruby' => ['rb'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'text/x-sagemath' => ['sage'],
         'text/x-sass' => ['sass'],
         'text/x-scala' => ['scala', 'sc'],
@@ -1857,7 +1946,10 @@ final class MimeTypes implements MimeTypesInterface
         'text/x-sh' => ['sh'],
         'text/x-sql' => ['sql'],
         'text/x-ssa' => ['ssa', 'ass'],
+<<<<<<< HEAD
         'text/x-ssh-public-key' => ['pub'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'text/x-subviewer' => ['sub'],
         'text/x-suse-ymp' => ['ymp'],
         'text/x-svhdr' => ['svh'],
@@ -1906,8 +1998,13 @@ final class MimeTypes implements MimeTypesInterface
         'video/jpm' => ['jpm', 'jpgm'],
         'video/mj2' => ['mj2', 'mjp2'],
         'video/mp2t' => ['ts', 'm2t', 'm2ts', 'mts', 'cpi', 'clpi', 'mpl', 'mpls', 'bdm', 'bdmv'],
+<<<<<<< HEAD
         'video/mp4' => ['mp4', 'mp4v', 'mpg4', 'm4v', 'f4v', 'lrv', 'lrf'],
         'video/mp4v-es' => ['mp4', 'm4v', 'f4v', 'lrv', 'lrf'],
+=======
+        'video/mp4' => ['mp4', 'mp4v', 'mpg4', 'm4v', 'f4v', 'lrv'],
+        'video/mp4v-es' => ['mp4', 'm4v', 'f4v', 'lrv'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'video/mpeg' => ['mpeg', 'mpg', 'mpe', 'm1v', 'm2v', 'mp2', 'vob'],
         'video/mpeg-system' => ['mpeg', 'mpg', 'mp2', 'mpe', 'vob'],
         'video/mpg4' => ['mpg4'],
@@ -1941,7 +2038,11 @@ final class MimeTypes implements MimeTypesInterface
         'video/x-flic' => ['fli', 'flc'],
         'video/x-flv' => ['flv'],
         'video/x-javafx' => ['fxm'],
+<<<<<<< HEAD
         'video/x-m4v' => ['m4v', 'mp4', 'f4v', 'lrv', 'lrf'],
+=======
+        'video/x-m4v' => ['m4v', 'mp4', 'f4v', 'lrv'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'video/x-matroska' => ['mkv', 'mk3d', 'mks'],
         'video/x-matroska-3d' => ['mk3d'],
         'video/x-mjpeg' => ['mjpeg', 'mjpg'],
@@ -1999,7 +2100,10 @@ final class MimeTypes implements MimeTypesInterface
         '7z' => ['application/x-7z-compressed'],
         '7z.001' => ['application/x-7z-compressed'],
         'C' => ['text/x-c++src'],
+<<<<<<< HEAD
         'Dockerfile' => ['text/x-dockerfile'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'PAR2' => ['application/x-par2'],
         'PL' => ['application/x-perl', 'text/x-perl'],
         'Z' => ['application/x-compress'],
@@ -2043,7 +2147,10 @@ final class MimeTypes implements MimeTypesInterface
         'ait' => ['application/vnd.dvb.ait'],
         'al' => ['application/x-perl', 'text/x-perl'],
         'alz' => ['application/x-alz'],
+<<<<<<< HEAD
         'amf' => ['application/x-amf'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'ami' => ['application/vnd.amiga.ami'],
         'aml' => ['application/automationml-aml+xml'],
         'amlx' => ['application/automationml-amlx+zip'],
@@ -2062,10 +2169,16 @@ final class MimeTypes implements MimeTypesInterface
         'animj' => ['video/x-anim'],
         'anx' => ['application/annodex', 'application/x-annodex'],
         'ape' => ['audio/x-ape'],
+<<<<<<< HEAD
         'apk' => ['application/vnd.android.package-archive', 'application/x-alpine-package-keeper-package'],
         'apng' => ['image/apng', 'image/vnd.mozilla.apng'],
         'appcache' => ['text/cache-manifest'],
         'appdata.xml' => ['application/x-freedesktop-appstream-component'],
+=======
+        'apk' => ['application/vnd.android.package-archive'],
+        'apng' => ['image/apng', 'image/vnd.mozilla.apng'],
+        'appcache' => ['text/cache-manifest'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'appimage' => ['application/vnd.appimage', 'application/x-iso9660-appimage'],
         'appinstaller' => ['application/appinstaller'],
         'application' => ['application/x-ms-application'],
@@ -2073,7 +2186,10 @@ final class MimeTypes implements MimeTypesInterface
         'appxbundle' => ['application/appxbundle'],
         'apr' => ['application/vnd.lotus-approach'],
         'ar' => ['application/x-archive'],
+<<<<<<< HEAD
         'ar.sf3' => ['application/x.sf3-archive'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'arc' => ['application/x-freearc'],
         'arj' => ['application/x-arj'],
         'arw' => ['image/x-sony-arw'],
@@ -2096,7 +2212,10 @@ final class MimeTypes implements MimeTypesInterface
         'atomsvc' => ['application/atomsvc+xml'],
         'atx' => ['application/vnd.antix.game-component'],
         'au' => ['audio/basic'],
+<<<<<<< HEAD
         'au.sf3' => ['audio/x.sf3'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'automount' => ['text/x-systemd-unit'],
         'avci' => ['image/avci'],
         'avcs' => ['image/avcs'],
@@ -2146,7 +2265,10 @@ final class MimeTypes implements MimeTypesInterface
         'brk' => ['chemical/x-pdb'],
         'bsdiff' => ['application/x-bsdiff'],
         'bsp' => ['model/vnd.valve.source.compiled-map'],
+<<<<<<< HEAD
         'bst' => ['application/buildstream+yaml'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'btf' => ['image/prs.btif'],
         'btif' => ['image/prs.btif'],
         'bz' => ['application/bzip2', 'application/x-bzip', 'application/x-bzip1'],
@@ -2191,8 +2313,11 @@ final class MimeTypes implements MimeTypesInterface
         'cdmiq' => ['application/cdmi-queue'],
         'cdr' => ['application/cdr', 'application/coreldraw', 'application/vnd.corel-draw', 'application/x-cdr', 'application/x-coreldraw', 'image/cdr', 'image/x-cdr', 'zz-application/zz-winassoc-cdr'],
         'cdx' => ['chemical/x-cdx'],
+<<<<<<< HEAD
         'cdx.json' => ['application/vnd.cyclonedx+json'],
         'cdx.xml' => ['application/vnd.cyclonedx+xml'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'cdxml' => ['application/vnd.chemdraw+xml'],
         'cdy' => ['application/vnd.cinderella'],
         'cel' => ['image/x-kiss-cel'],
@@ -2208,11 +2333,18 @@ final class MimeTypes implements MimeTypesInterface
         'cif' => ['chemical/x-cif'],
         'cii' => ['application/vnd.anser-web-certificate-issue-initiation'],
         'cil' => ['application/vnd.ms-artgalry'],
+<<<<<<< HEAD
         'cjs' => ['application/javascript', 'application/node', 'application/x-javascript', 'text/javascript', 'text/jscript'],
         'cl' => ['text/x-opencl-csrc', 'text/x-opencl-src'],
         'cla' => ['application/vnd.claymore'],
         'class' => ['application/java', 'application/java-byte-code', 'application/java-vm', 'application/x-java', 'application/x-java-class', 'application/x-java-vm'],
         'clcpp' => ['text/x-opencl-c++src'],
+=======
+        'cjs' => ['application/node'],
+        'cl' => ['text/x-opencl-src'],
+        'cla' => ['application/vnd.claymore'],
+        'class' => ['application/java', 'application/java-byte-code', 'application/java-vm', 'application/x-java', 'application/x-java-class', 'application/x-java-vm'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'cld' => ['model/vnd.cld'],
         'clkk' => ['application/vnd.crick.clicker.keyboard'],
         'clkp' => ['application/vnd.crick.clicker.palette'],
@@ -2259,7 +2391,10 @@ final class MimeTypes implements MimeTypesInterface
         'cst' => ['application/x-director'],
         'csv' => ['text/csv', 'application/csv', 'text/x-comma-separated-values', 'text/x-csv'],
         'csvs' => ['text/csv-schema'],
+<<<<<<< HEAD
         'cts' => ['application/typescript'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'cu' => ['application/cu-seeme'],
         'cue' => ['application/x-cue'],
         'cur' => ['image/x-win-bitmap'],
@@ -2328,10 +2463,14 @@ final class MimeTypes implements MimeTypesInterface
         'dsc' => ['text/prs.lines.tag'],
         'dsf' => ['audio/dsd', 'audio/dsf', 'audio/x-dsd', 'audio/x-dsf'],
         'dsl' => ['text/x-dsl'],
+<<<<<<< HEAD
         'dsm' => ['audio/x-dsp'],
         'dsp' => ['audio/x-dsp', 'text/x-ms-visualstudio.project'],
         'dssc' => ['application/dssc+der'],
         'dsw' => ['text/x-ms-visualstudio.workspace'],
+=======
+        'dssc' => ['application/dssc+der'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'dtb' => ['application/x-dtbook+xml', 'text/x-devicetree-binary'],
         'dtd' => ['application/xml-dtd', 'text/x-dtd'],
         'dts' => ['audio/vnd.dts', 'audio/x-dts', 'text/x-devicetree-source'],
@@ -2553,7 +2692,10 @@ final class MimeTypes implements MimeTypesInterface
         'h4' => ['application/x-hdf'],
         'h5' => ['application/x-hdf'],
         'hal' => ['application/vnd.hal+xml'],
+<<<<<<< HEAD
         'har' => ['application/har+json'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'hbci' => ['application/vnd.hbci'],
         'hbs' => ['text/x-handlebars-template'],
         'hdd' => ['application/x-virtualbox-hdd'],
@@ -2561,7 +2703,10 @@ final class MimeTypes implements MimeTypesInterface
         'hdf4' => ['application/x-hdf'],
         'hdf5' => ['application/x-hdf'],
         'hdp' => ['image/jxr', 'image/vnd.ms-photo'],
+<<<<<<< HEAD
         'hdr' => ['image/vnd.radiance', 'image/x-hdr'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'heic' => ['image/heic', 'image/heic-sequence', 'image/heif', 'image/heif-sequence'],
         'heics' => ['image/heic-sequence'],
         'heif' => ['image/heic', 'image/heic-sequence', 'image/heif', 'image/heif-sequence'],
@@ -2616,7 +2761,10 @@ final class MimeTypes implements MimeTypesInterface
         'ilbm' => ['image/x-iff', 'image/x-ilbm'],
         'ime' => ['audio/imelody', 'audio/x-imelody', 'text/x-imelody'],
         'img' => ['application/vnd.efi.img', 'application/x-raw-disk-image'],
+<<<<<<< HEAD
         'img.sf3' => ['image/x.sf3'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'img.xz' => ['application/x-raw-disk-image-xz-compressed'],
         'imp' => ['application/vnd.accpac.simply.imp'],
         'ims' => ['application/vnd.ms-ims'],
@@ -2759,9 +2907,14 @@ final class MimeTypes implements MimeTypesInterface
         'lnx' => ['application/x-atari-lynx-rom'],
         'loas' => ['audio/usac'],
         'log' => ['text/plain', 'text/x-log'],
+<<<<<<< HEAD
         'log.sf3' => ['application/x.sf3-log'],
         'lostxml' => ['application/lost+xml'],
         'lrf' => ['application/x-sony-bbeb', 'video/mp4', 'video/mp4v-es', 'video/x-m4v'],
+=======
+        'lostxml' => ['application/lost+xml'],
+        'lrf' => ['application/x-sony-bbeb'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'lrm' => ['application/vnd.ms-lrm'],
         'lrv' => ['video/mp4', 'video/mp4v-es', 'video/x-m4v'],
         'lrz' => ['application/x-lrzip'],
@@ -2831,7 +2984,10 @@ final class MimeTypes implements MimeTypesInterface
         'med' => ['audio/x-mod'],
         'mesh' => ['model/mesh'],
         'meta4' => ['application/metalink4+xml'],
+<<<<<<< HEAD
         'metainfo.xml' => ['application/x-freedesktop-appstream-component'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'metalink' => ['application/metalink+xml'],
         'mets' => ['application/mets+xml'],
         'mfm' => ['application/vnd.mfmp'],
@@ -2872,7 +3028,10 @@ final class MimeTypes implements MimeTypesInterface
         'mobi' => ['application/x-mobipocket-ebook'],
         'moc' => ['text/x-moc'],
         'mod' => ['application/x-object', 'audio/x-mod'],
+<<<<<<< HEAD
         'mod.sf3' => ['model/x.sf3'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'mods' => ['application/mods+xml'],
         'mof' => ['text/x-mof'],
         'moov' => ['video/quicktime'],
@@ -2929,7 +3088,11 @@ final class MimeTypes implements MimeTypesInterface
         'msx' => ['application/x-msx-rom'],
         'mtl' => ['model/mtl'],
         'mtm' => ['audio/x-mod'],
+<<<<<<< HEAD
         'mts' => ['application/typescript', 'model/vnd.mts', 'video/mp2t'],
+=======
+        'mts' => ['model/vnd.mts', 'video/mp2t'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'mup' => ['text/x-mup'],
         'mus' => ['application/vnd.musician'],
         'musd' => ['application/mmt-usd+xml'],
@@ -2974,13 +3137,20 @@ final class MimeTypes implements MimeTypesInterface
         'nrw' => ['image/x-nikon-nrw'],
         'nsc' => ['application/x-conference', 'application/x-netshow-channel'],
         'nsf' => ['application/vnd.lotus-notes'],
+<<<<<<< HEAD
         'nsh' => ['text/x-nsis'],
         'nsi' => ['text/x-nsis'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'nsv' => ['video/x-nsv'],
         'nt' => ['application/n-triples'],
         'ntar' => ['application/x-pcapng'],
         'ntf' => ['application/vnd.nitf'],
+<<<<<<< HEAD
         'nu' => ['application/x-nuscript', 'text/x-nu', 'text/x-nushell'],
+=======
+        'nu' => ['application/x-nuscript', 'text/x-nu'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'numbers' => ['application/vnd.apple.numbers', 'application/x-iwork-numbers-sffnumbers'],
         'nzb' => ['application/x-nzb'],
         'o' => ['application/x-object'],
@@ -3100,14 +3270,21 @@ final class MimeTypes implements MimeTypesInterface
         'pgm' => ['image/x-portable-graymap'],
         'pgn' => ['application/vnd.chess-pgn', 'application/x-chess-pgn'],
         'pgp' => ['application/pgp', 'application/pgp-encrypted', 'application/pgp-keys', 'application/pgp-signature'],
+<<<<<<< HEAD
         'phm' => ['image/x-phm'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'php' => ['application/x-php', 'application/x-httpd-php'],
         'php3' => ['application/x-php'],
         'php4' => ['application/x-php'],
         'php5' => ['application/x-php'],
         'phps' => ['application/x-php'],
+<<<<<<< HEAD
         'phys.sf3' => ['model/x.sf3-physics'],
         'pic' => ['image/vnd.radiance', 'image/x-hdr', 'image/x-pict'],
+=======
+        'pic' => ['image/x-pict'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'pict' => ['image/x-pict'],
         'pict1' => ['image/x-pict'],
         'pict2' => ['image/x-pict'],
@@ -3116,7 +3293,10 @@ final class MimeTypes implements MimeTypesInterface
         'pki' => ['application/pkixcmp'],
         'pkipath' => ['application/pkix-pkipath'],
         'pkpass' => ['application/vnd.apple.pkpass'],
+<<<<<<< HEAD
         'pkpasses' => ['application/vnd.apple.pkpasses'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'pkr' => ['application/pgp-keys'],
         'pl' => ['application/x-perl', 'text/x-perl'],
         'pla' => ['audio/x-iriver-pla'],
@@ -3168,7 +3348,11 @@ final class MimeTypes implements MimeTypesInterface
         'psw' => ['application/x-pocket-word'],
         'pti' => ['image/prs.pti'],
         'ptid' => ['application/vnd.pvi.ptid1'],
+<<<<<<< HEAD
         'pub' => ['application/vnd.ms-publisher', 'application/x-mspublisher', 'text/x-ssh-public-key'],
+=======
+        'pub' => ['application/vnd.ms-publisher', 'application/x-mspublisher'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'pvb' => ['application/vnd.3gpp.pic-bw-var'],
         'pw' => ['application/x-pw'],
         'pwn' => ['application/vnd.3m.post-it-notes'],
@@ -3228,19 +3412,29 @@ final class MimeTypes implements MimeTypesInterface
         'raw-disk-image' => ['application/vnd.efi.img', 'application/x-raw-disk-image'],
         'raw-disk-image.xz' => ['application/x-raw-disk-image-xz-compressed'],
         'rax' => ['audio/vnd.m-realaudio', 'audio/vnd.rn-realaudio', 'audio/x-pn-realaudio'],
+<<<<<<< HEAD
         'rb' => ['application/x-ruby', 'text/x-ruby'],
+=======
+        'rb' => ['application/x-ruby'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'rcprofile' => ['application/vnd.ipunplugged.rcprofile'],
         'rdf' => ['application/rdf+xml', 'text/rdf'],
         'rdfs' => ['application/rdf+xml', 'text/rdf'],
         'rdz' => ['application/vnd.data-vision.rdz'],
         'reg' => ['text/x-ms-regedit'],
         'rej' => ['application/x-reject', 'text/x-reject'],
+<<<<<<< HEAD
         'releases.xml' => ['application/x-freedesktop-appstream-releases'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'relo' => ['application/p2p-overlay+xml'],
         'rep' => ['application/vnd.businessobjects'],
         'res' => ['application/x-dtbresource+xml', 'application/x-godot-resource'],
         'rgb' => ['image/x-rgb'],
+<<<<<<< HEAD
         'rgbe' => ['image/vnd.radiance', 'image/x-hdr'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'rif' => ['application/reginfo+xml'],
         'rip' => ['audio/vnd.rip'],
         'ris' => ['application/x-research-info-systems'],
@@ -3294,7 +3488,10 @@ final class MimeTypes implements MimeTypesInterface
         'sbml' => ['application/sbml+xml'],
         'sc' => ['application/vnd.ibm.secure-container', 'text/x-scala'],
         'scala' => ['text/x-scala'],
+<<<<<<< HEAD
         'scap' => ['application/x-pcapng'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'scd' => ['application/x-msschedule'],
         'scm' => ['application/vnd.lotus-screencam', 'text/x-scheme'],
         'scn' => ['application/x-godot-scene'],
@@ -3326,7 +3523,10 @@ final class MimeTypes implements MimeTypesInterface
         'service' => ['text/x-dbus-service', 'text/x-systemd-unit'],
         'setpay' => ['application/set-payment-initiation'],
         'setreg' => ['application/set-registration-initiation'],
+<<<<<<< HEAD
         'sf3' => ['application/x.sf3-archive', 'application/x.sf3-log', 'application/x.sf3-table', 'application/x.sf3-text', 'audio/x.sf3', 'image/x.sf3', 'image/x.sf3-vector', 'model/x.sf3', 'model/x.sf3-physics'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'sfc' => ['application/vnd.nintendo.snes.rom', 'application/x-snes-rom'],
         'sfd-hdstx' => ['application/vnd.hydrostatix.sof-data'],
         'sfs' => ['application/vnd.spotfire.sfs', 'application/vnd.squashfs'],
@@ -3393,7 +3593,10 @@ final class MimeTypes implements MimeTypesInterface
         'spc' => ['application/x-pkcs7-certificates'],
         'spd' => ['application/x-font-speedo'],
         'spdx' => ['text/spdx'],
+<<<<<<< HEAD
         'spdx.json' => ['application/spdx+json'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'spec' => ['text/x-rpm-spec'],
         'spf' => ['application/vnd.yamaha.smaf-phrase'],
         'spl' => ['application/futuresplash', 'application/vnd.adobe.flash.movie', 'application/x-futuresplash', 'application/x-shockwave-flash'],
@@ -3470,7 +3673,10 @@ final class MimeTypes implements MimeTypesInterface
         't2t' => ['text/x-txt2tags'],
         't3' => ['application/x-t3vm-image'],
         't38' => ['image/t38'],
+<<<<<<< HEAD
         'tab.sf3' => ['application/x.sf3-table'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'taglet' => ['application/vnd.mynfc'],
         'tak' => ['audio/x-tak'],
         'tao' => ['application/vnd.tao.intent-module-archive'],
@@ -3535,7 +3741,11 @@ final class MimeTypes implements MimeTypesInterface
         'trig' => ['application/trig', 'application/x-trig'],
         'trm' => ['application/x-msterminal'],
         'trz' => ['application/x-rzip-compressed-tar'],
+<<<<<<< HEAD
         'ts' => ['application/typescript', 'application/x-linguist', 'text/vnd.qt.linguist', 'text/vnd.trolltech.linguist', 'video/mp2t'],
+=======
+        'ts' => ['application/x-linguist', 'text/vnd.qt.linguist', 'text/vnd.trolltech.linguist', 'video/mp2t'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'tscn' => ['application/x-godot-scene'],
         'tsd' => ['application/timestamped-data'],
         'tsv' => ['text/tab-separated-values'],
@@ -3552,9 +3762,14 @@ final class MimeTypes implements MimeTypesInterface
         'txd' => ['application/vnd.genomatix.tuxedo'],
         'txf' => ['application/vnd.mobius.txf'],
         'txt' => ['text/plain'],
+<<<<<<< HEAD
         'txt.sf3' => ['application/x.sf3-text'],
         'txz' => ['application/x-xz-compressed-tar'],
         'typ' => ['text/vnd.typst', 'text/x-typst'],
+=======
+        'txz' => ['application/x-xz-compressed-tar'],
+        'typ' => ['text/x-typst'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'tzo' => ['application/x-tzo'],
         'tzst' => ['application/x-zstd-compressed-tar'],
         'u32' => ['application/x-authorware-bin'],
@@ -3636,7 +3851,10 @@ final class MimeTypes implements MimeTypesInterface
         'vda' => ['application/tga', 'application/x-targa', 'application/x-tga', 'image/targa', 'image/tga', 'image/x-icb', 'image/x-targa', 'image/x-tga'],
         'vdi' => ['application/x-vdi-disk', 'application/x-virtualbox-vdi'],
         'vds' => ['model/vnd.sap.vds'],
+<<<<<<< HEAD
         'vec.sf3' => ['image/x.sf3-vector'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'vhd' => ['application/x-vhd-disk', 'application/x-virtualbox-vhd', 'text/x-vhdl'],
         'vhdl' => ['text/x-vhdl'],
         'vhdx' => ['application/x-vhdx-disk', 'application/x-virtualbox-vhdx'],
@@ -3822,7 +4040,10 @@ final class MimeTypes implements MimeTypesInterface
         'xvml' => ['application/xv+xml'],
         'xwd' => ['image/x-xwindowdump'],
         'xyz' => ['chemical/x-xyz'],
+<<<<<<< HEAD
         'xyze' => ['image/vnd.radiance', 'image/x-hdr'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'xz' => ['application/x-xz'],
         'yaml' => ['application/yaml', 'application/x-yaml', 'text/x-yaml', 'text/yaml'],
         'yang' => ['application/yang'],

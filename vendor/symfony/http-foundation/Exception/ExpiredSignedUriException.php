@@ -11,12 +11,18 @@
 
 namespace Symfony\Component\HttpFoundation\Exception;
 
+<<<<<<< HEAD
 use Symfony\Component\HttpKernel\Attribute\WithHttpStatus;
 
 /**
  * @author Kevin Bond <kevinbond@gmail.com>
  */
 #[WithHttpStatus(403)]
+=======
+/**
+ * @author Kevin Bond <kevinbond@gmail.com>
+ */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 final class ExpiredSignedUriException extends SignedUriException
 {
     /**

@@ -45,5 +45,9 @@ interface EventSubscriberInterface
      *
      * @return array<string, string|array{0: string, 1: int}|list<array{0: string, 1?: int}>>
      */
+<<<<<<< HEAD
     public static function getSubscribedEvents(): array;
+=======
+    public static function getSubscribedEvents();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

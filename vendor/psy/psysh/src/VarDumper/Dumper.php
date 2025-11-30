@@ -71,7 +71,11 @@ class Dumper extends CliDumper
         }
 
         $styled = '';
+<<<<<<< HEAD
         $cchr = $this->styles['cchr'] ?? '';
+=======
+        $cchr = $this->styles['cchr'];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $chunks = \preg_split(self::CONTROL_CHARS, $value, -1, \PREG_SPLIT_NO_EMPTY | \PREG_SPLIT_DELIM_CAPTURE);
         foreach ($chunks as $chunk) {

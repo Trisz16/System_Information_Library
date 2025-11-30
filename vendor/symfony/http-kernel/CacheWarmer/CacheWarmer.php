@@ -22,7 +22,11 @@ abstract class CacheWarmer implements CacheWarmerInterface
     {
         $tmpFile = @tempnam(\dirname($file), basename($file));
         if (false !== @file_put_contents($tmpFile, $content) && @rename($tmpFile, $file)) {
+<<<<<<< HEAD
             @chmod($file, 0o666 & ~umask());
+=======
+            @chmod($file, 0666 & ~umask());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             return;
         }

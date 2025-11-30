@@ -21,8 +21,11 @@ use function array_pop;
 use function count;
 use function explode;
 use function extension_loaded;
+<<<<<<< HEAD
 use function hexdec;
 use function long2ip;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use function ltrim;
 use function preg_match;
 use function str_ends_with;
@@ -127,6 +130,7 @@ final class Converter
         }
 
         $hexParts = explode(':', substr($ipAddress, 5, 9));
+<<<<<<< HEAD
         if (count($hexParts) < 2) {
             return false;
         }
@@ -134,6 +138,11 @@ final class Converter
         $ipAddress = long2ip((int) hexdec($hexParts[0]) * 65536 + (int) hexdec($hexParts[1]));
 
         return '' !== ''.$ipAddress;
+=======
+
+        return count($hexParts) > 1
+            && false !== long2ip((int) hexdec($hexParts[0]) * 65536 + (int) hexdec($hexParts[1]));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     public function toIPv6Using6to4(Stringable|string|null $host): ?string

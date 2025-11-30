@@ -44,6 +44,7 @@ class SQLiteGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
      * Compile a basic where clause.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
@@ -63,6 +64,8 @@ class SQLiteGrammar extends Grammar
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Compile a "where like" clause.
      *
      * @param  \Illuminate\Database\Query\Builder  $query

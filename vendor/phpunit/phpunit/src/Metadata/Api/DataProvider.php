@@ -169,6 +169,7 @@ final readonly class DataProvider
                 throw InvalidDataProviderException::forException($e, $providerLabel);
             }
 
+<<<<<<< HEAD
             try {
                 foreach ($data as $key => $value) {
                     if (!is_int($key) && !is_string($key)) {
@@ -230,6 +231,71 @@ final readonly class DataProvider
                     $e->getCode(),
                     $e,
                 );
+=======
+            foreach ($data as $key => $value) {
+                if (!is_int($key) && !is_string($key)) {
+                    Event\Facade::emitter()->dataProviderMethodFinished(
+                        $testMethodValueObject,
+                        ...$methodsCalled,
+                    );
+
+                    throw new InvalidDataProviderException(
+                        sprintf(
+                            'The key must be an integer or a string, %s given',
+                            get_debug_type($key),
+                        ),
+                    );
+                }
+
+                if (!is_array($value)) {
+                    Event\Facade::emitter()->dataProviderMethodFinished(
+                        $testMethodValueObject,
+                        ...$methodsCalled,
+                    );
+
+                    throw new InvalidDataProviderException(
+                        sprintf(
+                            'Data set %s provided by %s is invalid, expected array but got %s',
+                            $this->formatKey($key),
+                            $providerLabel,
+                            get_debug_type($value),
+                        ),
+                    );
+                }
+
+                if ($validateArgumentCount && $testMethodNumberOfParameters < count($value)) {
+                    $this->triggerWarningForArgumentCount(
+                        $testMethod,
+                        $this->formatKey($key),
+                        $providerLabel,
+                        count($value),
+                        $testMethodNumberOfParameters,
+                    );
+                }
+
+                if (is_int($key)) {
+                    $result[] = new ProvidedData($providerLabel, $value);
+
+                    continue;
+                }
+
+                if (array_key_exists($key, $result)) {
+                    Event\Facade::emitter()->dataProviderMethodFinished(
+                        $testMethodValueObject,
+                        ...$methodsCalled,
+                    );
+
+                    throw new InvalidDataProviderException(
+                        sprintf(
+                            'The key "%s" has already been defined by provider %s',
+                            $key,
+                            $result[$key]->label(),
+                        ),
+                    );
+                }
+
+                $result[$key] = new ProvidedData($providerLabel, $value);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
         }
 

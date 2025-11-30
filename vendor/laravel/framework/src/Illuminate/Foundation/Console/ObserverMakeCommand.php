@@ -158,8 +158,13 @@ class ObserverMakeCommand extends GeneratorCommand
         }
 
         $model = suggest(
+<<<<<<< HEAD
             'What model should be observed? (Optional)',
             $this->findAvailableModels(),
+=======
+            'What model should this observer apply to? (Optional)',
+            $this->possibleModels(),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         );
 
         if ($model) {

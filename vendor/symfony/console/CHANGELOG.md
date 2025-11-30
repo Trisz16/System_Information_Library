@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 7.4
 ---
 
@@ -16,6 +17,8 @@ CHANGELOG
  * Add support for interactive invokable commands with `#[Interact]` and `#[Ask]` attributes
  * Add support for `Cursor` helper in invokable commands
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 7.3
 ---
 

@@ -11,8 +11,11 @@
 
 namespace Symfony\Component\Mailer\Transport;
 
+<<<<<<< HEAD
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -38,7 +41,10 @@ class RoundRobinTransport implements TransportInterface
     public function __construct(
         private array $transports,
         private int $retryPeriod = 60,
+<<<<<<< HEAD
         private LoggerInterface $logger = new NullLogger(),
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     ) {
         if (!$transports) {
             throw new TransportException(\sprintf('"%s" must have at least one transport configured.', static::class));
@@ -57,7 +63,10 @@ class RoundRobinTransport implements TransportInterface
             } catch (TransportExceptionInterface $e) {
                 $exception ??= new TransportException('All transports failed.');
                 $exception->appendDebug(\sprintf("Transport \"%s\": %s\n", $transport, $e->getDebug()));
+<<<<<<< HEAD
                 $this->logger->error(\sprintf('Transport "%s" failed.', $transport), ['exception' => $e]);
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $this->deadTransports[$transport] = microtime(true);
             }
         }

@@ -86,7 +86,11 @@ $bootPest = (static function (): void {
         $getopt['teamcity-file'] ?? null,
         $getopt['testdox-file'] ?? null,
         isset($getopt['testdox-color']),
+<<<<<<< HEAD
         (int) ($getopt['testdox-columns'] ?? null),
+=======
+        (int) $getopt['testdox-columns'] ?? null,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     );
 
     while (true) {

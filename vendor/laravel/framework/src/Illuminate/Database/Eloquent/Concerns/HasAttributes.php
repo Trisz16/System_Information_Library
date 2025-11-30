@@ -1314,7 +1314,11 @@ trait HasAttributes
      * @param  string  $path
      * @param  string  $key
      * @param  mixed  $value
+<<<<<<< HEAD
      * @return array
+=======
+     * @return $this
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     protected function getArrayAttributeWithValue($path, $key, $value)
     {

@@ -30,6 +30,7 @@ class PassthruPager extends StreamOutput implements OutputPager
     }
 
     /**
+<<<<<<< HEAD
      * Writes a message to the output.
      *
      * @param string $message A message to write to the output
@@ -41,6 +42,8 @@ class PassthruPager extends StreamOutput implements OutputPager
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Close the current pager process.
      */
     public function close()

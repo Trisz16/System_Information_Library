@@ -16,5 +16,9 @@
 This is correct as of Boost installation, but there may be additional components within the codebase.
 
 <available-flux-components>
+<<<<<<< HEAD
 avatar, badge, brand, breadcrumbs, button, callout, checkbox, dropdown, field, heading, icon, input, modal, navbar, otp-input, profile, radio, select, separator, skeleton, switch, text, textarea, tooltip
+=======
+avatar, badge, brand, breadcrumbs, button, callout, checkbox, dropdown, field, heading, icon, input, modal, navbar, profile, radio, select, separator, switch, text, textarea, tooltip
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 </available-flux-components>

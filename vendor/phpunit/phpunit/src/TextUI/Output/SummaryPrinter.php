@@ -62,23 +62,34 @@ final class SummaryPrinter
             return;
         }
 
+<<<<<<< HEAD
         if ($result->wasSuccessful()) {
             if ($result->hasIssues()) {
                 $color = 'fg-black, bg-yellow';
 
+=======
+        $color = 'fg-black, bg-yellow';
+
+        if ($result->wasSuccessful()) {
+            if ($result->hasIssues()) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $this->printWithColor(
                     $color,
                     'OK, but there were issues!',
                 );
             } else {
+<<<<<<< HEAD
                 $color = 'fg-black, bg-green';
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $this->printWithColor(
                     $color,
                     'OK, but some tests were skipped!',
                 );
             }
         } else {
+<<<<<<< HEAD
             $color = 'fg-white, bg-red';
 
             if ($result->hasTestErroredEvents() || $result->hasTestTriggeredPhpunitErrorEvents()) {
@@ -89,6 +100,20 @@ final class SummaryPrinter
             } else {
                 $this->printWithColor(
                     'fg-white, bg-red',
+=======
+            if ($result->hasTestErroredEvents() || $result->hasTestTriggeredPhpunitErrorEvents()) {
+                $color = 'fg-white, bg-red';
+
+                $this->printWithColor(
+                    $color,
+                    'ERRORS!',
+                );
+            } else {
+                $color = 'fg-white, bg-red';
+
+                $this->printWithColor(
+                    $color,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     'FAILURES!',
                 );
             }

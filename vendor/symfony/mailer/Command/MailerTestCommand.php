@@ -40,6 +40,7 @@ final class MailerTestCommand extends Command
             ->addOption('body', null, InputOption::VALUE_REQUIRED, 'The body of the message', 'Testing body')
             ->addOption('transport', null, InputOption::VALUE_REQUIRED, 'The transport to be used')
             ->setHelp(<<<'EOF'
+<<<<<<< HEAD
                 The <info>%command.name%</info> command tests a Mailer transport by sending a simple email message:
 
                 <info>php %command.full_name% to@example.com</info>
@@ -51,6 +52,19 @@ final class MailerTestCommand extends Command
                 Note that this command bypasses the Messenger bus if configured.
 
                 EOF
+=======
+The <info>%command.name%</info> command tests a Mailer transport by sending a simple email message:
+
+<info>php %command.full_name% to@example.com</info>
+
+You can also specify a specific transport:
+
+    <info>php %command.full_name% to@example.com --transport=transport_name</info>
+
+Note that this command bypasses the Messenger bus if configured.
+
+EOF
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             );
     }
 

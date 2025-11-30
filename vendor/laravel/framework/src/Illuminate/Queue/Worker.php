@@ -372,10 +372,13 @@ class Worker
             }
 
             foreach (explode(',', $queue) as $index => $queue) {
+<<<<<<< HEAD
                 if ($this->queuePaused($connection->getConnectionName(), $queue)) {
                     continue;
                 }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 if (! is_null($job = $popJobCallback($queue, $index))) {
                     $this->raiseAfterJobPopEvent($connection->getConnectionName(), $job);
 
@@ -392,6 +395,7 @@ class Worker
     }
 
     /**
+<<<<<<< HEAD
      * Determine if a given connection and queue is paused.
      *
      * @param  string  $connectionName
@@ -406,6 +410,8 @@ class Worker
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Process the given job.
      *
      * @param  \Illuminate\Contracts\Queue\Job  $job

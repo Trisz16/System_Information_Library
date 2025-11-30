@@ -34,6 +34,7 @@ abstract class Resource extends Primitive
         return ['uri' => $this->uri()];
     }
 
+<<<<<<< HEAD
     /**
      * @return array{
      *     name: string,
@@ -48,11 +49,20 @@ abstract class Resource extends Primitive
     {
         // @phpstan-ignore return.type
         return $this->mergeMeta([
+=======
+    public function toArray(): array
+    {
+        return [
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             'name' => $this->name(),
             'title' => $this->title(),
             'description' => $this->description(),
             'uri' => $this->uri(),
             'mimeType' => $this->mimeType(),
+<<<<<<< HEAD
         ]);
+=======
+        ];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

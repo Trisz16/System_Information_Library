@@ -7,15 +7,21 @@ namespace Laravel\Mcp\Server;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use Laravel\Mcp\Server\Concerns\HasMeta;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
 /**
  * @implements Arrayable<string, mixed>
  */
 abstract class Primitive implements Arrayable
 {
+<<<<<<< HEAD
     use HasMeta;
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     protected string $name = '';
 
     protected string $title = '';
@@ -43,6 +49,7 @@ abstract class Primitive implements Arrayable
             : $this->description;
     }
 
+<<<<<<< HEAD
     /**
      * @return array<string, mixed>|null
      */
@@ -51,6 +58,8 @@ abstract class Primitive implements Arrayable
         return $this->meta;
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function eligibleForRegistration(): bool
     {
         if (method_exists($this, 'shouldRegister')) {

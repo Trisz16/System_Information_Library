@@ -87,9 +87,15 @@ function __phpunit_run_isolated_test()
     ini_set('xdebug.scream', '0');
 
     // Not every STDOUT target stream is rewindable
+<<<<<<< HEAD
     $hasRewound = @rewind(STDOUT);
 
     if ($hasRewound && $stdout = @stream_get_contents(STDOUT)) {
+=======
+    @rewind(STDOUT);
+
+    if ($stdout = @stream_get_contents(STDOUT)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $output         = $stdout . $output;
         $streamMetaData = stream_get_meta_data(STDOUT);
 

@@ -70,15 +70,21 @@ interface StyleInterface
 
     /**
      * Asks a question.
+<<<<<<< HEAD
      *
      * @param (callable(mixed):mixed)|null $validator
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function ask(string $question, ?string $default = null, ?callable $validator = null): mixed;
 
     /**
      * Asks a question with the user input hidden.
+<<<<<<< HEAD
      *
      * @param (callable(mixed):mixed)|null $validator
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function askHidden(string $question, ?callable $validator = null): mixed;
 

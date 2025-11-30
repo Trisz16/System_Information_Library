@@ -14,7 +14,10 @@ use Illuminate\Support\Str;
 class RedisStore extends TaggableStore implements LockProvider
 {
     use RetrievesMultipleKeys {
+<<<<<<< HEAD
         many as private manyAlias;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         putMany as private putManyAlias;
     }
 
@@ -93,11 +96,14 @@ class RedisStore extends TaggableStore implements LockProvider
 
         $connection = $this->connection();
 
+<<<<<<< HEAD
         // PredisClusterConnection does not support reading multiple values if the keys hash differently...
         if ($connection instanceof PredisClusterConnection) {
             return $this->manyAlias($keys);
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $values = $connection->mget(array_map(function ($key) {
             return $this->prefix.$key;
         }, $keys));
@@ -330,17 +336,24 @@ class RedisStore extends TaggableStore implements LockProvider
             $cursor = $defaultCursorValue;
 
             do {
+<<<<<<< HEAD
                 $scanResult = $connection->scan(
+=======
+                [$cursor, $tagsChunk] = $connection->scan(
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     $cursor,
                     ['match' => $prefix.'tag:*:entries', 'count' => $chunkSize]
                 );
 
+<<<<<<< HEAD
                 if (! is_array($scanResult)) {
                     break;
                 }
 
                 [$cursor, $tagsChunk] = $scanResult;
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 if (! is_array($tagsChunk)) {
                     break;
                 }

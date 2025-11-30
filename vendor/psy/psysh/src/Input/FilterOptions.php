@@ -82,6 +82,7 @@ class FilterOptions
     /**
      * Check whether a string matches the current filter options.
      *
+<<<<<<< HEAD
      * @param string     $string
      * @param array|null $matches
      */
@@ -92,6 +93,14 @@ class FilterOptions
         }
 
         return \preg_match($this->pattern, $string, $matches) xor $this->invert;
+=======
+     * @param string $string
+     * @param array  $matches
+     */
+    public function match(string $string, ?array &$matches = null): bool
+    {
+        return $this->filter === false || (\preg_match($this->pattern, $string, $matches) xor $this->invert);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -133,7 +142,10 @@ class FilterOptions
     {
         \set_error_handler([ErrorException::class, 'throwException']);
         try {
+<<<<<<< HEAD
             // @phan-suppress-next-line PhanParamSuspiciousOrder - intentionally testing regex against empty string
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             \preg_match($pattern, '');
         } catch (ErrorException $e) {
             throw new RuntimeException(\str_replace('preg_match(): ', 'Invalid regular expression: ', $e->getRawMessage()));

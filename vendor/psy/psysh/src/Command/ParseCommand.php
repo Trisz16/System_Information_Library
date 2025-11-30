@@ -111,6 +111,7 @@ HELP
         $code = $input->getArgument('code');
         $depth = $input->getOption('depth');
 
+<<<<<<< HEAD
         if (!\preg_match('/^\s*<\\?/', $code)) {
             $code = '<?php '.$code;
         }
@@ -125,12 +126,16 @@ HELP
             }
         }
 
+=======
+        $nodes = $this->parser->parse($code);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $output->page($this->presenter->present($nodes, $depth));
 
         $this->context->setReturnValue($nodes);
 
         return 0;
     }
+<<<<<<< HEAD
 
     private function parseErrorIsEOF(\PhpParser\Error $e): bool
     {
@@ -138,4 +143,6 @@ HELP
 
         return ($msg === 'Unexpected token EOF') || (\strpos($msg, 'Syntax error, unexpected EOF') !== false);
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

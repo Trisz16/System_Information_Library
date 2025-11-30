@@ -2,14 +2,18 @@
 
 namespace Illuminate\Database\Console;
 
+<<<<<<< HEAD
 use Illuminate\Console\Concerns\FindsAvailableModels;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\ModelInspector;
 use Illuminate\Support\Collection;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 
+<<<<<<< HEAD
 use function Laravel\Prompts\suggest;
 
 #[AsCommand(name: 'model:show')]
@@ -17,6 +21,11 @@ class ShowModelCommand extends DatabaseInspectionCommand implements PromptsForMi
 {
     use FindsAvailableModels;
 
+=======
+#[AsCommand(name: 'model:show')]
+class ShowModelCommand extends DatabaseInspectionCommand
+{
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     /**
      * The console command name.
      *
@@ -217,6 +226,7 @@ class ShowModelCommand extends DatabaseInspectionCommand implements PromptsForMi
 
         $this->newLine();
     }
+<<<<<<< HEAD
 
     /**
      * Prompt for missing input arguments using the returned questions.
@@ -229,4 +239,6 @@ class ShowModelCommand extends DatabaseInspectionCommand implements PromptsForMi
             'model' => fn (): string => suggest('Which model would you like to show?', $this->findAvailableModels()),
         ];
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

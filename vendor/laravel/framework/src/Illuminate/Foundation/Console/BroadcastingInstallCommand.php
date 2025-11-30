@@ -161,6 +161,7 @@ class BroadcastingInstallCommand extends Command
                 'commands: __DIR__.\'/../routes/console.php\','.PHP_EOL.'        channels: __DIR__.\'/../routes/channels.php\',',
                 $appBootstrapPath,
             );
+<<<<<<< HEAD
         } elseif (str_contains($content, '->withRouting(')) {
             (new Filesystem)->replaceInFile(
                 '->withRouting(',
@@ -169,6 +170,8 @@ class BroadcastingInstallCommand extends Command
             );
         } else {
             $this->components->error('Unable to register broadcast routes. Please register them manually in ['.$appBootstrapPath.'].');
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
     }
 

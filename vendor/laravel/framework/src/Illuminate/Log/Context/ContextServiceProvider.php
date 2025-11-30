@@ -5,7 +5,10 @@ namespace Illuminate\Log\Context;
 use Illuminate\Contracts\Log\ContextLogProcessor as ContextLogProcessorContract;
 use Illuminate\Queue\Events\JobProcessing;
 use Illuminate\Queue\Queue;
+<<<<<<< HEAD
 use Illuminate\Support\Env;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Illuminate\Support\Facades\Context;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,6 +23,7 @@ class ContextServiceProvider extends ServiceProvider
     {
         $this->app->scoped(Repository::class);
 
+<<<<<<< HEAD
         if ($this->app->runningInConsole()) {
             $this->app->resolving(Repository::class, function (Repository $repository) {
                 $context = Env::get('__LARAVEL_CONTEXT');
@@ -30,6 +34,8 @@ class ContextServiceProvider extends ServiceProvider
             });
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $this->app->bind(ContextLogProcessorContract::class, fn () => new ContextLogProcessor());
     }
 

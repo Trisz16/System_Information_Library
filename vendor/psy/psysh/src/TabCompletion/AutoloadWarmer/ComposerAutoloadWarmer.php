@@ -193,7 +193,11 @@ class ComposerAutoloadWarmer implements AutoloadWarmerInterface
     {
         // If we found a project vendor dir, try to register their autoloader (if it hasn't been already)
         // Skip if vendor dir is inside a PHAR (don't re-require the PHAR's autoloader)
+<<<<<<< HEAD
         if ($this->vendorDir !== null && \substr($this->vendorDir, 0, 7) !== 'phar://') {
+=======
+        if ($this->vendorDir !== null && !\str_starts_with($this->vendorDir, 'phar://')) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $projectAutoload = $this->vendorDir.'/autoload.php';
             if (\file_exists($projectAutoload)) {
                 try {

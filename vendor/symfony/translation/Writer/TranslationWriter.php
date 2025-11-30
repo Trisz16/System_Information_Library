@@ -61,7 +61,11 @@ class TranslationWriter implements TranslationWriterInterface
         // get the right dumper
         $dumper = $this->dumpers[$format];
 
+<<<<<<< HEAD
         if (isset($options['path']) && !is_dir($options['path']) && !@mkdir($options['path'], 0o777, true) && !is_dir($options['path'])) {
+=======
+        if (isset($options['path']) && !is_dir($options['path']) && !@mkdir($options['path'], 0777, true) && !is_dir($options['path'])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             throw new RuntimeException(\sprintf('Translation Writer was not able to create directory "%s".', $options['path']));
         }
 

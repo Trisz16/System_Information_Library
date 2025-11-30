@@ -29,6 +29,10 @@ use Psy\Readline\Readline;
 use Psy\TabCompletion\AutoCompleter;
 use Psy\TabCompletion\Matcher;
 use Psy\TabCompletion\Matcher\CommandsMatcher;
+<<<<<<< HEAD
+=======
+use Psy\VarDumper\Presenter;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Psy\VarDumper\PresenterAware;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command as BaseCommand;
@@ -55,7 +59,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Shell extends Application
 {
+<<<<<<< HEAD
     const VERSION = 'v0.12.15';
+=======
+    const VERSION = 'v0.12.14';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     private Configuration $config;
     private CodeCleaner $cleaner;
@@ -67,6 +75,10 @@ class Shell extends Application
     private $code = null;
     private array $codeBuffer = [];
     private bool $codeBufferOpen = false;
+<<<<<<< HEAD
+=======
+    private bool $codeLooksLikeAction = false;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     private array $codeStack;
     private string $stdoutBuffer;
     private Context $context;
@@ -255,14 +267,21 @@ class Shell extends Application
         $hist = new Command\HistoryCommand();
         $hist->setReadline($this->readline);
 
+<<<<<<< HEAD
         $doc = new Command\DocCommand();
         $doc->setConfiguration($this->config);
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return [
             new Command\HelpCommand(),
             new Command\ListCommand(),
             new Command\DumpCommand(),
+<<<<<<< HEAD
             $doc,
+=======
+            new Command\DocCommand(),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             new Command\ShowCommand(),
             new Command\WtfCommand(),
             new Command\WhereamiCommand(),
@@ -920,6 +939,11 @@ class Shell extends Application
      */
     public function addCode(string $code, bool $silent = false)
     {
+<<<<<<< HEAD
+=======
+        $this->codeLooksLikeAction = false;
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         try {
             // Code lines ending in \ keep the buffer open
             if (\substr(\rtrim($code), -1) === '\\') {
@@ -933,6 +957,10 @@ class Shell extends Application
             $this->code = $this->cleaner->clean($this->codeBuffer, $this->config->requireSemicolons());
 
             if (!$silent && $this->code !== false) {
+<<<<<<< HEAD
+=======
+                $this->codeLooksLikeAction = $this->cleaner->codeLooksLikeAction($this->codeBuffer);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $this->writeCleanerMessages();
             }
         } catch (\Throwable $e) {
@@ -1282,7 +1310,12 @@ class Shell extends Application
         } else {
             $prompt = $this->config->theme()->returnValue();
             $indent = \str_repeat(' ', \strlen($prompt));
+<<<<<<< HEAD
             $formatted = $this->presentValue($ret);
+=======
+            // Use concise output for actions, full output for inspection
+            $formatted = $this->presentValue($ret, $this->codeLooksLikeAction);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $formattedRetValue = \sprintf('<whisper>%s</whisper>', $prompt);
 
             $formatted = $formattedRetValue.\str_replace(\PHP_EOL, \PHP_EOL.$indent, $formatted);
@@ -1467,10 +1500,15 @@ class Shell extends Application
                         return 'User Deprecated';
                     case \E_DEPRECATED:
                         return 'Deprecated';
+<<<<<<< HEAD
                     default:
                         if ((\PHP_VERSION_ID < 80400) && $severity === \E_STRICT) {
                             return 'Strict';
                         }
+=======
+                    case \E_STRICT:
+                        return 'Strict';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 }
             }
         }
@@ -1580,12 +1618,22 @@ class Shell extends Application
      * @see Presenter::present
      *
      * @param mixed $val
+<<<<<<< HEAD
      *
      * @return string Formatted value
      */
     protected function presentValue($val): string
     {
         return $this->config->getPresenter()->present($val);
+=======
+     * @param bool  $concise Present as a reference rather than a full value
+     *
+     * @return string Formatted value
+     */
+    protected function presentValue($val, $concise = false): string
+    {
+        return $this->config->getPresenter()->present($val, $concise ? 0 : 5, $concise ? 0 : Presenter::VERBOSE);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -1806,7 +1854,11 @@ class Shell extends Application
         try {
             $checker = $this->config->getManualChecker();
             if ($checker && !$checker->isLatest()) {
+<<<<<<< HEAD
                 $this->output->writeln(\sprintf('<whisper>New PHP manual is available (latest: %s). Update with `doc --update-manual`</whisper>', $checker->getLatest()));
+=======
+                $this->output->writeln(\sprintf('<whisper>New PHP manual is available (latest: %s). Update with `--update-manual`</whisper>', $checker->getLatest()));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
         } catch (\Exception $e) {
             // Silently ignore manual update check failures

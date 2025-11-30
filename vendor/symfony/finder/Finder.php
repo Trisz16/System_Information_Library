@@ -37,7 +37,11 @@ use Symfony\Component\Finder\Iterator\SortableIterator;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  *
+<<<<<<< HEAD
  * @implements \IteratorAggregate<non-empty-string, SplFileInfo>
+=======
+ * @implements \IteratorAggregate<string, SplFileInfo>
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  */
 class Finder implements \IteratorAggregate, \Countable
 {
@@ -657,7 +661,11 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * This method implements the IteratorAggregate interface.
      *
+<<<<<<< HEAD
      * @return \Iterator<non-empty-string, SplFileInfo>
+=======
+     * @return \Iterator<string, SplFileInfo>
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @throws \LogicException if the in() method has not been called
      */

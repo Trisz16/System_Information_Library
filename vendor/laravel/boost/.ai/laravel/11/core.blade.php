@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 @php
 /** @var \Laravel\Boost\Install\GuidelineAssist $assist */
 @endphp
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 ## Laravel 11
 
 - Use the `search-docs` tool to get version specific documentation.
@@ -35,6 +38,12 @@
 
 ### New Artisan Commands
 - List Artisan commands using Boost's MCP tool, if available. New commands available in Laravel 11:
+<<<<<<< HEAD
     - `{{ $assist->artisanCommand('make:enum') }}`
     - `{{ $assist->artisanCommand('make:class') }} `
     - `{{ $assist->artisanCommand('make:interface') }} `
+=======
+    - `php artisan make:enum`
+    - `php artisan make:class`
+    - `php artisan make:interface`
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e

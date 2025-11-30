@@ -1215,6 +1215,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
     /**
      * Create chunks representing a "sliding window" view of the items in the collection.
      *
+<<<<<<< HEAD
      * @param  positive-int  $size
      * @param  positive-int  $step
      * @return static<int, static>
@@ -1229,6 +1230,14 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
             throw new InvalidArgumentException('Step value must be at least 1.');
         }
 
+=======
+     * @param  int  $size
+     * @param  int  $step
+     * @return static<int, static>
+     */
+    public function sliding($size = 2, $step = 1)
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return new static(function () use ($size, $step) {
             $iterator = $this->getIterator();
 

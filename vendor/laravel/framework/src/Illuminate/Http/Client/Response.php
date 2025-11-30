@@ -304,7 +304,23 @@ class Response implements ArrayAccess, Stringable
     public function toException()
     {
         if ($this->failed()) {
+<<<<<<< HEAD
             return new RequestException($this, $this->truncateExceptionsAt);
+=======
+            $originalTruncateAt = RequestException::$truncateAt;
+
+            try {
+                if ($this->truncateExceptionsAt !== null) {
+                    $this->truncateExceptionsAt === false
+                        ? RequestException::dontTruncate()
+                        : RequestException::truncateAt($this->truncateExceptionsAt);
+                }
+
+                return new RequestException($this);
+            } finally {
+                RequestException::$truncateAt = $originalTruncateAt;
+            }
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
     }
 

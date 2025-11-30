@@ -25,7 +25,11 @@
     "require-dev": {
         "illuminate/collections": "^10.0|^11.0|^12.0",
         "phpstan/phpstan": "^1.12.28",
+<<<<<<< HEAD
         "pestphp/pest": "^2.3|^3.4|^4.0",
+=======
+        "pestphp/pest": "^2.3|^3.4",
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         "mockery/mockery": "^1.5",
         "phpstan/phpstan-mockery": "^1.1.3"
     },
@@ -37,9 +41,12 @@
         "ext-pcntl": "Required for the spinner to be animated."
     },
     "config": {
+<<<<<<< HEAD
         "audit": {
             "block-insecure": false
         },
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }

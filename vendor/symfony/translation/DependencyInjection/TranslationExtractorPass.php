@@ -13,6 +13,10 @@ namespace Symfony\Component\Translation\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+<<<<<<< HEAD
+=======
+use Symfony\Component\DependencyInjection\Exception\RuntimeException;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
@@ -29,7 +33,15 @@ class TranslationExtractorPass implements CompilerPassInterface
         $definition = $container->getDefinition('translation.extractor');
 
         foreach ($container->findTaggedServiceIds('translation.extractor', true) as $id => $attributes) {
+<<<<<<< HEAD
             $definition->addMethodCall('addExtractor', [$attributes[0]['alias'] ?? $id, new Reference($id)]);
+=======
+            if (!isset($attributes[0]['alias'])) {
+                throw new RuntimeException(\sprintf('The alias for the tag "translation.extractor" of service "%s" must be set.', $id));
+            }
+
+            $definition->addMethodCall('addExtractor', [$attributes[0]['alias'], new Reference($id)]);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
     }
 }

@@ -87,7 +87,11 @@ HELP
      * Psy from the trace.
      *
      * @param \Throwable $e          The exception or error with a backtrace
+<<<<<<< HEAD
      * @param int|null   $count      (default: PHP_INT_MAX)
+=======
+     * @param int        $count      (default: PHP_INT_MAX)
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @param bool       $includePsy (default: true)
      *
      * @return array Formatted stacktrace lines

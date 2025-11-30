@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 7.4
 ---
 
@@ -16,11 +17,20 @@ CHANGELOG
 ---
 
  * Record a `waiting` trace in the `HttpCache` when the cache had to wait for another request to finish
+=======
+7.3
+---
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * Add `$key` argument to `#[MapQueryString]` that allows using a specific key for argument resolving
  * Support `Uid` in `#[MapQueryParameter]`
  * Add `ServicesResetterInterface`, implemented by `ServicesResetter`
  * Allow configuring the logging channel per type of exceptions in ErrorListener
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 7.2
 ---
 

@@ -97,12 +97,15 @@ final class VariableBag implements ArrayAccess, Countable, IteratorAggregate
         return [] !== $this->variables;
     }
 
+<<<<<<< HEAD
     public function equals(mixed $value): bool
     {
         return $value instanceof self
             && $this->variables === $value->variables;
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     /**
      * Fetches the variable value if none found returns null.
      *

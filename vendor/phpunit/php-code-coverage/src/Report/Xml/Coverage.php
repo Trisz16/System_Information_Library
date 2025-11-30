@@ -10,6 +10,10 @@
 namespace SebastianBergmann\CodeCoverage\Report\Xml;
 
 use DOMElement;
+<<<<<<< HEAD
+=======
+use SebastianBergmann\CodeCoverage\ReportAlreadyFinalizedException;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use XMLWriter;
 
 /**
@@ -17,12 +21,19 @@ use XMLWriter;
  */
 final class Coverage
 {
+<<<<<<< HEAD
     private readonly DOMElement $contextNode;
     private readonly string $line;
+=======
+    private readonly XMLWriter $writer;
+    private readonly DOMElement $contextNode;
+    private bool $finalized = false;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     public function __construct(DOMElement $context, string $line)
     {
         $this->contextNode = $context;
+<<<<<<< HEAD
         $this->line        = $line;
     }
 
@@ -42,10 +53,46 @@ final class Coverage
 
         $fragment = $this->contextNode->ownerDocument->createDocumentFragment();
         $fragment->appendXML($writer->outputMemory());
+=======
+
+        $this->writer = new XMLWriter;
+        $this->writer->openMemory();
+        $this->writer->startElementNs(null, $context->nodeName, 'https://schema.phpunit.de/coverage/1.0');
+        $this->writer->writeAttribute('nr', $line);
+    }
+
+    /**
+     * @throws ReportAlreadyFinalizedException
+     */
+    public function addTest(string $test): void
+    {
+        if ($this->finalized) {
+            // @codeCoverageIgnoreStart
+            throw new ReportAlreadyFinalizedException;
+            // @codeCoverageIgnoreEnd
+        }
+
+        $this->writer->startElement('covered');
+        $this->writer->writeAttribute('by', $test);
+        $this->writer->endElement();
+    }
+
+    public function finalize(): void
+    {
+        $this->writer->endElement();
+
+        $fragment = $this->contextNode->ownerDocument->createDocumentFragment();
+        $fragment->appendXML($this->writer->outputMemory());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $this->contextNode->parentNode->replaceChild(
             $fragment,
             $this->contextNode,
         );
+<<<<<<< HEAD
+=======
+
+        $this->finalized = true;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

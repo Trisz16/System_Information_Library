@@ -14,14 +14,24 @@ use function assert;
 use function count;
 use IteratorAggregate;
 use RecursiveIteratorIterator;
+<<<<<<< HEAD
 use SebastianBergmann\CodeCoverage\Data\ProcessedClassType;
 use SebastianBergmann\CodeCoverage\Data\ProcessedFunctionType;
 use SebastianBergmann\CodeCoverage\Data\ProcessedTraitType;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use SebastianBergmann\CodeCoverage\StaticAnalysis\LinesOfCode;
 
 /**
  * @template-implements IteratorAggregate<int, AbstractNode>
  *
+<<<<<<< HEAD
+=======
+ * @phpstan-import-type ProcessedFunctionType from File
+ * @phpstan-import-type ProcessedClassType from File
+ * @phpstan-import-type ProcessedTraitType from File
+ *
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * @internal This class is not covered by the backward compatibility promise for phpunit/php-code-coverage
  */
 final class Directory extends AbstractNode implements IteratorAggregate

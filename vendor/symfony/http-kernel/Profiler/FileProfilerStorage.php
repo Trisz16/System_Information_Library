@@ -37,7 +37,11 @@ class FileProfilerStorage implements ProfilerStorageInterface
         }
         $this->folder = substr($dsn, 5);
 
+<<<<<<< HEAD
         if (!is_dir($this->folder) && false === @mkdir($this->folder, 0o777, true) && !is_dir($this->folder)) {
+=======
+        if (!is_dir($this->folder) && false === @mkdir($this->folder, 0777, true) && !is_dir($this->folder)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             throw new \RuntimeException(\sprintf('Unable to create the storage directory (%s).', $this->folder));
         }
     }
@@ -136,7 +140,11 @@ class FileProfilerStorage implements ProfilerStorageInterface
         if (!$profileIndexed) {
             // Create directory
             $dir = \dirname($file);
+<<<<<<< HEAD
             if (!is_dir($dir) && false === @mkdir($dir, 0o777, true) && !is_dir($dir)) {
+=======
+            if (!is_dir($dir) && false === @mkdir($dir, 0777, true) && !is_dir($dir)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 throw new \RuntimeException(\sprintf('Unable to create the storage directory (%s).', $dir));
             }
         }

@@ -65,7 +65,11 @@ use Symfony\Contracts\Service\ResetInterface;
  * Usage:
  *
  *     $app = new Application('myapp', '1.0 (stable)');
+<<<<<<< HEAD
  *     $app->addCommand(new SimpleCommand());
+=======
+ *     $app->add(new SimpleCommand());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  *     $app->run();
  *
  * @author Fabien Potencier <fabien@symfony.com>
@@ -389,7 +393,14 @@ class Application implements ResetInterface
         $this->definition ??= $this->getDefaultInputDefinition();
 
         if ($this->singleCommand) {
+<<<<<<< HEAD
             $this->definition->setArguments();
+=======
+            $inputDefinition = $this->definition;
+            $inputDefinition->setArguments();
+
+            return $inputDefinition;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         return $this->definition;
@@ -421,6 +432,7 @@ class Application implements ResetInterface
         if (CompletionInput::TYPE_OPTION_NAME === $input->getCompletionType()) {
             $suggestions->suggestOptions($this->getDefinition()->getOptions());
         }
+<<<<<<< HEAD
 
         if (
             CompletionInput::TYPE_OPTION_VALUE === $input->getCompletionType()
@@ -430,6 +442,8 @@ class Application implements ResetInterface
 
             return;
         }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -533,7 +547,11 @@ class Application implements ResetInterface
      */
     public function register(string $name): Command
     {
+<<<<<<< HEAD
         return $this->addCommand(new Command($name));
+=======
+        return $this->add(new Command($name));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -541,16 +559,25 @@ class Application implements ResetInterface
      *
      * If a Command is not enabled it will not be added.
      *
+<<<<<<< HEAD
      * @param callable[]|Command[] $commands An array of commands
+=======
+     * @param Command[] $commands An array of commands
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function addCommands(array $commands): void
     {
         foreach ($commands as $command) {
+<<<<<<< HEAD
             $this->addCommand($command);
+=======
+            $this->add($command);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
     }
 
     /**
+<<<<<<< HEAD
      * @deprecated since Symfony 7.4, use Application::addCommand() instead
      */
     public function add(Command $command): ?Command
@@ -561,11 +588,14 @@ class Application implements ResetInterface
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Adds a command object.
      *
      * If a command with the same name already exists, it will be overridden.
      * If the command is not enabled it will not be added.
      */
+<<<<<<< HEAD
     public function addCommand(callable|Command $command): ?Command
     {
         $this->init();
@@ -574,6 +604,12 @@ class Application implements ResetInterface
             $command = new Command(null, $command);
         }
 
+=======
+    public function add(Command $command): ?Command
+    {
+        $this->init();
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $command->setApplication($this);
 
         if (!$command->isEnabled()) {
@@ -639,7 +675,11 @@ class Application implements ResetInterface
     {
         $this->init();
 
+<<<<<<< HEAD
         return isset($this->commands[$name]) || ($this->commandLoader?->has($name) && $this->addCommand($this->commandLoader->get($name)));
+=======
+        return isset($this->commands[$name]) || ($this->commandLoader?->has($name) && $this->add($this->commandLoader->get($name)));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -802,9 +842,15 @@ class Application implements ResetInterface
             }
         }
 
+<<<<<<< HEAD
         $command = $commands ? $this->get(reset($commands)) : null;
 
         if (!$command || $command->isHidden()) {
+=======
+        $command = $this->get(reset($commands));
+
+        if ($command->isHidden()) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             throw new CommandNotFoundException(\sprintf('The command "%s" does not exist.', $name));
         }
 
@@ -1013,6 +1059,7 @@ class Application implements ResetInterface
             }
         }
 
+<<<<<<< HEAD
         $registeredSignals = false;
         if (($commandSignals = $command->getSubscribedSignals()) || $this->dispatcher && $this->signalsToDispatchEvent) {
             $signalRegistry = $this->getSignalRegistry();
@@ -1020,6 +1067,11 @@ class Application implements ResetInterface
             $registeredSignals = true;
             $this->getSignalRegistry()->pushCurrentHandlers();
 
+=======
+        if (($commandSignals = $command->getSubscribedSignals()) || $this->dispatcher && $this->signalsToDispatchEvent) {
+            $signalRegistry = $this->getSignalRegistry();
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             if ($this->dispatcher) {
                 // We register application signals, so that we can dispatch the event
                 foreach ($this->signalsToDispatchEvent as $signal) {
@@ -1076,6 +1128,7 @@ class Application implements ResetInterface
         }
 
         if (null === $this->dispatcher) {
+<<<<<<< HEAD
             try {
                 return $command->run($input, $output);
             } finally {
@@ -1083,6 +1136,9 @@ class Application implements ResetInterface
                     $this->getSignalRegistry()->popPreviousHandlers();
                 }
             }
+=======
+            return $command->run($input, $output);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         // bind before the console.command event, so the listeners have access to input options/arguments
@@ -1112,10 +1168,13 @@ class Application implements ResetInterface
             if (0 === $exitCode = $event->getExitCode()) {
                 $e = null;
             }
+<<<<<<< HEAD
         } finally {
             if ($registeredSignals) {
                 $this->getSignalRegistry()->popPreviousHandlers();
             }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         $event = new ConsoleTerminateEvent($command, $input, $output, $exitCode);
@@ -1336,6 +1395,7 @@ class Application implements ResetInterface
         }
         $this->initialized = true;
 
+<<<<<<< HEAD
         if ((new \ReflectionMethod($this, 'add'))->getDeclaringClass()->getName() !== (new \ReflectionMethod($this, 'addCommand'))->getDeclaringClass()->getName()) {
             $adder = $this->add(...);
         } else {
@@ -1344,6 +1404,10 @@ class Application implements ResetInterface
 
         foreach ($this->getDefaultCommands() as $command) {
             $adder($command);
+=======
+        foreach ($this->getDefaultCommands() as $command) {
+            $this->add($command);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
     }
 }

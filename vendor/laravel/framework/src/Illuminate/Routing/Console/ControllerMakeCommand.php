@@ -328,8 +328,13 @@ class ControllerMakeCommand extends GeneratorCommand
 
         if (in_array($type, ['api', 'resource', 'singleton'])) {
             $model = suggest(
+<<<<<<< HEAD
                 "What model is this $type controller for? (Optional)",
                 $this->findAvailableModels()
+=======
+                "What model should this $type controller be for? (Optional)",
+                $this->possibleModels()
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             );
 
             if ($model) {

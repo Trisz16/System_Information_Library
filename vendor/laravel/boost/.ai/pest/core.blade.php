@@ -1,12 +1,20 @@
 ## Pest
+<<<<<<< HEAD
 @php
 /** @var \Laravel\Boost\Install\GuidelineAssist $assist */
 @endphp
+=======
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 ### Testing
 - If you need to verify a feature is working, write or update a Unit / Feature test.
 
 ### Pest Tests
+<<<<<<< HEAD
 - All tests must be written using Pest. Use `{{ $assist->artisanCommand('make:test --pest {name}') }}`.
+=======
+- All tests must be written using Pest. Use `php artisan make:test --pest <name>`.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 - You must not remove any tests or test files from the tests directory without approval. These are not temporary or helper files - these are core to the application.
 - Tests should test all of the happy paths, failure paths, and weird paths.
 - Tests live in the `tests/Feature` and `tests/Unit` directories.
@@ -19,9 +27,15 @@ it('is true', function () {
 
 ### Running Tests
 - Run the minimal number of tests using an appropriate filter before finalizing code edits.
+<<<<<<< HEAD
 - To run all tests: `{{ $assist->artisanCommand('test') }}`.
 - To run all tests in a file: `{{ $assist->artisanCommand('test tests/Feature/ExampleTest.php') }}`.
 - To filter on a particular test name: `{{ $assist->artisanCommand('test --filter=testName') }}` (recommended after making a change to a related file).
+=======
+- To run all tests: `php artisan test`.
+- To run all tests in a file: `php artisan test tests/Feature/ExampleTest.php`.
+- To filter on a particular test name: `php artisan test --filter=testName` (recommended after making a change to a related file).
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 - When the tests relating to your changes are passing, ask the user if they would like to run the entire test suite to ensure everything is still passing.
 
 ### Pest Assertions

@@ -16,10 +16,13 @@ namespace League\Uri\Contracts;
 use JsonSerializable;
 use Stringable;
 
+<<<<<<< HEAD
 /**
  * @method static when(callable|bool $condition, callable $onSuccess, ?callable $onFail = null) conditionally return a new instance
  * @method bool equals(mixed $value) tells whether the submitted value is equal to the current instance value
  */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 interface UriComponentInterface extends JsonSerializable, Stringable
 {
     /**
@@ -40,7 +43,11 @@ interface UriComponentInterface extends JsonSerializable, Stringable
      * but MUST NOT double-encode any characters. To determine what characters
      * to encode, please refer to RFC 3986, Sections 2 and 3.
      *
+<<<<<<< HEAD
      * If the instance is not defined, an empty string is returned
+=======
+     * If the instance is not defined an empty string is returned
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function toString(): string;
 
@@ -51,7 +58,11 @@ interface UriComponentInterface extends JsonSerializable, Stringable
      * but MUST NOT double-encode any characters. To determine what characters
      * to encode, please refer to RFC 3986, Sections 2 and 3.
      *
+<<<<<<< HEAD
      * If the instance is not defined, an empty string is returned
+=======
+     * If the instance is not defined an empty string is returned
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function __toString(): string;
 
@@ -62,7 +73,11 @@ interface UriComponentInterface extends JsonSerializable, Stringable
      * but MUST NOT double-encode any characters. To determine what characters
      * to encode, please refer to RFC 3986 or RFC 1738.
      *
+<<<<<<< HEAD
      * If the instance is not defined, null is returned
+=======
+     * If the instance is not defined null is returned
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function jsonSerialize(): ?string;
 
@@ -73,7 +88,11 @@ interface UriComponentInterface extends JsonSerializable, Stringable
      * characters. To determine what characters to encode, please refer to RFC 3986,
      * Sections 2 and 3.
      *
+<<<<<<< HEAD
      * If the instance is not defined, an empty string is returned
+=======
+     * If the instance is not defined an empty string is returned
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function getUriComponent(): string;
 }

@@ -17,7 +17,13 @@ return RectorConfig::configure()
         ReadOnlyPropertyRector::class,
         EncapsedStringsToSprintfRector::class,
         DisallowedEmptyRuleFixerRector::class,
+<<<<<<< HEAD
         FunctionLikeToFirstClassCallableRector::class,
+=======
+        FunctionLikeToFirstClassCallableRector::class => [
+            __DIR__.'src/Install/CodeEnvironmentsDetector.php',
+        ],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     ])
     ->withPreparedSets(
         deadCode: true,

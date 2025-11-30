@@ -58,11 +58,19 @@ class ClassEnumerator extends Enumerator
      * If $internal or $user is defined, results will be limited to internal or
      * user-defined classes as appropriate.
      *
+<<<<<<< HEAD
      * @param string      $key
      * @param array       $classes
      * @param bool        $internal
      * @param bool        $user
      * @param string|null $prefix
+=======
+     * @param string $key
+     * @param array  $classes
+     * @param bool   $internal
+     * @param bool   $user
+     * @param string $prefix
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @return array
      */

@@ -37,6 +37,7 @@ class CompiledUrlMatcherDumper extends MatcherDumper
     public function dump(array $options = []): string
     {
         return <<<EOF
+<<<<<<< HEAD
             <?php
 
             /**
@@ -48,6 +49,19 @@ class CompiledUrlMatcherDumper extends MatcherDumper
             {$this->generateCompiledRoutes()}];
 
             EOF;
+=======
+<?php
+
+/**
+ * This file has been auto-generated
+ * by the Symfony Routing Component.
+ */
+
+return [
+{$this->generateCompiledRoutes()}];
+
+EOF;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     public function addExpressionLanguageProvider(ExpressionFunctionProviderInterface $provider): void
@@ -112,12 +126,21 @@ class CompiledUrlMatcherDumper extends MatcherDumper
             }
 
             $checkConditionCode = <<<EOF
+<<<<<<< HEAD
                     static function (\$condition, \$context, \$request, \$params) { // \$checkCondition
                         switch (\$condition) {
                 {$this->indent(implode("\n", $conditions), 3)}
                         }
                     }
                 EOF;
+=======
+    static function (\$condition, \$context, \$request, \$params) { // \$checkCondition
+        switch (\$condition) {
+{$this->indent(implode("\n", $conditions), 3)}
+        }
+    }
+EOF;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $compiledRoutes[4] = $forDump ? $checkConditionCode.",\n" : eval('return '.$checkConditionCode.';');
         } else {
             $compiledRoutes[4] = $forDump ? "    null, // \$checkCondition\n" : null;
@@ -219,12 +242,16 @@ class CompiledUrlMatcherDumper extends MatcherDumper
         foreach ($staticRoutes as $url => $routes) {
             $compiledRoutes[$url] = [];
             foreach ($routes as $name => [$route, $hasTrailingSlash]) {
+<<<<<<< HEAD
                 if ($route->compile()->getHostVariables()) {
                     $host = $route->compile()->getHostRegex();
                 } elseif ($host = $route->getHost()) {
                     $host = strtolower($host);
                 }
                 $compiledRoutes[$url][] = $this->compileRoute($route, $name, $host ?: null, $hasTrailingSlash, false, $conditions);
+=======
+                $compiledRoutes[$url][] = $this->compileRoute($route, $name, (!$route->compile()->getHostVariables() ? $route->getHost() : $route->compile()->getHostRegex()) ?: null, $hasTrailingSlash, false, $conditions);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
         }
 
@@ -470,10 +497,18 @@ class CompiledUrlMatcherDumper extends MatcherDumper
         if (null === $value) {
             return 'null';
         }
+<<<<<<< HEAD
         if (\is_object($value)) {
             throw new \InvalidArgumentException(\sprintf('Symfony\Component\Routing\Route cannot contain objects, but "%s" given.', get_debug_type($value)));
         }
         if (!\is_array($value)) {
+=======
+        if (!\is_array($value)) {
+            if (\is_object($value)) {
+                throw new \InvalidArgumentException('Symfony\Component\Routing\Route cannot contain objects.');
+            }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return str_replace("\n", '\'."\n".\'', var_export($value, true));
         }
         if (!$value) {

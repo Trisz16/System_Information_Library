@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\Tokenizer;
 
+<<<<<<< HEAD
 use ArrayAccess;
 use ArrayIterator;
 use Countable;
@@ -11,17 +12,49 @@ use IteratorAggregate;
  * @implements IteratorAggregate<int, Token>
  */
 class TokenCollection implements IteratorAggregate, ArrayAccess, Countable {
+=======
+class TokenCollection implements \ArrayAccess, \Iterator, \Countable {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     /** @var Token[] */
     private $tokens = [];
 
+<<<<<<< HEAD
+=======
+    /** @var int */
+    private $pos;
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function addToken(Token $token): void {
         $this->tokens[] = $token;
     }
 
+<<<<<<< HEAD
     public function getIterator(): Iterator
     {
         return new ArrayIterator($this->tokens);
+=======
+    public function current(): Token {
+        return \current($this->tokens);
+    }
+
+    public function key(): int {
+        return \key($this->tokens);
+    }
+
+    public function next(): void {
+        \next($this->tokens);
+        $this->pos++;
+    }
+
+    public function valid(): bool {
+        return $this->count() > $this->pos;
+    }
+
+    public function rewind(): void {
+        \reset($this->tokens);
+        $this->pos = 0;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     public function count(): int {

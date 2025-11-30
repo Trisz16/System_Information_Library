@@ -20,6 +20,7 @@ trait TestDatabases
     protected static $schemaIsUpToDate = false;
 
     /**
+<<<<<<< HEAD
      * The root database name prior to concatenating the token.
      *
      * @var null|string
@@ -27,6 +28,8 @@ trait TestDatabases
     protected static $originalDatabaseName = null;
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Boot a test database.
      *
      * @return void
@@ -193,12 +196,15 @@ trait TestDatabases
      */
     protected function testDatabase($database)
     {
+<<<<<<< HEAD
         if (! isset(self::$originalDatabaseName)) {
             self::$originalDatabaseName = $database;
         } else {
             $database = self::$originalDatabaseName;
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $token = ParallelTesting::token();
 
         return "{$database}_test_{$token}";

@@ -87,7 +87,11 @@ final readonly class TestBuilder
      * @param non-empty-string                                                                                                                                                  $methodName
      * @param class-string<TestCase>                                                                                                                                            $className
      * @param array<ProvidedData>                                                                                                                                               $data
+<<<<<<< HEAD
      * @param array{backupGlobals: ?true, backupGlobalsExcludeList: list<string>, backupStaticProperties: ?true, backupStaticPropertiesExcludeList: array<string,list<string>>} $backupSettings
+=======
+     * @param array{backupGlobals: ?bool, backupGlobalsExcludeList: list<string>, backupStaticProperties: ?bool, backupStaticPropertiesExcludeList: array<string,list<string>>} $backupSettings
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @param list<non-empty-string>                                                                                                                                            $groups
      */
     private function buildDataProviderTestSuite(string $methodName, string $className, array $data, bool $runTestInSeparateProcess, ?bool $preserveGlobalState, bool $runClassInSeparateProcess, array $backupSettings, array $groups): DataProviderTestSuite
@@ -121,7 +125,11 @@ final readonly class TestBuilder
     }
 
     /**
+<<<<<<< HEAD
      * @param array{backupGlobals: ?true, backupGlobalsExcludeList: list<string>, backupStaticProperties: ?true, backupStaticPropertiesExcludeList: array<string,list<string>>} $backupSettings
+=======
+     * @param array{backupGlobals: ?bool, backupGlobalsExcludeList: list<string>, backupStaticProperties: ?bool, backupStaticPropertiesExcludeList: array<string,list<string>>} $backupSettings
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     private function configureTestCase(TestCase $test, bool $runTestInSeparateProcess, ?bool $preserveGlobalState, bool $runClassInSeparateProcess, array $backupSettings): void
     {
@@ -158,7 +166,11 @@ final readonly class TestBuilder
      * @param class-string<TestCase> $className
      * @param non-empty-string       $methodName
      *
+<<<<<<< HEAD
      * @return array{backupGlobals: ?true, backupGlobalsExcludeList: list<string>, backupStaticProperties: ?true, backupStaticPropertiesExcludeList: array<string,list<string>>}
+=======
+     * @return array{backupGlobals: ?bool, backupGlobalsExcludeList: list<string>, backupStaticProperties: ?bool, backupStaticPropertiesExcludeList: array<string,list<string>>}
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     private function backupSettings(string $className, string $methodName): array
     {

@@ -13,17 +13,23 @@ declare(strict_types=1);
 
 namespace League\Uri;
 
+<<<<<<< HEAD
 use Closure;
 use Deprecated;
 use finfo;
 use League\Uri\Contracts\Conditionable;
 use League\Uri\Contracts\FragmentDirective;
+=======
+use Deprecated;
+use finfo;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use League\Uri\Contracts\UriComponentInterface;
 use League\Uri\Contracts\UriException;
 use League\Uri\Contracts\UriInterface;
 use League\Uri\Exceptions\ConversionFailed;
 use League\Uri\Exceptions\MissingFeature;
 use League\Uri\Exceptions\SyntaxError;
+<<<<<<< HEAD
 use League\Uri\Idna\Converter as IdnaConverter;
 use League\Uri\IPv4\Converter as IPv4Converter;
 use League\Uri\IPv6\Converter as IPv6Converter;
@@ -69,27 +75,64 @@ use function str_contains;
 use function str_repeat;
 use function str_replace;
 use function str_starts_with;
+=======
+use League\Uri\Idna\Converter as IdnConverter;
+use League\Uri\UriTemplate\TemplateCanNotBeExpanded;
+use Psr\Http\Message\UriInterface as Psr7UriInterface;
+use SensitiveParameter;
+use Stringable;
+
+use function array_filter;
+use function array_map;
+use function base64_decode;
+use function base64_encode;
+use function count;
+use function explode;
+use function file_get_contents;
+use function filter_var;
+use function implode;
+use function in_array;
+use function inet_pton;
+use function ltrim;
+use function preg_match;
+use function preg_replace_callback;
+use function rawurlencode;
+use function str_contains;
+use function str_replace;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use function strlen;
 use function strpos;
 use function strspn;
 use function strtolower;
 use function substr;
+<<<<<<< HEAD
 use function trim;
 
 use const FILEINFO_MIME;
 use const FILEINFO_MIME_TYPE;
+=======
+
+use const FILEINFO_MIME;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use const FILTER_FLAG_IPV4;
 use const FILTER_FLAG_IPV6;
 use const FILTER_NULL_ON_FAILURE;
 use const FILTER_VALIDATE_BOOLEAN;
+<<<<<<< HEAD
 use const FILTER_VALIDATE_EMAIL;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use const FILTER_VALIDATE_IP;
 
 /**
  * @phpstan-import-type ComponentMap from UriString
  * @phpstan-import-type InputComponentMap from UriString
  */
+<<<<<<< HEAD
 final class Uri implements Conditionable, UriInterface
+=======
+final class Uri implements UriInterface
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 {
     /**
      * RFC3986 invalid characters.
@@ -101,6 +144,18 @@ final class Uri implements Conditionable, UriInterface
     private const REGEXP_INVALID_CHARS = '/[\x00-\x1f\x7f]/';
 
     /**
+<<<<<<< HEAD
+=======
+     * RFC3986 schema regular expression pattern.
+     *
+     * @link https://tools.ietf.org/html/rfc3986#section-3.1
+     *
+     * @var string
+     */
+    private const REGEXP_SCHEME = ',^[a-z]([-a-z\d+.]+)?$,i';
+
+    /**
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * RFC3986 host identified by a registered name regular expression pattern.
      *
      * @link https://tools.ietf.org/html/rfc3986#section-3.2.2
@@ -154,7 +209,11 @@ final class Uri implements Conditionable, UriInterface
     /**
      * Regular expression pattern to for file URI.
      * <volume> contains the volume but not the volume separator.
+<<<<<<< HEAD
      * The volume separator may be URL-encoded (`|` as `%7C`) by formatPath(),
+=======
+     * The volume separator may be URL-encoded (`|` as `%7C`) by ::formatPath(),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * so we account for that here.
      *
      * @var string
@@ -180,7 +239,11 @@ final class Uri implements Conditionable, UriInterface
     private const REGEXP_BINARY = ',(;|^)base64$,';
 
     /**
+<<<<<<< HEAD
      * Windows filepath regular expression pattern.
+=======
+     * Windows file path string regular expression pattern.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * <root> contains both the volume and volume separator.
      *
      * @var string
@@ -188,6 +251,25 @@ final class Uri implements Conditionable, UriInterface
     private const REGEXP_WINDOW_PATH = ',^(?<root>[a-zA-Z][:|\|]),';
 
     /**
+<<<<<<< HEAD
+=======
+     * Supported schemes and corresponding default port.
+     *
+     * @var array<string, int|null>
+     */
+    private const SCHEME_DEFAULT_PORT = [
+        'data' => null,
+        'file' => null,
+        'ftp' => 21,
+        'gopher' => 70,
+        'http' => 80,
+        'https' => 443,
+        'ws' => 80,
+        'wss' => 443,
+    ];
+
+    /**
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Maximum number of cached items.
      *
      * @var int
@@ -211,9 +293,13 @@ final class Uri implements Conditionable, UriInterface
     private readonly string $path;
     private readonly ?string $query;
     private readonly ?string $fragment;
+<<<<<<< HEAD
     private readonly string $uriAsciiString;
     private readonly string $uriUnicodeString;
     private readonly ?string $origin;
+=======
+    private readonly string $uri;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     private function __construct(
         ?string $scheme,
@@ -233,6 +319,7 @@ final class Uri implements Conditionable, UriInterface
         $this->path = $this->formatPath($path);
         $this->query = Encoder::encodeQueryOrFragment($query);
         $this->fragment = Encoder::encodeQueryOrFragment($fragment);
+<<<<<<< HEAD
         $this->userInfo = null !== $this->pass ? $this->user.':'.$this->pass : $this->user;
         $this->authority = UriString::buildAuthority($this->toComponents());
         $this->uriAsciiString = UriString::buildUri($this->scheme, $this->authority, $this->path, $this->query, $this->fragment);
@@ -249,6 +336,13 @@ final class Uri implements Conditionable, UriInterface
                 $this->query,
                 $this->fragment
             );
+=======
+        $this->userInfo = $this->formatUserInfo($this->user, $this->pass);
+        $this->authority = UriString::buildAuthority($this->toComponents());
+        $this->uri = UriString::buildUri($this->scheme, $this->authority, $this->path, $this->query, $this->fragment);
+
+        $this->assertValidState();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -268,10 +362,19 @@ final class Uri implements Conditionable, UriInterface
             return $formattedScheme;
         }
 
+<<<<<<< HEAD
         null !== UriScheme::tryFrom($formattedScheme)
         || UriString::isValidScheme($formattedScheme)
         || throw new SyntaxError('The scheme `'.$scheme.'` is invalid.');
 
+=======
+        if (
+            !array_key_exists($formattedScheme, self::SCHEME_DEFAULT_PORT)
+            && 1 !== preg_match(self::REGEXP_SCHEME, $formattedScheme)
+        ) {
+            throw new SyntaxError('The scheme `'.$scheme.'` is invalid.');
+        }
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $cache[$formattedScheme] = 1;
         if (self::MAXIMUM_CACHED_ITEMS < count($cache)) {
@@ -282,6 +385,22 @@ final class Uri implements Conditionable, UriInterface
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Set the UserInfo component.
+     */
+    private function formatUserInfo(
+        ?string $user,
+        #[SensitiveParameter] ?string $password
+    ): ?string {
+        return match (null) {
+            $password => $user,
+            default => $user.':'.$password,
+        };
+    }
+
+    /**
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Validate and Format the Host component.
      */
     private function formatHost(?string $host): ?string
@@ -316,6 +435,7 @@ final class Uri implements Conditionable, UriInterface
     private function formatRegisteredName(string $host): string
     {
         $formattedHost = rawurldecode($host);
+<<<<<<< HEAD
         if ($formattedHost === $host) {
             return match (1) {
                 preg_match(self::REGEXP_HOST_REGNAME, $formattedHost) => $formattedHost,
@@ -329,6 +449,14 @@ final class Uri implements Conditionable, UriInterface
         }
 
         return (string) Encoder::normalizeHost($host);
+=======
+
+        return match (1) {
+            preg_match(self::REGEXP_HOST_REGNAME, $formattedHost) => $formattedHost,
+            preg_match(self::REGEXP_HOST_GEN_DELIMS, $formattedHost) => throw new SyntaxError('The host `'.$host.'` is invalid : a registered name cannot contain URI delimiters or spaces.'),
+            default => IdnConverter::toAsciiOrFail($host),
+        };
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -377,9 +505,13 @@ final class Uri implements Conditionable, UriInterface
      */
     private function formatPort(?int $port = null): ?int
     {
+<<<<<<< HEAD
         $defaultPort = null !== $this->scheme
             ? UriScheme::tryFrom($this->scheme)?->port()
             : null;
+=======
+        $defaultPort = self::SCHEME_DEFAULT_PORT[$this->scheme] ?? null;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return match (true) {
             null === $port, $defaultPort === $port => null,
@@ -389,6 +521,7 @@ final class Uri implements Conditionable, UriInterface
     }
 
     /**
+<<<<<<< HEAD
      * Create a new instance from a string or a stringable structure or returns null on failure.
      */
     public static function tryNew(Rfc3986Uri|WhatWgUrl|Urn|Stringable|string $uri = ''): ?self
@@ -469,6 +602,48 @@ final class Uri implements Conditionable, UriInterface
         } catch (Throwable) {
             return null;
         }
+=======
+     * Create a new instance from a string.
+     */
+    public static function new(Stringable|string $uri = ''): self
+    {
+        $components = match (true) {
+            $uri instanceof UriInterface => $uri->toComponents(),
+            default => UriString::parse($uri),
+        };
+
+        return new self(
+            $components['scheme'],
+            $components['user'],
+            $components['pass'],
+            $components['host'],
+            $components['port'],
+            $components['path'],
+            $components['query'],
+            $components['fragment']
+        );
+    }
+
+    /**
+     * Creates a new instance from a URI and a Base URI.
+     *
+     * The returned URI must be absolute.
+     */
+    public static function fromBaseUri(
+        Stringable|string $uri,
+        Stringable|string|null $baseUri = null
+    ): self {
+        $uri = self::new($uri);
+        $baseUri = BaseUri::from($baseUri ?? $uri);
+
+        /** @var self $uri */
+        $uri = match (true) {
+            $baseUri->isAbsolute() => $baseUri->resolve($uri)->getUri(),
+            default => throw new SyntaxError('the URI `'.$baseUri.'` must be absolute.'),
+        };
+
+        return $uri;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -480,7 +655,11 @@ final class Uri implements Conditionable, UriInterface
     public static function fromTemplate(UriTemplate|Stringable|string $template, iterable $variables = []): self
     {
         return match (true) {
+<<<<<<< HEAD
             $template instanceof UriTemplate => self::new($template->expand($variables)),
+=======
+            $template instanceof UriTemplate => self::fromComponents($template->expand($variables)->toComponents()),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $template instanceof UriTemplate\Template => self::new($template->expand($variables)),
             default => self::new(UriTemplate\Template::new($template)->expand($variables)),
         };
@@ -518,12 +697,17 @@ final class Uri implements Conditionable, UriInterface
     /**
      * Create a new instance from a data file path.
      *
+<<<<<<< HEAD
      * @param SplFileInfo|SplFileObject|resource|Stringable|string $path
      * @param ?resource $context
+=======
+     * @param resource|null $context
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @throws MissingFeature If ext/fileinfo is not installed
      * @throws SyntaxError If the file does not exist or is not readable
      */
+<<<<<<< HEAD
     public static function fromFileContents(mixed $path, $context = null): self
     {
         FeatureDetection::supportsFileDetection();
@@ -578,6 +762,29 @@ final class Uri implements Conditionable, UriInterface
             is_string($path) => $fromPath($path, $context),
             default => throw new TypeError('The path `'.$path.'` is not a valid resource.'),
         };
+=======
+    public static function fromFileContents(Stringable|string $path, $context = null): self
+    {
+        FeatureDetection::supportsFileDetection();
+
+        $path = (string) $path;
+        $fileArguments = [$path, false];
+        $mimeArguments = [$path, FILEINFO_MIME];
+        if (null !== $context) {
+            $fileArguments[] = $context;
+            $mimeArguments[] = $context;
+        }
+
+        set_error_handler(fn (int $errno, string $errstr, string $errfile, int $errline) => true);
+        $raw = file_get_contents(...$fileArguments);
+        restore_error_handler();
+
+        if (false === $raw) {
+            throw new SyntaxError('The file `'.$path.'` does not exist or is not readable.');
+        }
+
+        $mimetype = (string) (new finfo(FILEINFO_MIME))->file(...$mimeArguments);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return Uri::fromComponents([
             'scheme' => 'data',
@@ -590,7 +797,11 @@ final class Uri implements Conditionable, UriInterface
      *
      * @throws SyntaxError If the parameter syntax is invalid
      */
+<<<<<<< HEAD
     public static function fromData(Stringable|string $data, string $mimetype = '', string $parameters = ''): self
+=======
+    public static function fromData(string $data, string $mimetype = '', string $parameters = ''): self
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         static $regexpMimetype = ',^\w+/[-.\w]+(?:\+[-.\w]+)?$,';
 
@@ -600,7 +811,10 @@ final class Uri implements Conditionable, UriInterface
             default => throw new SyntaxError('Invalid mimeType, `'.$mimetype.'`.'),
         };
 
+<<<<<<< HEAD
         $data = (string) $data;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if ('' === $parameters) {
             return self::fromComponents([
                 'scheme' => 'data',
@@ -645,8 +859,13 @@ final class Uri implements Conditionable, UriInterface
      */
     public static function fromWindowsPath(Stringable|string $path): self
     {
+<<<<<<< HEAD
         $root = '';
         $path = (string) $path;
+=======
+        $path = (string) $path;
+        $root = '';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (1 === preg_match(self::REGEXP_WINDOW_PATH, $path, $matches)) {
             $root = substr($matches['root'], 0, -1).':';
             $path = substr($path, strlen($root));
@@ -674,7 +893,11 @@ final class Uri implements Conditionable, UriInterface
      *
      * @see https://datatracker.ietf.org/doc/html/rfc8089
      */
+<<<<<<< HEAD
     public static function fromRfc8089(Stringable|string $uri): static
+=======
+    public static function fromRfc8089(Stringable|string $uri): UriInterface
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $fileUri = self::new((string) preg_replace(',^(file:/)([^/].*)$,i', 'file:///$2', (string) $uri));
         $scheme = $fileUri->getScheme();
@@ -715,7 +938,11 @@ final class Uri implements Conditionable, UriInterface
     /**
      * Returns the environment user info.
      *
+<<<<<<< HEAD
      * @return non-empty-array {0: ?string, 1: ?string}
+=======
+     * @return non-empty-array{0: ?string, 1: ?string}
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     private static function fetchUserInfo(array $server): array
     {
@@ -724,7 +951,13 @@ final class Uri implements Conditionable, UriInterface
         $pass = $server['PHP_AUTH_PW'];
         if (str_starts_with(strtolower($server['HTTP_AUTHORIZATION']), 'basic')) {
             $userinfo = base64_decode(substr($server['HTTP_AUTHORIZATION'], 6), true);
+<<<<<<< HEAD
             false !== $userinfo || throw new SyntaxError('The user info could not be detected');
+=======
+            if (false === $userinfo) {
+                throw new SyntaxError('The user info could not be detected');
+            }
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             [$user, $pass] = explode(':', $userinfo, 2) + [1 => null];
         }
 
@@ -762,7 +995,14 @@ final class Uri implements Conditionable, UriInterface
             return [$matches['host'], $matches['port'] ?? $server['SERVER_PORT']];
         }
 
+<<<<<<< HEAD
         isset($server['SERVER_ADDR']) || throw new SyntaxError('The host could not be detected');
+=======
+        if (!isset($server['SERVER_ADDR'])) {
+            throw new SyntaxError('The host could not be detected');
+        }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (false === filter_var($server['SERVER_ADDR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
             return ['['.$server['SERVER_ADDR'].']', $server['SERVER_PORT']];
         }
@@ -799,7 +1039,11 @@ final class Uri implements Conditionable, UriInterface
     {
         return match ($this->scheme) {
             'data' => Encoder::encodePath(self::formatDataPath($path)),
+<<<<<<< HEAD
             'file' => self::formatFilePath(Encoder::encodePath($path)),
+=======
+            'file' => $this->formatFilePath(Encoder::encodePath($path)),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             default => Encoder::encodePath($path),
         };
     }
@@ -848,14 +1092,28 @@ final class Uri implements Conditionable, UriInterface
      */
     private static function assertValidPath(string $mimetype, string $parameters, string $data): void
     {
+<<<<<<< HEAD
         1 === preg_match(self::REGEXP_MIMETYPE, $mimetype) || throw new SyntaxError('The path mimetype `'.$mimetype.'` is invalid.');
+=======
+        if (1 !== preg_match(self::REGEXP_MIMETYPE, $mimetype)) {
+            throw new SyntaxError('The path mimetype `'.$mimetype.'` is invalid.');
+        }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $isBinary = 1 === preg_match(self::REGEXP_BINARY, $parameters, $matches);
         if ($isBinary) {
             $parameters = substr($parameters, 0, - strlen($matches[0]));
         }
 
         $res = array_filter(array_filter(explode(';', $parameters), self::validateParameter(...)));
+<<<<<<< HEAD
         [] === $res || throw new SyntaxError('The path parameters `'.$parameters.'` is invalid.');
+=======
+        if ([] !== $res) {
+            throw new SyntaxError('The path parameters `'.$parameters.'` is invalid.');
+        }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (!$isBinary) {
             return;
         }
@@ -877,9 +1135,15 @@ final class Uri implements Conditionable, UriInterface
     }
 
     /**
+<<<<<<< HEAD
      * Format the path component for the URI scheme file.
      */
     private static function formatFilePath(string $path): string
+=======
+     * Format path component for file scheme.
+     */
+    private function formatFilePath(string $path): string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return (string) preg_replace_callback(
             self::REGEXP_FILE_PATH,
@@ -894,16 +1158,27 @@ final class Uri implements Conditionable, UriInterface
      * @link https://tools.ietf.org/html/rfc3986#section-3
      * @link https://tools.ietf.org/html/rfc3986#section-3.3
      *
+<<<<<<< HEAD
      * @throws SyntaxError if the URI is in an invalid state, according to RFC3986
      */
     private function assertValidRfc3986Uri(): void
+=======
+     * @throws SyntaxError if the URI is in an invalid state according to RFC3986
+     * @throws SyntaxError if the URI is in an invalid state according to scheme specific rules
+     */
+    private function assertValidState(): void
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if (null !== $this->authority && ('' !== $this->path && '/' !== $this->path[0])) {
             throw new SyntaxError('If an authority is present the path must be empty or start with a `/`.');
         }
 
         if (null === $this->authority && str_starts_with($this->path, '//')) {
+<<<<<<< HEAD
             throw new SyntaxError('If there is no authority the path `' . $this->path . '` cannot start with a `//`.');
+=======
+            throw new SyntaxError('If there is no authority the path `'.$this->path.'` cannot start with a `//`.');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         $pos = strpos($this->path, ':');
@@ -914,6 +1189,7 @@ final class Uri implements Conditionable, UriInterface
         ) {
             throw new SyntaxError('In absence of a scheme and an authority the first path segment cannot contain a colon (":") character.');
         }
+<<<<<<< HEAD
     }
 
     /**
@@ -1103,6 +1379,18 @@ final class Uri implements Conditionable, UriInterface
             return self::fromComponents($components)->origin;
         } catch (UriException) {
             return null;
+=======
+
+        if (! match ($this->scheme) {
+            'data' => $this->isUriWithSchemeAndPathOnly(),
+            'file' => $this->isUriWithSchemeHostAndPathOnly(),
+            'ftp', 'gopher' => $this->isNonEmptyHostUriWithoutFragmentAndQuery(),
+            'http', 'https' => $this->isNonEmptyHostUri(),
+            'ws', 'wss' => $this->isNonEmptyHostUriWithoutFragment(),
+            default => true,
+        }) {
+            throw new SyntaxError('The uri `'.$this->uri.'` is invalid for the `'.$this->scheme.'` scheme.');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
     }
 
@@ -1155,16 +1443,31 @@ final class Uri implements Conditionable, UriInterface
         return $this->isNonEmptyHostUri() && null === $this->fragment && null === $this->query;
     }
 
+<<<<<<< HEAD
+=======
+    public function toString(): string
+    {
+        return $this->uri;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function __toString(): string
     {
         return $this->toString();
     }
 
     /**
+<<<<<<< HEAD
      * Returns the string representation as a URI reference.
      *
      * @see http://tools.ietf.org/html/rfc3986#section-4.1
      * @see ::toString
+=======
+     * {@inheritDoc}
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function jsonSerialize(): string
     {
@@ -1172,6 +1475,7 @@ final class Uri implements Conditionable, UriInterface
     }
 
     /**
+<<<<<<< HEAD
      * Returns the string representation as a URI reference.
      *
      * @see http://tools.ietf.org/html/rfc3986#section-4.1
@@ -1335,6 +1639,8 @@ final class Uri implements Conditionable, UriInterface
     /**
      * Returns an associative array containing all the URI components.
      *
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @return ComponentMap
      */
     public function toComponents(): array
@@ -1351,41 +1657,76 @@ final class Uri implements Conditionable, UriInterface
         ];
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * {@inheritDoc}
+     */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getScheme(): ?string
     {
         return $this->scheme;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * {@inheritDoc}
+     */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getAuthority(): ?string
     {
         return $this->authority;
     }
 
     /**
+<<<<<<< HEAD
      * Returns the user component encoded value.
      *
      * @see https://wiki.php.net/rfc/url_parsing_api
+=======
+     * {@inheritDoc}
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function getUsername(): ?string
     {
         return $this->user;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * {@inheritDoc}
+     */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getPassword(): ?string
     {
         return $this->pass;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * {@inheritDoc}
+     */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getUserInfo(): ?string
     {
         return $this->userInfo;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * {@inheritDoc}
+     */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getHost(): ?string
     {
         return $this->host;
     }
 
+<<<<<<< HEAD
     public function getUnicodeHost(): ?string
     {
         if (null === $this->host) {
@@ -1400,26 +1741,55 @@ final class Uri implements Conditionable, UriInterface
         return $host;
     }
 
+=======
+    /**
+     * {@inheritDoc}
+     */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getPort(): ?int
     {
         return $this->port;
     }
 
+<<<<<<< HEAD
     public function getPath(): string
     {
         return $this->path;
     }
 
+=======
+    /**
+     * {@inheritDoc}
+     */
+    public function getPath(): string
+    {
+        return match (true) {
+            str_starts_with($this->path, '//') => '/'.ltrim($this->path, '/'),
+            default => $this->path,
+        };
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getQuery(): ?string
     {
         return $this->query;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * {@inheritDoc}
+     */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getFragment(): ?string
     {
         return $this->fragment;
     }
 
+<<<<<<< HEAD
     public function getOrigin(): ?string
     {
         return $this->origin;
@@ -1439,12 +1809,31 @@ final class Uri implements Conditionable, UriInterface
     }
 
     public function withScheme(Stringable|string|null $scheme): static
+=======
+    /**
+     * {@inheritDoc}
+     */
+    public function withScheme(Stringable|string|null $scheme): UriInterface
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $scheme = $this->formatScheme($this->filterString($scheme));
 
         return match ($scheme) {
             $this->scheme => $this,
+<<<<<<< HEAD
             default => new self($scheme, $this->user, $this->pass, $this->host, $this->port, $this->path, $this->query, $this->fragment),
+=======
+            default => new self(
+                $scheme,
+                $this->user,
+                $this->pass,
+                $this->host,
+                $this->port,
+                $this->path,
+                $this->query,
+                $this->fragment,
+            ),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         };
     }
 
@@ -1471,6 +1860,7 @@ final class Uri implements Conditionable, UriInterface
     public function withUserInfo(
         Stringable|string|null $user,
         #[SensitiveParameter] Stringable|string|null $password = null
+<<<<<<< HEAD
     ): static {
         $user = Encoder::encodeUser($this->filterString($user));
         $pass = Encoder::encodePassword($this->filterString($password));
@@ -1496,26 +1886,83 @@ final class Uri implements Conditionable, UriInterface
     }
 
     public function withHost(Stringable|string|null $host): static
+=======
+    ): UriInterface {
+        $user = Encoder::encodeUser($this->filterString($user));
+        $pass = Encoder::encodePassword($this->filterString($password));
+        $userInfo = ('' !== $user) ? $this->formatUserInfo($user, $pass) : null;
+
+        return match ($userInfo) {
+            $this->userInfo => $this,
+            default => new self(
+                $this->scheme,
+                $user,
+                $pass,
+                $this->host,
+                $this->port,
+                $this->path,
+                $this->query,
+                $this->fragment,
+            ),
+        };
+    }
+
+    public function withHost(Stringable|string|null $host): UriInterface
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $host = $this->formatHost($this->filterString($host));
 
         return match ($host) {
             $this->host => $this,
+<<<<<<< HEAD
             default => new self($this->scheme, $this->user, $this->pass, $host, $this->port, $this->path, $this->query, $this->fragment),
         };
     }
 
     public function withPort(int|null $port): static
+=======
+            default => new self(
+                $this->scheme,
+                $this->user,
+                $this->pass,
+                $host,
+                $this->port,
+                $this->path,
+                $this->query,
+                $this->fragment,
+            ),
+        };
+    }
+
+    public function withPort(int|null $port): UriInterface
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $port = $this->formatPort($port);
 
         return match ($port) {
             $this->port => $this,
+<<<<<<< HEAD
             default => new self($this->scheme, $this->user, $this->pass, $this->host, $port, $this->path, $this->query, $this->fragment),
         };
     }
 
     public function withPath(Stringable|string $path): static
+=======
+            default => new self(
+                $this->scheme,
+                $this->user,
+                $this->pass,
+                $this->host,
+                $port,
+                $this->path,
+                $this->query,
+                $this->fragment,
+            ),
+        };
+    }
+
+    public function withPath(Stringable|string $path): UriInterface
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $path = $this->formatPath(
             $this->filterString($path) ?? throw new SyntaxError('The path component cannot be null.')
@@ -1523,16 +1970,34 @@ final class Uri implements Conditionable, UriInterface
 
         return match ($path) {
             $this->path => $this,
+<<<<<<< HEAD
             default => new self($this->scheme, $this->user, $this->pass, $this->host, $this->port, $path, $this->query, $this->fragment),
         };
     }
 
     public function withQuery(Stringable|string|null $query): static
+=======
+            default => new self(
+                $this->scheme,
+                $this->user,
+                $this->pass,
+                $this->host,
+                $this->port,
+                $path,
+                $this->query,
+                $this->fragment,
+            ),
+        };
+    }
+
+    public function withQuery(Stringable|string|null $query): UriInterface
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $query = Encoder::encodeQueryOrFragment($this->filterString($query));
 
         return match ($query) {
             $this->query => $this,
+<<<<<<< HEAD
             default => new self($this->scheme, $this->user, $this->pass, $this->host, $this->port, $this->path, $query, $this->fragment),
         };
     }
@@ -1543,15 +2008,46 @@ final class Uri implements Conditionable, UriInterface
             $fragment = ':~:'.$fragment->toString();
         }
 
+=======
+            default => new self(
+                $this->scheme,
+                $this->user,
+                $this->pass,
+                $this->host,
+                $this->port,
+                $this->path,
+                $query,
+                $this->fragment,
+            ),
+        };
+    }
+
+    public function withFragment(Stringable|string|null $fragment): UriInterface
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $fragment = Encoder::encodeQueryOrFragment($this->filterString($fragment));
 
         return match ($fragment) {
             $this->fragment => $this,
+<<<<<<< HEAD
             default => new self($this->scheme, $this->user, $this->pass, $this->host, $this->port, $this->path, $this->query, $fragment),
+=======
+            default => new self(
+                $this->scheme,
+                $this->user,
+                $this->pass,
+                $this->host,
+                $this->port,
+                $this->path,
+                $this->query,
+                $fragment,
+            ),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         };
     }
 
     /**
+<<<<<<< HEAD
      * Tells whether the `file` scheme base URI represents a local file.
      */
     public function isLocalFile(): bool
@@ -1859,6 +2355,8 @@ final class Uri implements Conditionable, UriInterface
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * DEPRECATION WARNING! This method will be removed in the next major point release.
      *
      * @deprecated Since version 7.5.0
@@ -1934,7 +2432,11 @@ final class Uri implements Conditionable, UriInterface
     public static function createFromBaseUri(
         Stringable|UriInterface|String $uri,
         Stringable|UriInterface|String|null $baseUri = null
+<<<<<<< HEAD
     ): static {
+=======
+    ): UriInterface {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return self::fromBaseUri($uri, $baseUri);
     }
 

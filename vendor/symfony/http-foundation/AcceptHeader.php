@@ -25,7 +25,11 @@ class_exists(AcceptHeaderItem::class);
 class AcceptHeader
 {
     /**
+<<<<<<< HEAD
      * @var array<string, AcceptHeaderItem>
+=======
+     * @var AcceptHeaderItem[]
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     private array $items = [];
 
@@ -46,6 +50,7 @@ class AcceptHeader
      */
     public static function fromString(?string $headerValue): self
     {
+<<<<<<< HEAD
         $items = [];
         foreach (HeaderUtils::split($headerValue ?? '', ',;=') as $i => $parts) {
             $part = array_shift($parts);
@@ -55,6 +60,20 @@ class AcceptHeader
         }
 
         return new self($items);
+=======
+        $parts = HeaderUtils::split($headerValue ?? '', ',;=');
+
+        return new self(array_map(function ($subParts) {
+            static $index = 0;
+            $part = array_shift($subParts);
+            $attributes = HeaderUtils::combine($subParts);
+
+            $item = new AcceptHeaderItem($part[0], $attributes);
+            $item->setIndex($index++);
+
+            return $item;
+        }, $parts));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -70,9 +89,13 @@ class AcceptHeader
      */
     public function has(string $value): bool
     {
+<<<<<<< HEAD
         $canonicalKey = $this->getCanonicalKey(AcceptHeaderItem::fromString($value));
 
         return isset($this->items[$canonicalKey]);
+=======
+        return isset($this->items[$value]);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -80,6 +103,7 @@ class AcceptHeader
      */
     public function get(string $value): ?AcceptHeaderItem
     {
+<<<<<<< HEAD
         $queryItem = AcceptHeaderItem::fromString($value.';q=1');
         $canonicalKey = $this->getCanonicalKey($queryItem);
 
@@ -100,6 +124,9 @@ class AcceptHeader
         );
 
         return reset($candidates);
+=======
+        return $this->items[$value] ?? $this->items[explode('/', $value)[0].'/*'] ?? $this->items['*/*'] ?? $this->items['*'] ?? null;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -109,7 +136,11 @@ class AcceptHeader
      */
     public function add(AcceptHeaderItem $item): static
     {
+<<<<<<< HEAD
         $this->items[$this->getCanonicalKey($item)] = $item;
+=======
+        $this->items[$item->getValue()] = $item;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $this->sorted = false;
 
         return $this;
@@ -132,7 +163,11 @@ class AcceptHeader
      */
     public function filter(string $pattern): self
     {
+<<<<<<< HEAD
         return new self(array_filter($this->items, static fn ($item) => preg_match($pattern, $item->getValue())));
+=======
+        return new self(array_filter($this->items, fn (AcceptHeaderItem $item) => preg_match($pattern, $item->getValue())));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -151,11 +186,25 @@ class AcceptHeader
     private function sort(): void
     {
         if (!$this->sorted) {
+<<<<<<< HEAD
             uasort($this->items, static fn ($a, $b) => $b->getQuality() <=> $a->getQuality() ?: $a->getIndex() <=> $b->getIndex());
+=======
+            uasort($this->items, function (AcceptHeaderItem $a, AcceptHeaderItem $b) {
+                $qA = $a->getQuality();
+                $qB = $b->getQuality();
+
+                if ($qA === $qB) {
+                    return $a->getIndex() > $b->getIndex() ? 1 : -1;
+                }
+
+                return $qA > $qB ? -1 : 1;
+            });
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             $this->sorted = true;
         }
     }
+<<<<<<< HEAD
 
     /**
      * Generates the canonical key for storing/retrieving an item.
@@ -301,4 +350,6 @@ class AcceptHeader
 
         return $attributes;
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

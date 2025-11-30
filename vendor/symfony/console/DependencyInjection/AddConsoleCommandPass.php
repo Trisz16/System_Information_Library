@@ -79,7 +79,11 @@ class AddConsoleCommandPass implements CompilerPassInterface
             }
 
             if (null === $commandName) {
+<<<<<<< HEAD
                 if ($definition->isPrivate() || $definition->hasTag('container.private')) {
+=======
+                if (!$definition->isPublic() || $definition->isPrivate() || $definition->hasTag('container.private')) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     $commandId = 'console.command.public_alias.'.$id;
                     $container->setAlias($commandId, $id)->setPublic(true);
                     $id = $commandId;
@@ -91,7 +95,10 @@ class AddConsoleCommandPass implements CompilerPassInterface
 
             $description = $tags[0]['description'] ?? null;
             $help = $tags[0]['help'] ?? null;
+<<<<<<< HEAD
             $usages = $tags[0]['usages'] ?? null;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             unset($tags[0]);
             $lazyCommandMap[$commandName] = $id;
@@ -109,7 +116,10 @@ class AddConsoleCommandPass implements CompilerPassInterface
 
                 $description ??= $tag['description'] ?? null;
                 $help ??= $tag['help'] ?? null;
+<<<<<<< HEAD
                 $usages ??= $tag['usages'] ?? null;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
 
             $definition->addMethodCall('setName', [$commandName]);
@@ -126,12 +136,15 @@ class AddConsoleCommandPass implements CompilerPassInterface
                 $definition->addMethodCall('setHelp', [str_replace('%', '%%', $help)]);
             }
 
+<<<<<<< HEAD
             if ($usages) {
                 foreach ($usages as $usage) {
                     $definition->addMethodCall('addUsage', [$usage]);
                 }
             }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             if (!$description) {
                 if (Command::class !== (new \ReflectionMethod($class, 'getDefaultDescription'))->class) {
                     trigger_deprecation('symfony/console', '7.3', 'Overriding "Command::getDefaultDescription()" in "%s" is deprecated and will be removed in Symfony 8.0, use the #[AsCommand] attribute instead.', $class);

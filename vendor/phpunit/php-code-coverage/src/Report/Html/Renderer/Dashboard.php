@@ -20,16 +20,29 @@ use function sprintf;
 use function str_replace;
 use function uasort;
 use function usort;
+<<<<<<< HEAD
 use SebastianBergmann\CodeCoverage\Data\ProcessedClassType;
 use SebastianBergmann\CodeCoverage\Data\ProcessedMethodType;
 use SebastianBergmann\CodeCoverage\Data\ProcessedTraitType;
 use SebastianBergmann\CodeCoverage\FileCouldNotBeWrittenException;
 use SebastianBergmann\CodeCoverage\Node\AbstractNode;
 use SebastianBergmann\CodeCoverage\Node\Directory as DirectoryNode;
+=======
+use SebastianBergmann\CodeCoverage\FileCouldNotBeWrittenException;
+use SebastianBergmann\CodeCoverage\Node\AbstractNode;
+use SebastianBergmann\CodeCoverage\Node\Directory as DirectoryNode;
+use SebastianBergmann\CodeCoverage\Node\File as FileNode;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use SebastianBergmann\Template\Exception;
 use SebastianBergmann\Template\Template;
 
 /**
+<<<<<<< HEAD
+=======
+ * @phpstan-import-type ProcessedClassType from FileNode
+ * @phpstan-import-type ProcessedTraitType from FileNode
+ *
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * @internal This class is not covered by the backward compatibility promise for phpunit/php-code-coverage
  */
 final class Dashboard extends Renderer
@@ -95,26 +108,46 @@ final class Dashboard extends Renderer
         $result = ['class' => [], 'method' => []];
 
         foreach ($classes as $className => $class) {
+<<<<<<< HEAD
             foreach ($class->methods as $methodName => $method) {
+=======
+            foreach ($class['methods'] as $methodName => $method) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 if ($className !== '*') {
                     $methodName = $className . '::' . $methodName;
                 }
 
                 $result['method'][] = [
+<<<<<<< HEAD
                     $method->coverage,
                     $method->ccn,
                     str_replace($baseLink, '', $method->link),
                     $methodName,
                     $method->crap,
+=======
+                    $method['coverage'],
+                    $method['ccn'],
+                    str_replace($baseLink, '', $method['link']),
+                    $methodName,
+                    $method['crap'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 ];
             }
 
             $result['class'][] = [
+<<<<<<< HEAD
                 $class->coverage,
                 $class->ccn,
                 str_replace($baseLink, '', $class->link),
                 $className,
                 $class->crap,
+=======
+                $class['coverage'],
+                $class['ccn'],
+                str_replace($baseLink, '', $class['link']),
+                $className,
+                $class['crap'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             ];
         }
 
@@ -171,6 +204,7 @@ final class Dashboard extends Renderer
         ];
 
         foreach ($classes as $class) {
+<<<<<<< HEAD
             foreach ($class->methods as $method) {
                 if ($method->coverage === 0) {
                     $result['method']['0%']++;
@@ -178,17 +212,35 @@ final class Dashboard extends Renderer
                     $result['method']['100%']++;
                 } else {
                     $key = floor($method->coverage / 10) * 10;
+=======
+            foreach ($class['methods'] as $methodName => $method) {
+                if ($method['coverage'] === 0) {
+                    $result['method']['0%']++;
+                } elseif ($method['coverage'] === 100) {
+                    $result['method']['100%']++;
+                } else {
+                    $key = floor($method['coverage'] / 10) * 10;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     $key = $key . '-' . ($key + 10) . '%';
                     $result['method'][$key]++;
                 }
             }
 
+<<<<<<< HEAD
             if ($class->coverage === 0) {
                 $result['class']['0%']++;
             } elseif ($class->coverage === 100) {
                 $result['class']['100%']++;
             } else {
                 $key = floor($class->coverage / 10) * 10;
+=======
+            if ($class['coverage'] === 0) {
+                $result['class']['0%']++;
+            } elseif ($class['coverage'] === 100) {
+                $result['class']['100%']++;
+            } else {
+                $key = floor($class['coverage'] / 10) * 10;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $key = $key . '-' . ($key + 10) . '%';
                 $result['class'][$key]++;
             }
@@ -217,20 +269,34 @@ final class Dashboard extends Renderer
         $result             = ['class' => '', 'method' => ''];
 
         foreach ($classes as $className => $class) {
+<<<<<<< HEAD
             foreach ($class->methods as $methodName => $method) {
                 if ($method->coverage < $this->thresholds->highLowerBound()) {
+=======
+            foreach ($class['methods'] as $methodName => $method) {
+                if ($method['coverage'] < $this->thresholds->highLowerBound()) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     $key = $methodName;
 
                     if ($className !== '*') {
                         $key = $className . '::' . $methodName;
                     }
 
+<<<<<<< HEAD
                     $leastTestedMethods[$key] = $method->coverage;
                 }
             }
 
             if ($class->coverage < $this->thresholds->highLowerBound()) {
                 $leastTestedClasses[$className] = $class->coverage;
+=======
+                    $leastTestedMethods[$key] = $method['coverage'];
+                }
+            }
+
+            if ($class['coverage'] < $this->thresholds->highLowerBound()) {
+                $leastTestedClasses[$className] = $class['coverage'];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
         }
 
@@ -240,7 +306,11 @@ final class Dashboard extends Renderer
         foreach ($leastTestedClasses as $className => $coverage) {
             $result['class'] .= sprintf(
                 '       <tr><td><a href="%s">%s</a></td><td class="text-right">%d%%</td></tr>' . "\n",
+<<<<<<< HEAD
                 str_replace($baseLink, '', $classes[$className]->link),
+=======
+                str_replace($baseLink, '', $classes[$className]['link']),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $className,
                 $coverage,
             );
@@ -251,7 +321,11 @@ final class Dashboard extends Renderer
 
             $result['method'] .= sprintf(
                 '       <tr><td><a href="%s"><abbr title="%s">%s</abbr></a></td><td class="text-right">%d%%</td></tr>' . "\n",
+<<<<<<< HEAD
                 str_replace($baseLink, '', $classes[$class]->methods[$method]->link),
+=======
+                str_replace($baseLink, '', $classes[$class]['methods'][$method]['link']),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $methodName,
                 $method,
                 $coverage,
@@ -273,8 +347,13 @@ final class Dashboard extends Renderer
         $result      = ['class' => '', 'method' => ''];
 
         foreach ($classes as $className => $class) {
+<<<<<<< HEAD
             foreach ($class->methods as $methodName => $method) {
                 if ($method->coverage < $this->thresholds->highLowerBound() && $method->ccn > 1) {
+=======
+            foreach ($class['methods'] as $methodName => $method) {
+                if ($method['coverage'] < $this->thresholds->highLowerBound() && $method['ccn'] > 1) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     $key = $methodName;
 
                     if ($className !== '*') {
@@ -285,12 +364,18 @@ final class Dashboard extends Renderer
                 }
             }
 
+<<<<<<< HEAD
             if ($class->coverage < $this->thresholds->highLowerBound() &&
                 $class->ccn > count($class->methods)) {
+=======
+            if ($class['coverage'] < $this->thresholds->highLowerBound() &&
+                $class['ccn'] > count($class['methods'])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $classRisks[$className] = $class;
             }
         }
 
+<<<<<<< HEAD
         uasort($classRisks, static function (ProcessedClassType|ProcessedTraitType $a, ProcessedClassType|ProcessedTraitType $b)
         {
             return ((int) ($a->crap) <=> (int) ($b->crap)) * -1;
@@ -298,16 +383,33 @@ final class Dashboard extends Renderer
         uasort($methodRisks, static function (ProcessedMethodType $a, ProcessedMethodType $b)
         {
             return ((int) ($a->crap) <=> (int) ($b->crap)) * -1;
+=======
+        uasort($classRisks, static function (array $a, array $b)
+        {
+            return ((int) ($a['crap']) <=> (int) ($b['crap'])) * -1;
+        });
+        uasort($methodRisks, static function (array $a, array $b)
+        {
+            return ((int) ($a['crap']) <=> (int) ($b['crap'])) * -1;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         });
 
         foreach ($classRisks as $className => $class) {
             $result['class'] .= sprintf(
                 '       <tr><td><a href="%s">%s</a></td><td class="text-right">%.1f%%</td><td class="text-right">%d</td><td class="text-right">%d</td></tr>' . "\n",
+<<<<<<< HEAD
                 str_replace($baseLink, '', $classes[$className]->link),
                 $className,
                 $class->coverage,
                 $class->ccn,
                 $class->crap,
+=======
+                str_replace($baseLink, '', $classes[$className]['link']),
+                $className,
+                $class['coverage'],
+                $class['ccn'],
+                $class['crap'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             );
         }
 
@@ -316,12 +418,21 @@ final class Dashboard extends Renderer
 
             $result['method'] .= sprintf(
                 '       <tr><td><a href="%s"><abbr title="%s">%s</abbr></a></td><td class="text-right">%.1f%%</td><td class="text-right">%d</td><td class="text-right">%d</td></tr>' . "\n",
+<<<<<<< HEAD
                 str_replace($baseLink, '', $classes[$class]->methods[$method]->link),
                 $methodName,
                 $method,
                 $methodVals->coverage,
                 $methodVals->ccn,
                 $methodVals->crap,
+=======
+                str_replace($baseLink, '', $classes[$class]['methods'][$method]['link']),
+                $methodName,
+                $method,
+                $methodVals['coverage'],
+                $methodVals['ccn'],
+                $methodVals['crap'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             );
         }
 

@@ -18,9 +18,12 @@ use PHPUnit\Framework\MockObject\Invocation as BaseInvocation;
  */
 final class AnyParameters implements ParametersRule
 {
+<<<<<<< HEAD
     /**
      * @throws void
      */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function apply(BaseInvocation $invocation): void
     {
     }

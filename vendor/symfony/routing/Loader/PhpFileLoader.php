@@ -12,11 +12,15 @@
 namespace Symfony\Component\Routing\Loader;
 
 use Symfony\Component\Config\Loader\FileLoader;
+<<<<<<< HEAD
 use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Routing\Exception\InvalidArgumentException;
 use Symfony\Component\Routing\Loader\Configurator\Routes;
 use Symfony\Component\Routing\Loader\Configurator\RoutesReference;
+=======
+use Symfony\Component\Config\Resource\FileResource;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\Routing\RouteCollection;
 
@@ -39,15 +43,19 @@ class PhpFileLoader extends FileLoader
         $path = $this->locator->locate($file);
         $this->setCurrentDir(\dirname($path));
 
+<<<<<<< HEAD
         // Expose RoutesReference::config() as Routes::config()
         if (!class_exists(Routes::class)) {
             class_alias(RoutesReference::class, Routes::class);
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         // the closure forbids access to the private scope in the included file
         $loader = $this;
         $load = \Closure::bind(static function ($file) use ($loader) {
             return include $file;
+<<<<<<< HEAD
         }, null, null);
 
         try {
@@ -75,6 +83,16 @@ class PhpFileLoader extends FileLoader
             (new \ReflectionMethod(YamlFileLoader::class, 'loadContent'))->invoke($loader, $collection, $result, $path, $file);
         } elseif (!($collection = $result) instanceof RouteCollection) {
             throw new InvalidArgumentException(\sprintf('The return value in config file "%s" is expected to be a RouteCollection, an array or a configurator callable, but got "%s".', $path, get_debug_type($result)));
+=======
+        }, null, ProtectedPhpFileLoader::class);
+
+        $result = $load($path);
+
+        if (\is_object($result) && \is_callable($result)) {
+            $collection = $this->callConfigurator($result, $path, $file);
+        } else {
+            $collection = $result;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         $collection->addResource(new FileResource($path));
@@ -87,11 +105,19 @@ class PhpFileLoader extends FileLoader
         return \is_string($resource) && 'php' === pathinfo($resource, \PATHINFO_EXTENSION) && (!$type || 'php' === $type);
     }
 
+<<<<<<< HEAD
     protected function callConfigurator(callable $callback, string $path, string $file): RouteCollection
     {
         $collection = new RouteCollection();
 
         $callback(new RoutingConfigurator($collection, $this, $path, $file, $this->env));
+=======
+    protected function callConfigurator(callable $result, string $path, string $file): RouteCollection
+    {
+        $collection = new RouteCollection();
+
+        $result(new RoutingConfigurator($collection, $this, $path, $file, $this->env));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return $collection;
     }

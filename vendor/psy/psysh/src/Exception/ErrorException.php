@@ -67,8 +67,13 @@ class ErrorException extends \ErrorException implements Exception
                 break;
         }
 
+<<<<<<< HEAD
         $message = \sprintf('PHP %s:  %s%s on line %d', $type, $message, $filename ? ' in '.$filename : '', $lineno ?? 0);
         parent::__construct($message, $code, $severity, $filename ?? '', $lineno ?? 0, $previous);
+=======
+        $message = \sprintf('PHP %s:  %s%s on line %d', $type, $message, $filename ? ' in '.$filename : '', $lineno);
+        parent::__construct($message, $code, $severity, $filename, $lineno, $previous);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**

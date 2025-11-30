@@ -569,6 +569,7 @@ trait ManagesFrequencies
     }
 
     /**
+<<<<<<< HEAD
      * Schedule the event to run on specific days of the month.
      *
      * @param  array<int<1, 31>>|int<1, 31>  ...$days
@@ -584,6 +585,8 @@ trait ManagesFrequencies
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Schedule the event to run quarterly.
      *
      * @return $this

@@ -40,7 +40,10 @@ trait CreatesMatchingTest
             'name' => (new Stringable($path))->after($this->laravel['path'])->beforeLast('.php')->append('Test')->replace('\\', '/'),
             '--pest' => $this->option('pest'),
             '--phpunit' => $this->option('phpunit'),
+<<<<<<< HEAD
             '--force' => $this->hasOption('force') && $this->option('force'),
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         ]) == 0;
     }
 }

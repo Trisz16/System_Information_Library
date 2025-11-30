@@ -154,7 +154,11 @@ class ShellOutput extends ConsoleOutput
     public function doWrite($message, $newline): void
     {
         // @todo Update OutputPager interface to require doWrite
+<<<<<<< HEAD
         if ($this->paging > 0 && ($this->pager instanceof ProcOutputPager || $this->pager instanceof PassthruPager)) {
+=======
+        if ($this->paging > 0 && $this->pager instanceof ProcOutputPager) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $this->pager->doWrite($message, $newline);
         } else {
             parent::doWrite($message, $newline);

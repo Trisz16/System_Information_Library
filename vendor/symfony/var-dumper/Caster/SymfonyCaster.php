@@ -51,7 +51,11 @@ class SymfonyCaster
     public static function castHttpClient($client, array $a, Stub $stub, bool $isNested): array
     {
         $multiKey = \sprintf("\0%s\0multi", $client::class);
+<<<<<<< HEAD
         if (isset($a[$multiKey]) && !$a[$multiKey] instanceof Stub) {
+=======
+        if (isset($a[$multiKey])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $a[$multiKey] = new CutStub($a[$multiKey]);
         }
 

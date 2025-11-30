@@ -1,12 +1,15 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 7.4
 ---
 
  * Add support for adding more default casters to `AbstractCloner::addDefaultCasters()`
  * Select HtmlDumper only if `Accept` header contains "html"
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 7.3
 ---
 

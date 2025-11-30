@@ -51,28 +51,43 @@ abstract class Tool extends Primitive
      *     title?: string|null,
      *     description?: string|null,
      *     inputSchema?: array<string, mixed>,
+<<<<<<< HEAD
      *     annotations?: array<string, mixed>|object,
      *     _meta?: array<string, mixed>
+=======
+     *     annotations?: array<string, mixed>|object
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * }
      */
     public function toArray(): array
     {
         $annotations = $this->annotations();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $schema = JsonSchema::object(
             $this->schema(...),
         )->toArray();
 
         $schema['properties'] ??= (object) [];
 
+<<<<<<< HEAD
         // @phpstan-ignore return.type
         return $this->mergeMeta([
+=======
+        return [
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             'name' => $this->name(),
             'title' => $this->title(),
             'description' => $this->description(),
             'inputSchema' => $schema,
             'annotations' => $annotations === [] ? (object) [] : $annotations,
+<<<<<<< HEAD
         ]);
 
+=======
+        ];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

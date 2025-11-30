@@ -180,7 +180,10 @@ class ImplicitUsePass extends CodeCleanerPass
                     $seen[$shortNameLower] = true;
 
                     if ($this->shouldAddImplicitUseInContext($shortName, $shortNameLower, $aliases)) {
+<<<<<<< HEAD
                         // @phan-suppress-next-line PhanTypeArraySuspiciousNullable - shortNameMap is initialized in beforeTraverse
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                         $uses[$shortName] = $this->shortNameMap[$shortNameLower];
                     }
                 }

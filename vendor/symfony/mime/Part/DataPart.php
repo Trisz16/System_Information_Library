@@ -19,7 +19,11 @@ use Symfony\Component\Mime\Header\Headers;
  */
 class DataPart extends TextPart
 {
+<<<<<<< HEAD
     /** @internal, to be removed in 8.0 */
+=======
+    /** @internal */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     protected array $_parent;
 
     private ?string $filename = null;
@@ -129,6 +133,7 @@ class DataPart extends TextPart
         return bin2hex(random_bytes(16)).'@symfony';
     }
 
+<<<<<<< HEAD
     public function __serialize(): array
     {
         if (self::class === (new \ReflectionMethod($this, '__sleep'))->class || self::class !== (new \ReflectionMethod($this, '__serialize'))->class) {
@@ -209,6 +214,10 @@ class DataPart extends TextPart
     public function __sleep(): array
     {
         trigger_deprecation('symfony/mime', '7.4', 'Calling "%s::__sleep()" is deprecated, use "__serialize()" instead.', get_debug_type($this));
+=======
+    public function __sleep(): array
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         // converts the body to a string
         parent::__sleep();
 
@@ -222,9 +231,12 @@ class DataPart extends TextPart
         return ['_headers', '_parent', 'filename', 'mediaType'];
     }
 
+<<<<<<< HEAD
     /**
      * @deprecated since Symfony 7.4, will be replaced by `__unserialize()` in 8.0
      */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function __wakeup(): void
     {
         $r = new \ReflectionProperty(AbstractPart::class, 'headers');

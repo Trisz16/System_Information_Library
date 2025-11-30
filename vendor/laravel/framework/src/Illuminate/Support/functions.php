@@ -2,11 +2,16 @@
 
 namespace Illuminate\Support;
 
+<<<<<<< HEAD
 use Carbon\CarbonInterface;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Defer\DeferredCallback;
 use Illuminate\Support\Defer\DeferredCallbackCollection;
 use Illuminate\Support\Facades\Date;
+=======
+use Illuminate\Support\Defer\DeferredCallback;
+use Illuminate\Support\Defer\DeferredCallbackCollection;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Symfony\Component\Process\PhpExecutableFinder;
 
 if (! function_exists('Illuminate\Support\defer')) {
@@ -50,6 +55,7 @@ if (! function_exists('Illuminate\Support\artisan_binary')) {
         return defined('ARTISAN_BINARY') ? ARTISAN_BINARY : 'artisan';
     }
 }
+<<<<<<< HEAD
 
 // Time functions...
 
@@ -115,3 +121,5 @@ if (! function_exists('Illuminate\Support\years')) {
         return CarbonInterval::years($years);
     }
 }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e

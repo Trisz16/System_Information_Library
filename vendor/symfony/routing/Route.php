@@ -35,7 +35,11 @@ class Route implements \Serializable
      * Available options:
      *
      *  * compiler_class: A class name able to compile this route instance (RouteCompiler by default)
+<<<<<<< HEAD
      *  * utf8:           Whether UTF-8 matching is enforced or not
+=======
+     *  * utf8:           Whether UTF-8 matching is enforced ot not
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @param string                    $path         The path pattern to match
      * @param array                     $defaults     An array of default parameter values

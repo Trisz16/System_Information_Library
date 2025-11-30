@@ -15,9 +15,12 @@ namespace League\Uri\Contracts;
 
 use Psr\Http\Message\UriInterface as Psr7UriInterface;
 
+<<<<<<< HEAD
 /**
  * @deprecated since version 7.6.0
  */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 interface UriAccess
 {
     public function getUri(): UriInterface|Psr7UriInterface;

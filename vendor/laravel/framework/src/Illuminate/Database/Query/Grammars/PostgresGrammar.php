@@ -181,10 +181,13 @@ class PostgresGrammar extends Grammar
             $mode = 'websearch_to_tsquery';
         }
 
+<<<<<<< HEAD
         if (($where['options']['mode'] ?? []) === 'raw') {
             $mode = 'to_tsquery';
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return "({$columns}) @@ {$mode}('{$language}', {$this->parameter($where['value'])})";
     }
 

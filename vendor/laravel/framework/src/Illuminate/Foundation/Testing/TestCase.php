@@ -21,6 +21,7 @@ abstract class TestCase extends BaseTestCase
         Concerns\InteractsWithViews;
 
     /**
+<<<<<<< HEAD
      * The list of trait that this test uses, fetched recursively.
      *
      * @var array<class-string, int>
@@ -28,6 +29,8 @@ abstract class TestCase extends BaseTestCase
     protected array $traitsUsedByTest;
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Creates the application.
      *
      * @return \Illuminate\Foundation\Application
@@ -36,6 +39,7 @@ abstract class TestCase extends BaseTestCase
     {
         $app = require Application::inferBasePath().'/bootstrap/app.php';
 
+<<<<<<< HEAD
         $this->traitsUsedByTest = array_flip(class_uses_recursive(static::class));
 
         if (isset(CachedState::$cachedConfig) &&
@@ -48,6 +52,8 @@ abstract class TestCase extends BaseTestCase
             $app->booting(fn () => $this->markRoutesCached($app));
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $app->make(Kernel::class)->bootstrap();
 
         return $app;

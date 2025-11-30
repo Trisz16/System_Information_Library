@@ -87,6 +87,7 @@ class Command implements SignalableCommandInterface
      *
      * @throws LogicException When the command name is empty
      */
+<<<<<<< HEAD
     public function __construct(?string $name = null, ?callable $code = null)
     {
         if (null !== $code) {
@@ -102,10 +103,19 @@ class Command implements SignalableCommandInterface
         }
 
         $this->definition = new InputDefinition();
+=======
+    public function __construct(?string $name = null)
+    {
+        $this->definition = new InputDefinition();
+
+        $attribute = ((new \ReflectionClass(static::class))->getAttributes(AsCommand::class)[0] ?? null)?->newInstance();
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (null === $name) {
             if (self::class !== (new \ReflectionMethod($this, 'getDefaultName'))->class) {
                 trigger_deprecation('symfony/console', '7.3', 'Overriding "Command::getDefaultName()" in "%s" is deprecated and will be removed in Symfony 8.0, use the #[AsCommand] attribute instead.', static::class);
 
+<<<<<<< HEAD
                 $name = static::getDefaultName();
             } else {
                 $name = $attribute?->name;
@@ -113,6 +123,15 @@ class Command implements SignalableCommandInterface
         }
 
         if (null !== $name) {
+=======
+                $defaultName = static::getDefaultName();
+            } else {
+                $defaultName = $attribute?->name;
+            }
+        }
+
+        if (null === $name && null !== $name = $defaultName) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $aliases = explode('|', $name);
 
             if ('' === $name = array_shift($aliases)) {
@@ -143,11 +162,15 @@ class Command implements SignalableCommandInterface
             $this->setHelp($attribute?->help ?? '');
         }
 
+<<<<<<< HEAD
         foreach ($attribute?->usages ?? [] as $usage) {
             $this->addUsage($usage);
         }
 
         if (!$code && \is_callable($this) && self::class === (new \ReflectionMethod($this, 'execute'))->getDeclaringClass()->name) {
+=======
+        if (\is_callable($this) && self::class === (new \ReflectionMethod($this, 'execute'))->getDeclaringClass()->name) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $this->code = new InvokableCommand($this, $this(...));
         }
 
@@ -313,10 +336,13 @@ class Command implements SignalableCommandInterface
 
         if ($input->isInteractive()) {
             $this->interact($input, $output);
+<<<<<<< HEAD
 
             if ($this->code?->isInteractive()) {
                 $this->code->interact($input, $output);
             }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         // The command name argument is often omitted when a command is executed directly with its run() method.
@@ -349,6 +375,7 @@ class Command implements SignalableCommandInterface
     }
 
     /**
+<<<<<<< HEAD
      * Gets the code that is executed by the command.
      *
      * @return ?callable null if the code has not been set with setCode()
@@ -359,6 +386,8 @@ class Command implements SignalableCommandInterface
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Sets the code to execute when running this command.
      *
      * If this method is used, it overrides the code defined

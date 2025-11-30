@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 7.4
 ---
 
@@ -15,6 +16,8 @@ CHANGELOG
  * Deprecate accessing the internal scope of the loader in PHP config files, use only its public API instead
  * Deprecate XML configuration format, use YAML, PHP or attributes instead
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 7.3
 ---
 

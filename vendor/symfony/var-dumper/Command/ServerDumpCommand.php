@@ -58,6 +58,7 @@ class ServerDumpCommand extends Command
         $this
             ->addOption('format', null, InputOption::VALUE_REQUIRED, \sprintf('The output format (%s)', implode(', ', $this->getAvailableFormats())), 'cli')
             ->setHelp(<<<'EOF'
+<<<<<<< HEAD
                 <info>%command.name%</info> starts a dump server that collects and displays
                 dumps in a single place for debugging you application:
 
@@ -69,6 +70,19 @@ class ServerDumpCommand extends Command
                   <info>php %command.full_name% --format="html" > dump.html</info>
 
                 EOF
+=======
+<info>%command.name%</info> starts a dump server that collects and displays
+dumps in a single place for debugging you application:
+
+  <info>php %command.full_name%</info>
+
+You can consult dumped data in HTML format in your browser by providing the <comment>--format=html</comment> option
+and redirecting the output to a file:
+
+  <info>php %command.full_name% --format="html" > dump.html</info>
+
+EOF
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             )
         ;
     }

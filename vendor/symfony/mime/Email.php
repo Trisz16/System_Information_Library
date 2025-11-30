@@ -492,7 +492,11 @@ class Email extends Message
                 }
 
                 if ($name !== $part->getContentId()) {
+<<<<<<< HEAD
                     $html = str_replace('cid:'.$name, 'cid:'.$part->getContentId(), $html);
+=======
+                    $html = str_replace('cid:'.$name, 'cid:'.$part->getContentId(), $html, $count);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 }
                 $relatedParts[$name] = $part;
                 $part->setName($part->getContentId())->asInline();

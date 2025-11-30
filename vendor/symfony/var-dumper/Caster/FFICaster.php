@@ -116,8 +116,13 @@ final class FFICaster
     {
         $result = [];
         $ffi = \FFI::cdef(<<<C
+<<<<<<< HEAD
                 size_t zend_get_page_size(void);
             C);
+=======
+            size_t zend_get_page_size(void);
+        C);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $pageSize = $ffi->zend_get_page_size();
 

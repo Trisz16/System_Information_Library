@@ -21,7 +21,10 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 use ProxyManager\Proxy\ProxyInterface;
+<<<<<<< HEAD
 use Psr\Log\LogLevel;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Symfony\Component\DependencyInjection\Argument\LazyClosure;
 use Symfony\Component\ErrorHandler\Internal\TentativeTypes;
 use Symfony\Component\VarExporter\LazyObjectInterface;
@@ -190,7 +193,11 @@ class DebugClassLoader
     {
         // Ensures we don't hit https://bugs.php.net/42098
         class_exists(ErrorHandler::class);
+<<<<<<< HEAD
         class_exists(LogLevel::class);
+=======
+        class_exists(\Psr\Log\LogLevel::class);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if (!\is_array($functions = spl_autoload_functions())) {
             return;
@@ -380,7 +387,11 @@ class DebugClassLoader
 
         // Don't trigger deprecations for classes in the same vendor
         if ($class !== $className) {
+<<<<<<< HEAD
             $vendor = $refl->getFileName() && preg_match('/^namespace ([^;\\\\\s]++)[;\\\\]/m', @file_get_contents($refl->getFileName()) ?: '', $vendor) ? $vendor[1].'\\' : '';
+=======
+            $vendor = preg_match('/^namespace ([^;\\\\\s]++)[;\\\\]/m', @file_get_contents($refl->getFileName()), $vendor) ? $vendor[1].'\\' : '';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $vendorLen = \strlen($vendor);
         } elseif (2 > $vendorLen = 1 + (strpos($class, '\\') ?: strpos($class, '_'))) {
             $vendorLen = 0;
@@ -847,8 +858,13 @@ class DebugClassLoader
         $iterable = $object = true;
         foreach ($typesMap as $n => $t) {
             if ('null' !== $n) {
+<<<<<<< HEAD
                 $iterable = $iterable && (\in_array($n, ['array', 'iterable'], true) || str_contains($n, 'Iterator'));
                 $object = $object && (\in_array($n, ['callable', 'object', '$this', 'static'], true) || !isset(self::SPECIAL_RETURN_TYPES[$n]));
+=======
+                $iterable = $iterable && (\in_array($n, ['array', 'iterable']) || str_contains($n, 'Iterator'));
+                $object = $object && (\in_array($n, ['callable', 'object', '$this', 'static']) || !isset(self::SPECIAL_RETURN_TYPES[$n]));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
         }
 
@@ -1071,11 +1087,19 @@ class DebugClassLoader
                 $code[$startLine] = "     * @return $returnType\n".$code[$startLine];
             } else {
                 $code[$startLine] .= <<<EOTXT
+<<<<<<< HEAD
                         /**
                          * @return $returnType
                          */
 
                     EOTXT;
+=======
+    /**
+     * @return $returnType
+     */
+
+EOTXT;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
 
             $fileOffset += substr_count($code[$startLine], "\n") - 1;

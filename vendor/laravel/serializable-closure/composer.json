@@ -23,7 +23,11 @@
     "require-dev": {
         "illuminate/support": "^10.0|^11.0|^12.0",
         "nesbot/carbon": "^2.67|^3.0",
+<<<<<<< HEAD
         "pestphp/pest": "^2.36|^3.0|^4.0",
+=======
+        "pestphp/pest": "^2.36|^3.0",
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         "phpstan/phpstan": "^2.0",
         "symfony/var-dumper": "^6.2.0|^7.0.0"
     },
@@ -43,6 +47,7 @@
         }
     },
     "config": {
+<<<<<<< HEAD
         "allow-plugins": {
             "pestphp/pest-plugin": true
         },
@@ -50,6 +55,12 @@
             "block-insecure": false
         },
         "sort-packages": true
+=======
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     },
     "minimum-stability": "dev",
     "prefer-stable": true

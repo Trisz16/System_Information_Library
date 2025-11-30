@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 @php
 /** @var \Laravel\Boost\Install\GuidelineAssist $assist */
 @endphp
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 # Laravel Boost Guidelines
 
 The Laravel Boost guidelines are specifically curated by Laravel maintainers for this application. These guidelines should be followed closely to enhance the user's satisfaction building Laravel applications.
@@ -30,7 +33,11 @@ Application purpose: {!! config('boost.purpose') !!}
 - Do not change the application's dependencies without approval.
 
 ## Frontend Bundling
+<<<<<<< HEAD
 - If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `{{ $assist->nodePackageManagerCommand('run build') }}`, `{{ $assist->nodePackageManagerCommand('run dev') }}`, or `{{ $assist->composerCommand('run dev') }}`. Ask them.
+=======
+- If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `{{ $assist->nodePackageManager() }} run build`, `{{ $assist->nodePackageManager() }} run dev`, or `composer run dev`. Ask them.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
 ## Replies
 - Be concise in your explanations - focus on what's important rather than explaining obvious details.

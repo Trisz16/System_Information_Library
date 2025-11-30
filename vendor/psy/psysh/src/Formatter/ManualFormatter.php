@@ -348,9 +348,15 @@ class ManualFormatter
      * Takes wrapped text and adds indentation to each line.
      * The first line can have a different prefix than subsequent lines.
      *
+<<<<<<< HEAD
      * @param string      $wrapped     Wrapped text (may contain newlines)
      * @param string      $indent      Indentation for continuation lines
      * @param string|null $firstIndent Optional different indentation for first line (defaults to $indent)
+=======
+     * @param string $wrapped     Wrapped text (may contain newlines)
+     * @param string $indent      Indentation for continuation lines
+     * @param string $firstIndent Optional different indentation for first line (defaults to $indent)
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @return array Lines with indentation applied
      */

@@ -11,7 +11,10 @@
 
 namespace Symfony\Component\VarDumper\Test;
 
+<<<<<<< HEAD
 use PHPUnit\Framework\Attributes\After;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;
 
@@ -40,24 +43,33 @@ trait VarDumperTestTrait
     /**
      * @after
      */
+<<<<<<< HEAD
     #[After]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     protected function tearDownVarDumper(): void
     {
         $this->varDumperConfig['casters'] = [];
         $this->varDumperConfig['flags'] = null;
     }
 
+<<<<<<< HEAD
     /**
      * @return void
      */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function assertDumpEquals(mixed $expected, mixed $data, int $filter = 0, string $message = '')
     {
         $this->assertSame($this->prepareExpectation($expected, $filter), $this->getDump($data, null, $filter), $message);
     }
 
+<<<<<<< HEAD
     /**
      * @return void
      */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function assertDumpMatchesFormat(mixed $expected, mixed $data, int $filter = 0, string $message = '')
     {
         $this->assertStringMatchesFormat($this->prepareExpectation($expected, $filter), $this->getDump($data, null, $filter), $message);

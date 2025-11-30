@@ -15,10 +15,13 @@ use Illuminate\Support\Testing\Fakes\QueueFake;
  * @method static void stopping(mixed $callback)
  * @method static bool connected(string|null $name = null)
  * @method static \Illuminate\Contracts\Queue\Queue connection(string|null $name = null)
+<<<<<<< HEAD
  * @method static void pause(string $connection, string $queue)
  * @method static void pauseFor(string $connection, string $queue, \DateTimeInterface|\DateInterval|int $ttl)
  * @method static void resume(string $connection, string $queue)
  * @method static bool isPaused(string $connection, string $queue)
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * @method static void extend(string $driver, \Closure $resolver)
  * @method static void addConnector(string $driver, \Closure $resolver)
  * @method static string getDefaultDriver()

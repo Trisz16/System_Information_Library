@@ -13,9 +13,12 @@ declare(strict_types=1);
 
 namespace League\Uri\Contracts;
 
+<<<<<<< HEAD
 /**
  * @method string|null encoded() returns RFC3986 encoded host
  */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 interface HostInterface extends UriComponentInterface
 {
     /**

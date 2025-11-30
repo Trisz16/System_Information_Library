@@ -79,7 +79,14 @@ class AttributeFileLoader extends FileLoader
             throw new \InvalidArgumentException(\sprintf('The file "%s" does not contain PHP code. Did you forget to add the "<?php" start tag at the beginning of the file?', $file));
         }
 
+<<<<<<< HEAD
         $nsTokens = [\T_NS_SEPARATOR => true, \T_STRING => true, \T_NAME_QUALIFIED => true];
+=======
+        $nsTokens = [\T_NS_SEPARATOR => true, \T_STRING => true];
+        if (\defined('T_NAME_QUALIFIED')) {
+            $nsTokens[\T_NAME_QUALIFIED] = true;
+        }
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         for ($i = 0; isset($tokens[$i]); ++$i) {
             $token = $tokens[$i];
             if (!isset($token[1])) {
@@ -112,7 +119,11 @@ class AttributeFileLoader extends FileLoader
                     if (\T_DOUBLE_COLON === $tokens[$j][0] || \T_NEW === $tokens[$j][0]) {
                         $skipClassToken = true;
                         break;
+<<<<<<< HEAD
                     } elseif (!\in_array($tokens[$j][0], [\T_WHITESPACE, \T_DOC_COMMENT, \T_COMMENT], true)) {
+=======
+                    } elseif (!\in_array($tokens[$j][0], [\T_WHITESPACE, \T_DOC_COMMENT, \T_COMMENT])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                         break;
                     }
                 }

@@ -48,18 +48,25 @@ class RedisTagSet extends TagSet
                 $cursor = $defaultCursorValue;
 
                 do {
+<<<<<<< HEAD
                     $results = $connection->zscan(
+=======
+                    [$cursor, $entries] = $connection->zscan(
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                         $this->store->getPrefix().$tagKey,
                         $cursor,
                         ['match' => '*', 'count' => 1000]
                     );
 
+<<<<<<< HEAD
                     if (! is_array($results)) {
                         break;
                     }
 
                     [$cursor, $entries] = $results;
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     if (! is_array($entries)) {
                         break;
                     }
@@ -85,6 +92,7 @@ class RedisTagSet extends TagSet
      */
     public function flushStaleEntries()
     {
+<<<<<<< HEAD
         $flushStaleEntries = function ($pipe) {
             foreach ($this->tagIds() as $tagKey) {
                 $pipe->zremrangebyscore($this->store->getPrefix().$tagKey, 0, Carbon::now()->getTimestamp());
@@ -98,6 +106,13 @@ class RedisTagSet extends TagSet
         } else {
             $connection->pipeline($flushStaleEntries);
         }
+=======
+        $this->store->connection()->pipeline(function ($pipe) {
+            foreach ($this->tagIds() as $tagKey) {
+                $pipe->zremrangebyscore($this->store->getPrefix().$tagKey, 0, Carbon::now()->getTimestamp());
+            }
+        });
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**

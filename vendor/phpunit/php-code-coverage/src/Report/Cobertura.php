@@ -114,6 +114,7 @@ final class Cobertura
             $coverageData = $item->lineCoverageData();
 
             foreach ($classes as $className => $class) {
+<<<<<<< HEAD
                 $complexity        += $class->ccn;
                 $packageComplexity += $class->ccn;
 
@@ -123,6 +124,17 @@ final class Cobertura
 
                 $branchesValid   = $class->executableBranches;
                 $branchesCovered = $class->executedBranches;
+=======
+                $complexity        += $class['ccn'];
+                $packageComplexity += $class['ccn'];
+
+                $linesValid   = $class['executableLines'];
+                $linesCovered = $class['executedLines'];
+                $lineRate     = $linesValid === 0 ? 0 : ($linesCovered / $linesValid);
+
+                $branchesValid   = $class['executableBranches'];
+                $branchesCovered = $class['executedBranches'];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $branchRate      = $branchesValid === 0 ? 0 : ($branchesCovered / $branchesValid);
 
                 $classElement = $document->createElement('class');
@@ -131,7 +143,11 @@ final class Cobertura
                 $classElement->setAttribute('filename', str_replace($report->pathAsString() . DIRECTORY_SEPARATOR, '', $item->pathAsString()));
                 $classElement->setAttribute('line-rate', (string) $lineRate);
                 $classElement->setAttribute('branch-rate', (string) $branchRate);
+<<<<<<< HEAD
                 $classElement->setAttribute('complexity', (string) $class->ccn);
+=======
+                $classElement->setAttribute('complexity', (string) $class['ccn']);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
                 $classesElement->appendChild($classElement);
 
@@ -143,6 +159,7 @@ final class Cobertura
 
                 $classElement->appendChild($classLinesElement);
 
+<<<<<<< HEAD
                 foreach ($class->methods as $methodName => $method) {
                     if ($method->executableLines === 0) {
                         continue;
@@ -156,6 +173,21 @@ final class Cobertura
 
                     $branchesValid   = $method->executableBranches;
                     $branchesCovered = $method->executedBranches;
+=======
+                foreach ($class['methods'] as $methodName => $method) {
+                    if ($method['executableLines'] === 0) {
+                        continue;
+                    }
+
+                    preg_match("/\((.*?)\)/", $method['signature'], $signature);
+
+                    $linesValid   = $method['executableLines'];
+                    $linesCovered = $method['executedLines'];
+                    $lineRate     = $linesCovered / $linesValid;
+
+                    $branchesValid   = $method['executableBranches'];
+                    $branchesCovered = $method['executedBranches'];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     $branchRate      = $branchesValid === 0 ? 0 : ($branchesCovered / $branchesValid);
 
                     $methodElement = $document->createElement('method');
@@ -164,13 +196,21 @@ final class Cobertura
                     $methodElement->setAttribute('signature', $signature[1]);
                     $methodElement->setAttribute('line-rate', (string) $lineRate);
                     $methodElement->setAttribute('branch-rate', (string) $branchRate);
+<<<<<<< HEAD
                     $methodElement->setAttribute('complexity', (string) $method->ccn);
+=======
+                    $methodElement->setAttribute('complexity', (string) $method['ccn']);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
                     $methodLinesElement = $document->createElement('lines');
 
                     $methodElement->appendChild($methodLinesElement);
 
+<<<<<<< HEAD
                     foreach (range($method->startLine, $method->endLine) as $line) {
+=======
+                    foreach (range($method['startLine'], $method['endLine']) as $line) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                         if (!isset($coverageData[$line])) {
                             continue;
                         }
@@ -217,6 +257,7 @@ final class Cobertura
             $functions = $item->functions();
 
             foreach ($functions as $functionName => $function) {
+<<<<<<< HEAD
                 if ($function->executableLines === 0) {
                     continue;
                 }
@@ -227,13 +268,30 @@ final class Cobertura
 
                 $linesValid   = $function->executableLines;
                 $linesCovered = $function->executedLines;
+=======
+                if ($function['executableLines'] === 0) {
+                    continue;
+                }
+
+                $complexity          += $function['ccn'];
+                $packageComplexity   += $function['ccn'];
+                $functionsComplexity += $function['ccn'];
+
+                $linesValid   = $function['executableLines'];
+                $linesCovered = $function['executedLines'];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $lineRate     = $linesCovered / $linesValid;
 
                 $functionsLinesValid   += $linesValid;
                 $functionsLinesCovered += $linesCovered;
 
+<<<<<<< HEAD
                 $branchesValid   = $function->executableBranches;
                 $branchesCovered = $function->executedBranches;
+=======
+                $branchesValid   = $function['executableBranches'];
+                $branchesCovered = $function['executedBranches'];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $branchRate      = $branchesValid === 0 ? 0 : ($branchesCovered / $branchesValid);
 
                 $functionsBranchesValid   += $branchesValid;
@@ -242,16 +300,27 @@ final class Cobertura
                 $methodElement = $document->createElement('method');
 
                 $methodElement->setAttribute('name', $functionName);
+<<<<<<< HEAD
                 $methodElement->setAttribute('signature', $function->signature);
                 $methodElement->setAttribute('line-rate', (string) $lineRate);
                 $methodElement->setAttribute('branch-rate', (string) $branchRate);
                 $methodElement->setAttribute('complexity', (string) $function->ccn);
+=======
+                $methodElement->setAttribute('signature', $function['signature']);
+                $methodElement->setAttribute('line-rate', (string) $lineRate);
+                $methodElement->setAttribute('branch-rate', (string) $branchRate);
+                $methodElement->setAttribute('complexity', (string) $function['ccn']);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
                 $methodLinesElement = $document->createElement('lines');
 
                 $methodElement->appendChild($methodLinesElement);
 
+<<<<<<< HEAD
                 foreach (range($function->startLine, $function->endLine) as $line) {
+=======
+                foreach (range($function['startLine'], $function['endLine']) as $line) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     if (!isset($coverageData[$line])) {
                         continue;
                     }

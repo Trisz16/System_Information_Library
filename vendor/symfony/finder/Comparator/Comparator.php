@@ -22,7 +22,11 @@ class Comparator
         private string $target,
         string $operator = '==',
     ) {
+<<<<<<< HEAD
         if (!\in_array($operator, ['>', '<', '>=', '<=', '==', '!='], true)) {
+=======
+        if (!\in_array($operator, ['>', '<', '>=', '<=', '==', '!='])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             throw new \InvalidArgumentException(\sprintf('Invalid operator "%s".', $operator));
         }
 

@@ -24,8 +24,11 @@ use Symfony\Component\Routing\RouteCollection;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Tobias Schultze <http://tobion.de>
+<<<<<<< HEAD
  *
  * @deprecated since Symfony 7.4, use another loader instead
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  */
 class XmlFileLoader extends FileLoader
 {
@@ -42,8 +45,11 @@ class XmlFileLoader extends FileLoader
      */
     public function load(mixed $file, ?string $type = null): RouteCollection
     {
+<<<<<<< HEAD
         trigger_deprecation('symfony/routing', '7.4', 'XML configuration format is deprecated, use YAML, PHP or attributes instead.');
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $path = $this->locator->locate($file);
 
         $xml = $this->loadFile($path);

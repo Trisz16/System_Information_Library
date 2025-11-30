@@ -14,7 +14,10 @@ namespace Symfony\Contracts\Translation\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
+<<<<<<< HEAD
 use Symfony\Component\Translation\TranslatableMessage;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Contracts\Translation\TranslatorTrait;
 
@@ -125,12 +128,19 @@ class TranslatorTest extends TestCase
 
     public static function getTransTests()
     {
+<<<<<<< HEAD
         yield ['Symfony is great!', 'Symfony is great!', []];
         yield ['Symfony is awesome!', 'Symfony is %what%!', ['%what%' => 'awesome']];
 
         if (class_exists(TranslatableMessage::class)) {
             yield ['He said "Symfony is awesome!".', 'He said "%what%".', ['%what%' => new TranslatableMessage('Symfony is %what%!', ['%what%' => 'awesome'])]];
         }
+=======
+        return [
+            ['Symfony is great!', 'Symfony is great!', []],
+            ['Symfony is awesome!', 'Symfony is %what%!', ['%what%' => 'awesome']],
+        ];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     public static function getTransChoiceTests()

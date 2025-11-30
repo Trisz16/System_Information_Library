@@ -84,7 +84,11 @@ final class Converter
         return self::build($components);
     }
 
+<<<<<<< HEAD
     public static function build(array $components): string
+=======
+    private static function build(array $components): string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $components['ipAddress'] ??= null;
         $components['zoneIdentifier'] ??= null;
@@ -99,7 +103,13 @@ final class Converter
         }.']';
     }
 
+<<<<<<< HEAD
     /**
+=======
+    /**]
+     * @param Stringable|string|null $host
+     *
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @return array{ipAddress:string|null, zoneIdentifier:string|null}
      */
     private static function parse(Stringable|string|null $host): array
@@ -132,6 +142,7 @@ final class Converter
             default => ['ipAddress' => null, 'zoneIdentifier' => null],
         };
     }
+<<<<<<< HEAD
 
     /**
      * Tells whether the host is an IPv6.
@@ -157,4 +168,6 @@ final class Converter
 
         return self::build($components);
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

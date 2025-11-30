@@ -51,7 +51,11 @@ class CacheAttributeListener implements EventSubscriberInterface
     {
         $request = $event->getRequest();
 
+<<<<<<< HEAD
         if (!$attributes = $request->attributes->get('_cache') ?? $event->getAttributes(Cache::class)) {
+=======
+        if (!\is_array($attributes = $request->attributes->get('_cache') ?? $event->getAttributes()[Cache::class] ?? null)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return;
         }
 
@@ -102,7 +106,11 @@ class CacheAttributeListener implements EventSubscriberInterface
         $response = $event->getResponse();
 
         // http://tools.ietf.org/html/draft-ietf-httpbis-p4-conditional-12#section-3.1
+<<<<<<< HEAD
         if (!\in_array($response->getStatusCode(), [200, 203, 300, 301, 302, 304, 404, 410], true)) {
+=======
+        if (!\in_array($response->getStatusCode(), [200, 203, 300, 301, 302, 304, 404, 410])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             unset($this->lastModified[$request]);
             unset($this->etags[$request]);
 
@@ -184,12 +192,15 @@ class CacheAttributeListener implements EventSubscriberInterface
         ];
     }
 
+<<<<<<< HEAD
     public function reset(): void
     {
         $this->lastModified = new \SplObjectStorage();
         $this->etags = new \SplObjectStorage();
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     private function getExpressionLanguage(): ExpressionLanguage
     {
         return $this->expressionLanguage ??= class_exists(ExpressionLanguage::class)

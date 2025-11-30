@@ -11,8 +11,11 @@
 
 namespace Symfony\Component\Routing\Attribute;
 
+<<<<<<< HEAD
 use Symfony\Component\Routing\Exception\LogicException;
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 /**
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Alexander M. Turek <me@derrabus.de>
@@ -20,6 +23,7 @@ use Symfony\Component\Routing\Exception\LogicException;
 #[\Attribute(\Attribute::IS_REPEATABLE | \Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
 class Route
 {
+<<<<<<< HEAD
     /** @var string[] */
     public array $methods;
 
@@ -31,6 +35,16 @@ class Route
 
     /** @var (string|DeprecatedAlias)[] */
     public array $aliases = [];
+=======
+    private ?string $path = null;
+    private array $localizedPaths = [];
+    private array $methods;
+    private array $schemes;
+    /**
+     * @var (string|DeprecatedAlias)[]
+     */
+    private array $aliases = [];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     /**
      * @param string|array<string,string>|null                  $path         The route path (i.e. "/user/login")
@@ -47,6 +61,7 @@ class Route
      * @param string|null                                       $format       The format returned by the route (i.e. "json", "xml")
      * @param bool|null                                         $utf8         Whether the route accepts UTF-8 in its parameters
      * @param bool|null                                         $stateless    Whether the route is defined as stateless or stateful, @see https://symfony.com/doc/current/routing.html#stateless-routes
+<<<<<<< HEAD
      * @param string|string[]|null                              $env          The env(s) in which the route is defined (i.e. "dev", "test", "prod", ["dev", "test"])
      * @param string|DeprecatedAlias|(string|DeprecatedAlias)[] $alias        The list of aliases for this route
      */
@@ -61,10 +76,27 @@ class Route
         array|string $schemes = [],
         public ?string $condition = null,
         public ?int $priority = null,
+=======
+     * @param string|null                                       $env          The env in which the route is defined (i.e. "dev", "test", "prod")
+     * @param string|DeprecatedAlias|(string|DeprecatedAlias)[] $alias        The list of aliases for this route
+     */
+    public function __construct(
+        string|array|null $path = null,
+        private ?string $name = null,
+        private array $requirements = [],
+        private array $options = [],
+        private array $defaults = [],
+        private ?string $host = null,
+        array|string $methods = [],
+        array|string $schemes = [],
+        private ?string $condition = null,
+        private ?int $priority = null,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         ?string $locale = null,
         ?string $format = null,
         ?bool $utf8 = null,
         ?bool $stateless = null,
+<<<<<<< HEAD
         string|array|null $env = null,
         string|DeprecatedAlias|array $alias = [],
     ) {
@@ -73,6 +105,19 @@ class Route
         $this->schemes = (array) $schemes;
         $this->envs = (array) $env;
         $this->aliases = \is_array($alias) ? $alias : [$alias];
+=======
+        private ?string $env = null,
+        string|DeprecatedAlias|array $alias = [],
+    ) {
+        if (\is_array($path)) {
+            $this->localizedPaths = $path;
+        } else {
+            $this->path = $path;
+        }
+        $this->setMethods($methods);
+        $this->setSchemes($schemes);
+        $this->setAliases($alias);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if (null !== $locale) {
             $this->defaults['_locale'] = $locale;
@@ -91,12 +136,16 @@ class Route
         }
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "path" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setPath(string $path): void
     {
         $this->path = $path;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "path" property instead', 'symfony/routing:7.4')]
     public function getPath(): ?string
     {
@@ -116,113 +165,182 @@ class Route
     }
 
     #[\Deprecated('Use the "host" property instead', 'symfony/routing:7.4')]
+=======
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    public function setLocalizedPaths(array $localizedPaths): void
+    {
+        $this->localizedPaths = $localizedPaths;
+    }
+
+    public function getLocalizedPaths(): array
+    {
+        return $this->localizedPaths;
+    }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setHost(string $pattern): void
     {
         $this->host = $pattern;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "host" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getHost(): ?string
     {
         return $this->host;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "name" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "name" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getName(): ?string
     {
         return $this->name;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "requirements" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setRequirements(array $requirements): void
     {
         $this->requirements = $requirements;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "requirements" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getRequirements(): array
     {
         return $this->requirements;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "options" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setOptions(array $options): void
     {
         $this->options = $options;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "options" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getOptions(): array
     {
         return $this->options;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "defaults" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setDefaults(array $defaults): void
     {
         $this->defaults = $defaults;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "defaults" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getDefaults(): array
     {
         return $this->defaults;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "schemes" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setSchemes(array|string $schemes): void
     {
         $this->schemes = (array) $schemes;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "schemes" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getSchemes(): array
     {
         return $this->schemes;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "methods" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setMethods(array|string $methods): void
     {
         $this->methods = (array) $methods;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "methods" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getMethods(): array
     {
         return $this->methods;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "condition" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setCondition(?string $condition): void
     {
         $this->condition = $condition;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "condition" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getCondition(): ?string
     {
         return $this->condition;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "priority" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setPriority(int $priority): void
     {
         $this->priority = $priority;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "priority" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getPriority(): ?int
     {
         return $this->priority;
     }
 
+<<<<<<< HEAD
     #[\Deprecated('Use the "envs" property instead', 'symfony/routing:7.4')]
     public function setEnv(?string $env): void
     {
@@ -240,12 +358,25 @@ class Route
         }
 
         return $this->envs[0];
+=======
+    public function setEnv(?string $env): void
+    {
+        $this->env = $env;
+    }
+
+    public function getEnv(): ?string
+    {
+        return $this->env;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
      * @return (string|DeprecatedAlias)[]
      */
+<<<<<<< HEAD
     #[\Deprecated('Use the "aliases" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getAliases(): array
     {
         return $this->aliases;
@@ -254,7 +385,10 @@ class Route
     /**
      * @param string|DeprecatedAlias|(string|DeprecatedAlias)[] $aliases
      */
+<<<<<<< HEAD
     #[\Deprecated('Use the "aliases" property instead', 'symfony/routing:7.4')]
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function setAliases(string|DeprecatedAlias|array $aliases): void
     {
         $this->aliases = \is_array($aliases) ? $aliases : [$aliases];

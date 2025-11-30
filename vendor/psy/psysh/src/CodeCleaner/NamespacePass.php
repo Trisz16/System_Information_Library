@@ -27,6 +27,7 @@ use Psy\CodeCleaner;
  * namespace is replaced by another namespace. To reset to the top level
  * namespace, enter `namespace {}`. This is a bit ugly, but it does the trick :)
  */
+<<<<<<< HEAD
 class NamespacePass extends NamespaceAwarePass
 {
     /**
@@ -37,6 +38,19 @@ class NamespacePass extends NamespaceAwarePass
     public function __construct(?CodeCleaner $cleaner = null)
     {
         // No-op, since cleaner is provided by NamespaceAwarePass
+=======
+class NamespacePass extends CodeCleanerPass
+{
+    private ?Name $namespace = null;
+    private CodeCleaner $cleaner;
+
+    /**
+     * @param CodeCleaner $cleaner
+     */
+    public function __construct(CodeCleaner $cleaner)
+    {
+        $this->cleaner = $cleaner;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -60,7 +74,13 @@ class NamespacePass extends NamespaceAwarePass
         if ($last instanceof Namespace_) {
             $kind = $last->getAttribute('kind');
 
+<<<<<<< HEAD
             if ($kind === Namespace_::KIND_SEMICOLON) {
+=======
+            // Treat all namespace statements pre-PHP-Parser v3.1.2 as "open",
+            // even though we really have no way of knowing.
+            if ($kind === null || $kind === Namespace_::KIND_SEMICOLON) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 // Save the current namespace for open namespaces
                 $this->setNamespace($last->name);
             } else {
@@ -71,6 +91,7 @@ class NamespacePass extends NamespaceAwarePass
             return $nodes;
         }
 
+<<<<<<< HEAD
         // Wrap in current namespace if one is set
         $currentNamespace = $this->getCurrentNamespace();
 
@@ -98,11 +119,20 @@ class NamespacePass extends NamespaceAwarePass
 
     /**
      * Update the namespace in CodeCleaner and clear aliases.
+=======
+        return $this->namespace ? [new Namespace_($this->namespace, $nodes)] : $nodes;
+    }
+
+    /**
+     * Remember the namespace and (re)set the namespace on the CodeCleaner as
+     * well.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @param Name|null $namespace
      */
     private function setNamespace(?Name $namespace)
     {
+<<<<<<< HEAD
         $this->cleaner->setNamespace($namespace);
 
         // Always clear aliases when changing namespace
@@ -111,6 +141,16 @@ class NamespacePass extends NamespaceAwarePass
 
     /**
      * @deprecated unused and will be removed in a future version
+=======
+        $this->namespace = $namespace;
+        $this->cleaner->setNamespace($namespace === null ? null : $this->getParts($namespace));
+    }
+
+    /**
+     * Backwards compatibility shim for PHP-Parser 4.x.
+     *
+     * At some point we might want to make the namespace a plain string, to match how Name works?
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     protected function getParts(Name $name): array
     {

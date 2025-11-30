@@ -19,6 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 interface OutputPager extends OutputInterface
 {
+<<<<<<< HEAD
     // TODO: Add doWrite to the OutputPager interface.
     // /**
     //  * Writes a message to the output.
@@ -28,6 +29,8 @@ interface OutputPager extends OutputInterface
     //  */
     // public function doWrite($message, $newline): void;
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     /**
      * Close the current pager process.
      */

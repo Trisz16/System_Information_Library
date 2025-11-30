@@ -2,6 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
+<<<<<<< HEAD
 ## [0.14.1](https://github.com/brick/math/releases/tag/0.14.1) - 2025-11-24
 
 ✨ **New features**
@@ -12,6 +13,8 @@ All notable changes to this project will be documented in this file.
 
 - Fixed warnings on PHP 8.5 (#101 and #102 by @julien-boudry)
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 ## [0.14.0](https://github.com/brick/math/releases/tag/0.14.0) - 2025-08-29
 
 ✨ **New features**

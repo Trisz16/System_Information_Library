@@ -203,7 +203,11 @@ trait InteractsWithTestCaseLifecycle
      */
     protected function setUpTraits()
     {
+<<<<<<< HEAD
         $uses = $this->traitsUsedByTest ?? array_flip(class_uses_recursive(static::class));
+=======
+        $uses = array_flip(class_uses_recursive(static::class));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if (isset($uses[RefreshDatabase::class])) {
             $this->refreshDatabase();

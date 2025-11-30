@@ -1778,6 +1778,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
             }
         }
 
+<<<<<<< HEAD
         try {
             return new Snapshot(
                 $excludeList,
@@ -1804,6 +1805,20 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
             throw $t;
         }
+=======
+        return new Snapshot(
+            $excludeList,
+            $backupGlobals,
+            (bool) $this->backupStaticProperties,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+        );
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     private function compareGlobalStateSnapshots(Snapshot $before, Snapshot $after): void

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace League\Uri;
 
 use Closure;
+<<<<<<< HEAD
 use Deprecated;
 use League\Uri\Contracts\UriComponentInterface;
 use League\Uri\Exceptions\SyntaxError;
@@ -26,10 +27,18 @@ use function filter_var;
 use function gettype;
 use function in_array;
 use function is_scalar;
+=======
+use League\Uri\Contracts\UriComponentInterface;
+use League\Uri\Exceptions\SyntaxError;
+use SensitiveParameter;
+use Stringable;
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use function preg_match;
 use function preg_replace_callback;
 use function rawurldecode;
 use function rawurlencode;
+<<<<<<< HEAD
 use function sprintf;
 use function str_starts_with;
 use function strtolower;
@@ -38,6 +47,10 @@ use function strtoupper;
 use const FILTER_FLAG_IPV4;
 use const FILTER_VALIDATE_IP;
 
+=======
+use function strtoupper;
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 final class Encoder
 {
     private const REGEXP_CHARS_INVALID = '/[\x00-\x1f\x7f]/';
@@ -55,6 +68,7 @@ final class Encoder
     private const REGEXP_PART_ENCODED = '%(?![A-Fa-f\d]{2})';
 
     /**
+<<<<<<< HEAD
      * Unreserved characters.
      *
      * @see https://www.rfc-editor.org/rfc/rfc3986.html#section-2.3
@@ -72,6 +86,8 @@ final class Encoder
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Encode User.
      *
      * All generic delimiters MUST be encoded
@@ -84,6 +100,7 @@ final class Encoder
     }
 
     /**
+<<<<<<< HEAD
      * Normalize user component.
      *
      * The value returned MUST be percent-encoded, but MUST NOT double-encode
@@ -119,6 +136,8 @@ final class Encoder
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Encode Password.
      *
      * Generic delimiters ":" MUST NOT be encoded
@@ -131,6 +150,7 @@ final class Encoder
     }
 
     /**
+<<<<<<< HEAD
      * Normalize password component.
      *
      * The value returned MUST be percent-encoded, but MUST NOT double-encode
@@ -238,6 +258,8 @@ final class Encoder
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Encode Path.
      *
      * Generic delimiters ":", "@", and "/" MUST NOT be encoded
@@ -250,6 +272,7 @@ final class Encoder
     }
 
     /**
+<<<<<<< HEAD
      * Decodes the path component while preserving characters that should not be decoded in the context of a full valid URI.
      */
     public static function decodePath(Stringable|string|null $path): ?string
@@ -374,6 +397,8 @@ final class Encoder
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Encode Query or Fragment.
      *
      * Generic delimiters ":", "@", "?", and "/" MUST NOT be encoded
@@ -388,6 +413,7 @@ final class Encoder
     public static function encodeQueryKeyValue(mixed $component): ?string
     {
         static $pattern = '/[^'.self::REGEXP_PART_UNRESERVED.']+|'.self::REGEXP_PART_ENCODED.'/';
+<<<<<<< HEAD
         $encoder = static fn (array $found): string => 1 === preg_match('/[^'.self::REGEXP_PART_UNRESERVED.']/', rawurldecode($found[0])) ? rawurlencode($found[0]) : $found[0];
         $filteredComponent = self::filterComponent($component);
 
@@ -398,6 +424,47 @@ final class Encoder
         };
     }
 
+=======
+
+        $encodeMatches = static fn (array $matches): string => match (1) {
+            preg_match('/[^'.self::REGEXP_PART_UNRESERVED.']/', rawurldecode($matches[0])) => rawurlencode($matches[0]),
+            default => $matches[0],
+        };
+
+        $component = self::filterComponent($component);
+
+        return match (true) {
+            !is_scalar($component) => throw new SyntaxError(sprintf('A pair key/value must be a scalar value `%s` given.', gettype($component))),
+            1 === preg_match(self::REGEXP_CHARS_INVALID, $component) => rawurlencode($component),
+            1 === preg_match($pattern, $component) => (string) preg_replace_callback($pattern, $encodeMatches(...), $component),
+            default => $component,
+        };
+    }
+
+    /**
+     * Decodes the URI component without decoding the unreserved characters which are already encoded.
+     */
+    public static function decodePartial(Stringable|string|int|null $component): ?string
+    {
+        $decodeMatches = static fn (array $matches): string => match (1) {
+            preg_match(self::REGEXP_CHARS_PREVENTS_DECODING, $matches[0]) => strtoupper($matches[0]),
+            default => rawurldecode($matches[0]),
+        };
+
+        return self::decode($component, $decodeMatches);
+    }
+
+    /**
+     * Decodes all the URI component characters.
+     */
+    public static function decodeAll(Stringable|string|int|null $component): ?string
+    {
+        $decodeMatches = static fn (array $matches): string => rawurldecode($matches[0]);
+
+        return self::decode($component, $decodeMatches);
+    }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     private static function filterComponent(mixed $component): ?string
     {
         return match (true) {
@@ -411,6 +478,7 @@ final class Encoder
         };
     }
 
+<<<<<<< HEAD
     /**
      * Encodes the URI component characters using a regular expression to find which characters need encoding.
      */
@@ -464,5 +532,35 @@ final class Encoder
     public static function decodePartial(Stringable|string|int|null $component): ?string
     {
         return self::decodeNecessary($component);
+=======
+    private static function encode(Stringable|string|int|bool|null $component, string $pattern): ?string
+    {
+        $component = self::filterComponent($component);
+        $encodeMatches = static fn (array $matches): string => match (1) {
+            preg_match('/[^'.self::REGEXP_PART_UNRESERVED.']/', rawurldecode($matches[0])) => rawurlencode($matches[0]),
+            default => $matches[0],
+        };
+
+        return match (true) {
+            null === $component,
+            '' === $component => $component,
+            default => (string) preg_replace_callback($pattern, $encodeMatches(...), $component),
+        };
+    }
+
+    /**
+     * Decodes all the URI component characters.
+     */
+    private static function decode(Stringable|string|int|null $component, Closure $decodeMatches): ?string
+    {
+        $component = self::filterComponent($component);
+
+        return match (true) {
+            null === $component => null,
+            1 === preg_match(self::REGEXP_CHARS_INVALID, $component) => throw new SyntaxError('Invalid component string: '.$component.'.'),
+            1 === preg_match(self::REGEXP_CHARS_ENCODED, $component) => preg_replace_callback(self::REGEXP_CHARS_ENCODED, $decodeMatches(...), $component),
+            default => $component,
+        };
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

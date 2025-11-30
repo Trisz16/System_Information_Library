@@ -18,7 +18,11 @@ use Symfony\Component\Mime\Header\Headers;
  */
 class SMimePart extends AbstractPart
 {
+<<<<<<< HEAD
     /** @internal, to be removed in 8.0 */
+=======
+    /** @internal */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     protected Headers $_headers;
 
     public function __construct(
@@ -84,6 +88,7 @@ class SMimePart extends AbstractPart
         return $headers;
     }
 
+<<<<<<< HEAD
     public function __serialize(): array
     {
         if (self::class === (new \ReflectionMethod($this, '__sleep'))->class || self::class !== (new \ReflectionMethod($this, '__serialize'))->class) {
@@ -175,6 +180,10 @@ class SMimePart extends AbstractPart
     {
         trigger_deprecation('symfony/mime', '7.4', 'Calling "%s::__sleep()" is deprecated, use "__serialize()" instead.', get_debug_type($this));
 
+=======
+    public function __sleep(): array
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         // convert iterables to strings for serialization
         if (is_iterable($this->body)) {
             $this->body = $this->bodyToString();
@@ -185,6 +194,7 @@ class SMimePart extends AbstractPart
         return ['_headers', 'body', 'type', 'subtype', 'parameters'];
     }
 
+<<<<<<< HEAD
     /**
      * @deprecated since Symfony 7.4, will be replaced by `__unserialize()` in 8.0
      */
@@ -192,6 +202,10 @@ class SMimePart extends AbstractPart
     {
         trigger_deprecation('symfony/mime', '7.4', 'Calling "%s::__wakeup()" is deprecated, use "__unserialize()" instead.', get_debug_type($this));
 
+=======
+    public function __wakeup(): void
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $r = new \ReflectionProperty(AbstractPart::class, 'headers');
         $r->setValue($this, $this->_headers);
         unset($this->_headers);

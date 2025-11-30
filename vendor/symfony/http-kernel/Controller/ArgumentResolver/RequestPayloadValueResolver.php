@@ -193,10 +193,13 @@ class RequestPayloadValueResolver implements ValueResolverInterface, EventSubscr
 
     private function mapRequestPayload(Request $request, ArgumentMetadata $argument, MapRequestPayload $attribute): object|array|null
     {
+<<<<<<< HEAD
         if ('' === ($data = $request->request->all() ?: $request->getContent()) && ($argument->isNullable() || $argument->hasDefaultValue())) {
             return null;
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (null === $format = $request->getContentTypeFormat()) {
             throw new UnsupportedMediaTypeHttpException('Unsupported format.');
         }
@@ -211,10 +214,21 @@ class RequestPayloadValueResolver implements ValueResolverInterface, EventSubscr
             $type = $argument->getType();
         }
 
+<<<<<<< HEAD
         if (\is_array($data)) {
             return $this->serializer->denormalize($data, $type, 'csv', $attribute->serializationContext + self::CONTEXT_DENORMALIZE + ('form' === $format ? ['filter_bool' => true] : []));
         }
 
+=======
+        if ($data = $request->request->all()) {
+            return $this->serializer->denormalize($data, $type, 'csv', $attribute->serializationContext + self::CONTEXT_DENORMALIZE + ('form' === $format ? ['filter_bool' => true] : []));
+        }
+
+        if ('' === ($data = $request->getContent()) && ($argument->isNullable() || $argument->hasDefaultValue())) {
+            return null;
+        }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if ('form' === $format) {
             throw new BadRequestHttpException('Request payload contains invalid "form" data.');
         }

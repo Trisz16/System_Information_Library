@@ -371,6 +371,11 @@ class Native implements Serializable
                         continue;
                     }
 
+<<<<<<< HEAD
+=======
+                    $property->setAccessible(true);
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     if (! $property->isInitialized($data) || $property->isReadOnly()) {
                         continue;
                     }
@@ -491,6 +496,11 @@ class Native implements Serializable
                         continue;
                     }
 
+<<<<<<< HEAD
+=======
+                    $property->setAccessible(true);
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     if (! $property->isInitialized($instance) || ($property->isReadOnly() && $property->class !== $reflection->name)) {
                         continue;
                     }

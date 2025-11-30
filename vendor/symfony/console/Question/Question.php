@@ -24,6 +24,7 @@ class Question
     private ?int $attempts = null;
     private bool $hidden = false;
     private bool $hiddenFallback = true;
+<<<<<<< HEAD
     /**
      * @var (\Closure(string):string[])|null
      */
@@ -39,6 +40,13 @@ class Question
     private bool $trimmable = true;
     private bool $multiline = false;
     private ?int $timeout = null;
+=======
+    private ?\Closure $autocompleterCallback = null;
+    private ?\Closure $validator = null;
+    private ?\Closure $normalizer = null;
+    private bool $trimmable = true;
+    private bool $multiline = false;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     /**
      * @param string                     $question The question to ask to the user
@@ -87,6 +95,7 @@ class Question
     }
 
     /**
+<<<<<<< HEAD
      * Returns the timeout in seconds.
      */
     public function getTimeout(): ?int
@@ -108,6 +117,8 @@ class Question
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Returns whether the user response must be hidden.
      */
     public function isHidden(): bool
@@ -191,8 +202,11 @@ class Question
 
     /**
      * Gets the callback function used for the autocompleter.
+<<<<<<< HEAD
      *
      * @return (callable(string):string[])|null
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function getAutocompleterCallback(): ?callable
     {
@@ -204,8 +218,11 @@ class Question
      *
      * The callback is passed the user input as argument and should return an iterable of corresponding suggestions.
      *
+<<<<<<< HEAD
      * @param (callable(string):string[])|null $callback
      *
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @return $this
      */
     public function setAutocompleterCallback(?callable $callback): static
@@ -222,8 +239,11 @@ class Question
     /**
      * Sets a validator for the question.
      *
+<<<<<<< HEAD
      * @param (callable(mixed):mixed)|null $validator
      *
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @return $this
      */
     public function setValidator(?callable $validator): static
@@ -235,8 +255,11 @@ class Question
 
     /**
      * Gets the validator for the question.
+<<<<<<< HEAD
      *
      * @return (callable(mixed):mixed)|null
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function getValidator(): ?callable
     {
@@ -276,7 +299,11 @@ class Question
     /**
      * Sets a normalizer for the response.
      *
+<<<<<<< HEAD
      * @param callable(mixed):mixed $normalizer
+=======
+     * The normalizer can be a callable (a string), a closure or a class implementing __invoke.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @return $this
      */
@@ -290,7 +317,11 @@ class Question
     /**
      * Gets the normalizer for the response.
      *
+<<<<<<< HEAD
      * @return (callable(mixed):mixed)|null
+=======
+     * The normalizer can ba a callable (a string), a closure or a class implementing __invoke.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function getNormalizer(): ?callable
     {

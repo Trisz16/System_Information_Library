@@ -34,12 +34,21 @@ class InspectUuidCommand extends Command
                 new InputArgument('uuid', InputArgument::REQUIRED, 'The UUID to inspect'),
             ])
             ->setHelp(<<<'EOF'
+<<<<<<< HEAD
                 The <info>%command.name%</info> displays information about a UUID.
 
                     <info>php %command.full_name% a7613e0a-5986-11eb-a861-2bf05af69e52</info>
                     <info>php %command.full_name% MfnmaUvvQ1h8B14vTwt6dX</info>
                     <info>php %command.full_name% 57C4Z0MPC627NTGR9BY1DFD7JJ</info>
                 EOF
+=======
+The <info>%command.name%</info> displays information about a UUID.
+
+    <info>php %command.full_name% a7613e0a-5986-11eb-a861-2bf05af69e52</info>
+    <info>php %command.full_name% MfnmaUvvQ1h8B14vTwt6dX</info>
+    <info>php %command.full_name% 57C4Z0MPC627NTGR9BY1DFD7JJ</info>
+EOF
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             )
         ;
     }

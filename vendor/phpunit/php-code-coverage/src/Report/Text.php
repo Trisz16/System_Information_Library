@@ -190,13 +190,20 @@ final class Text
                 $coveredMethods          = 0;
                 $classMethods            = 0;
 
+<<<<<<< HEAD
                 foreach ($class->methods as $method) {
                     /** @phpstan-ignore equal.notAllowed */
                     if ($method->executableLines == 0) {
+=======
+                foreach ($class['methods'] as $method) {
+                    /** @phpstan-ignore equal.notAllowed */
+                    if ($method['executableLines'] == 0) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                         continue;
                     }
 
                     $classMethods++;
+<<<<<<< HEAD
                     $classExecutableLines    += $method->executableLines;
                     $classExecutedLines      += $method->executedLines;
                     $classExecutableBranches += $method->executableBranches;
@@ -206,12 +213,27 @@ final class Text
 
                     /** @phpstan-ignore equal.notAllowed */
                     if ($method->coverage == 100) {
+=======
+                    $classExecutableLines    += $method['executableLines'];
+                    $classExecutedLines      += $method['executedLines'];
+                    $classExecutableBranches += $method['executableBranches'];
+                    $classExecutedBranches   += $method['executedBranches'];
+                    $classExecutablePaths    += $method['executablePaths'];
+                    $classExecutedPaths      += $method['executedPaths'];
+
+                    /** @phpstan-ignore equal.notAllowed */
+                    if ($method['coverage'] == 100) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                         $coveredMethods++;
                     }
                 }
 
                 $classCoverage[$className] = [
+<<<<<<< HEAD
                     'namespace'         => $class->namespace,
+=======
+                    'namespace'         => $class['namespace'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     'className'         => $className,
                     'methodsCovered'    => $coveredMethods,
                     'methodCount'       => $classMethods,

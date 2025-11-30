@@ -157,7 +157,10 @@ abstract class AbstractMatcher
             return false;
         }
 
+<<<<<<< HEAD
         // @phan-suppress-next-line PhanParamSuspiciousOrder - intentionally searching for token in constant string
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return \strpos(self::MISC_OPERATORS, $token) !== false;
     }
 

@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 7.4
 ---
 
@@ -14,6 +15,8 @@ CHANGELOG
  * Deprecate HTTP method override for methods GET, HEAD, CONNECT and TRACE; it will be ignored in Symfony 8.0
  * Deprecate accepting null `$format` argument to `Request::setFormat()`
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 7.3
 ---
 

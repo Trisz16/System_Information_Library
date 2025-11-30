@@ -960,6 +960,7 @@ trait ValidatesAttributes
     }
 
     /**
+<<<<<<< HEAD
      * Validate the encoding of an attribute.
      *
      * @param  string  $attribute
@@ -979,6 +980,8 @@ trait ValidatesAttributes
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Validate the existence of an attribute value in a database table.
      *
      * @param  string  $attribute

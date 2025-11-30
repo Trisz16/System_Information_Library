@@ -14,12 +14,20 @@
     },
     "require": {
         "php": "^8.1",
+<<<<<<< HEAD
         "guzzlehttp/guzzle": "^7.9",
+=======
+        "guzzlehttp/guzzle": "^7.10",
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         "illuminate/console": "^10.49.0|^11.45.3|^12.28.1",
         "illuminate/contracts": "^10.49.0|^11.45.3|^12.28.1",
         "illuminate/routing": "^10.49.0|^11.45.3|^12.28.1",
         "illuminate/support": "^10.49.0|^11.45.3|^12.28.1",
+<<<<<<< HEAD
         "laravel/mcp": "^0.3.4",
+=======
+        "laravel/mcp": "^0.3.2",
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         "laravel/prompts": "0.1.25|^0.3.6",
         "laravel/roster": "^0.2.9"
     },

@@ -41,7 +41,11 @@ class NativeFileSessionHandler extends \SessionHandler
             $baseDir = ltrim(strrchr($savePath, ';'), ';');
         }
 
+<<<<<<< HEAD
         if ($baseDir && !is_dir($baseDir) && !@mkdir($baseDir, 0o777, true) && !is_dir($baseDir)) {
+=======
+        if ($baseDir && !is_dir($baseDir) && !@mkdir($baseDir, 0777, true) && !is_dir($baseDir)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             throw new \RuntimeException(\sprintf('Session Storage was not able to create directory "%s".', $baseDir));
         }
 

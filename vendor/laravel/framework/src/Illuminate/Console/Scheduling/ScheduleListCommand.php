@@ -67,7 +67,13 @@ class ScheduleListCommand extends Command
 
         $events = $this->sortEvents($events, $timezone);
 
+<<<<<<< HEAD
         $this->display($events, $timezone);
+=======
+        $this->option('json')
+            ? $this->displayJson($events, $timezone)
+            : $this->displayForCli($events, $timezone);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -105,7 +111,10 @@ class ScheduleListCommand extends Command
                 'timezone' => $timezone->getName(),
                 'has_mutex' => $event->mutex->exists($event),
                 'repeat_seconds' => $event->isRepeatable() ? $event->repeatSeconds : null,
+<<<<<<< HEAD
                 'environments' => $event->environments,
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             ];
         })->values()->toJson());
     }

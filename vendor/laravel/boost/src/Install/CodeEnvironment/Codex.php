@@ -5,11 +5,17 @@ declare(strict_types=1);
 namespace Laravel\Boost\Install\CodeEnvironment;
 
 use Laravel\Boost\Contracts\Agent;
+<<<<<<< HEAD
 use Laravel\Boost\Contracts\McpClient;
 use Laravel\Boost\Install\Enums\McpInstallationStrategy;
 use Laravel\Boost\Install\Enums\Platform;
 
 class Codex extends CodeEnvironment implements Agent, McpClient
+=======
+use Laravel\Boost\Install\Enums\Platform;
+
+class Codex extends CodeEnvironment implements Agent
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 {
     public function name(): string
     {
@@ -45,6 +51,7 @@ class Codex extends CodeEnvironment implements Agent, McpClient
     {
         return 'AGENTS.md';
     }
+<<<<<<< HEAD
 
     public function mcpInstallationStrategy(): McpInstallationStrategy
     {
@@ -55,4 +62,6 @@ class Codex extends CodeEnvironment implements Agent, McpClient
     {
         return 'codex mcp add {key} -- {command} {args}';
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

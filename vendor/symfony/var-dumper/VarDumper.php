@@ -76,11 +76,19 @@ class VarDumper
             case 'server' === $format:
             case $format && 'tcp' === parse_url($format, \PHP_URL_SCHEME):
                 $host = 'server' === $format ? $_SERVER['VAR_DUMPER_SERVER'] ?? '127.0.0.1:9912' : $format;
+<<<<<<< HEAD
                 $dumper = str_contains($_SERVER['HTTP_ACCEPT'] ?? (\in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? 'txt' : 'html'), 'html') ? new HtmlDumper() : new CliDumper();
                 $dumper = new ServerDumper($host, $dumper, self::getDefaultContextProviders());
                 break;
             default:
                 $dumper = str_contains($_SERVER['HTTP_ACCEPT'] ?? (\in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? 'txt' : 'html'), 'html') ? new HtmlDumper() : new CliDumper();
+=======
+                $dumper = \in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? new CliDumper() : new HtmlDumper();
+                $dumper = new ServerDumper($host, $dumper, self::getDefaultContextProviders());
+                break;
+            default:
+                $dumper = \in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? new CliDumper() : new HtmlDumper();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         if (!$dumper instanceof ServerDumper) {

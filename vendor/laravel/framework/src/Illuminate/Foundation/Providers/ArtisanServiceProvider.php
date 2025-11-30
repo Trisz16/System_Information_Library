@@ -97,11 +97,17 @@ use Illuminate\Queue\Console\ForgetFailedCommand as ForgetFailedQueueCommand;
 use Illuminate\Queue\Console\ListenCommand as QueueListenCommand;
 use Illuminate\Queue\Console\ListFailedCommand as ListFailedQueueCommand;
 use Illuminate\Queue\Console\MonitorCommand as QueueMonitorCommand;
+<<<<<<< HEAD
 use Illuminate\Queue\Console\PauseCommand as QueuePauseCommand;
 use Illuminate\Queue\Console\PruneBatchesCommand as QueuePruneBatchesCommand;
 use Illuminate\Queue\Console\PruneFailedJobsCommand as QueuePruneFailedJobsCommand;
 use Illuminate\Queue\Console\RestartCommand as QueueRestartCommand;
 use Illuminate\Queue\Console\ResumeCommand as QueueResumeCommand;
+=======
+use Illuminate\Queue\Console\PruneBatchesCommand as QueuePruneBatchesCommand;
+use Illuminate\Queue\Console\PruneFailedJobsCommand as QueuePruneFailedJobsCommand;
+use Illuminate\Queue\Console\RestartCommand as QueueRestartCommand;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Illuminate\Queue\Console\RetryBatchCommand as QueueRetryBatchCommand;
 use Illuminate\Queue\Console\RetryCommand as QueueRetryCommand;
 use Illuminate\Queue\Console\TableCommand;
@@ -152,11 +158,17 @@ class ArtisanServiceProvider extends ServiceProvider implements DeferrableProvid
         'QueueForget' => ForgetFailedQueueCommand::class,
         'QueueListen' => QueueListenCommand::class,
         'QueueMonitor' => QueueMonitorCommand::class,
+<<<<<<< HEAD
         'QueuePause' => QueuePauseCommand::class,
         'QueuePruneBatches' => QueuePruneBatchesCommand::class,
         'QueuePruneFailedJobs' => QueuePruneFailedJobsCommand::class,
         'QueueRestart' => QueueRestartCommand::class,
         'QueueResume' => QueueResumeCommand::class,
+=======
+        'QueuePruneBatches' => QueuePruneBatchesCommand::class,
+        'QueuePruneFailedJobs' => QueuePruneFailedJobsCommand::class,
+        'QueueRestart' => QueueRestartCommand::class,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'QueueRetry' => QueueRetryCommand::class,
         'QueueRetryBatch' => QueueRetryBatchCommand::class,
         'QueueWork' => QueueWorkCommand::class,
@@ -256,6 +268,10 @@ class ArtisanServiceProvider extends ServiceProvider implements DeferrableProvid
     /**
      * Register the given commands.
      *
+<<<<<<< HEAD
+=======
+     * @param  array  $commands
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @return void
      */
     protected function registerCommands(array $commands)

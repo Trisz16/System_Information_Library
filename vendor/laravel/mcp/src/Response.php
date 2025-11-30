@@ -69,6 +69,7 @@ class Response
     }
 
     /**
+<<<<<<< HEAD
      * @param  Response|array<int, Response>  $responses
      */
     public static function make(Response|array $responses): ResponseFactory
@@ -87,6 +88,8 @@ class Response
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @throws NotImplementedException
      */
     public static function audio(): Content

@@ -27,17 +27,23 @@ trait PrefixTrait
             foreach ($prefix as $locale => $localePrefix) {
                 $prefix[$locale] = trim(trim($localePrefix), '/');
             }
+<<<<<<< HEAD
             $aliases = [];
             foreach ($routes->getAliases() as $name => $alias) {
                 $aliases[$alias->getId()][] = $name;
             }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             foreach ($routes->all() as $name => $route) {
                 if (null === $locale = $route->getDefault('_locale')) {
                     $priority = $routes->getPriority($name) ?? 0;
                     $routes->remove($name);
+<<<<<<< HEAD
                     foreach ($aliases[$name] ?? [] as $aliasName) {
                         $routes->remove($aliasName);
                     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     foreach ($prefix as $locale => $localePrefix) {
                         $localizedRoute = clone $route;
                         $localizedRoute->setDefault('_locale', $locale);
@@ -45,9 +51,12 @@ trait PrefixTrait
                         $localizedRoute->setDefault('_canonical_route', $name);
                         $localizedRoute->setPath($localePrefix.(!$trailingSlashOnRoot && '/' === $route->getPath() ? '' : $route->getPath()));
                         $routes->add($name.'.'.$locale, $localizedRoute, $priority);
+<<<<<<< HEAD
                         foreach ($aliases[$name] ?? [] as $aliasName) {
                             $routes->addAlias($aliasName.'.'.$locale, $name.'.'.$locale);
                         }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     }
                 } elseif (!isset($prefix[$locale])) {
                     throw new \InvalidArgumentException(\sprintf('Route "%s" with locale "%s" is missing a corresponding prefix in its parent collection.', $name, $locale));

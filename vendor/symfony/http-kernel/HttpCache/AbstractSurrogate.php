@@ -70,7 +70,11 @@ abstract class AbstractSurrogate implements SurrogateInterface
 
     public function handle(HttpCache $cache, string $uri, string $alt, bool $ignoreErrors): string
     {
+<<<<<<< HEAD
         $subRequest = Request::create($uri, 'GET', [], $cache->getRequest()->cookies->all(), [], $cache->getRequest()->server->all());
+=======
+        $subRequest = Request::create($uri, Request::METHOD_GET, [], $cache->getRequest()->cookies->all(), [], $cache->getRequest()->server->all());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         try {
             $response = $cache->handle($subRequest, HttpKernelInterface::SUB_REQUEST, true);

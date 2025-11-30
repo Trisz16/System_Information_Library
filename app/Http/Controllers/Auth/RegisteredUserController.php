@@ -44,6 +44,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+<<<<<<< HEAD
         // Log the user in but require email verification before allowing dashboard access
         Auth::login($user);
 
@@ -52,5 +53,11 @@ class RegisteredUserController extends Controller
 
         // Redirect user to the verification notice so they must verify before accessing the dashboard
         return redirect()->route('verification.notice')->with('success', 'Registration successful! Please verify your email before accessing the dashboard.');
+=======
+        Auth::login($user);
+
+        // Redirect to member registration for mahasiswa users
+        return redirect(route('member.registration', absolute: false))->with('success', 'Registration successful! Please complete your member profile to access all features.');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

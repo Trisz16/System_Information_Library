@@ -13,14 +13,20 @@ declare(strict_types=1);
 
 namespace League\Uri;
 
+<<<<<<< HEAD
 use Deprecated;
 use League\Uri\Contracts\UriException;
 use League\Uri\Contracts\UriInterface;
 use League\Uri\Exceptions\MissingFeature;
+=======
+use League\Uri\Contracts\UriException;
+use League\Uri\Contracts\UriInterface;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use League\Uri\Exceptions\SyntaxError;
 use League\Uri\UriTemplate\Template;
 use League\Uri\UriTemplate\TemplateCanNotBeExpanded;
 use League\Uri\UriTemplate\VariableBag;
+<<<<<<< HEAD
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface as Psr7UriInterface;
 use Stringable;
@@ -32,6 +38,12 @@ use Uri\WhatWg\Url as WhatWgUrl;
 use function array_fill_keys;
 use function array_key_exists;
 use function class_exists;
+=======
+use Stringable;
+
+use function array_fill_keys;
+use function array_key_exists;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
 /**
  * Defines the URI Template syntax and the process for expanding a URI Template into a URI reference.
@@ -40,10 +52,15 @@ use function class_exists;
  * @package League\Uri
  * @author  Ignace Nyamagana Butera <nyamsprod@gmail.com>
  * @since   6.1.0
+<<<<<<< HEAD
  *
  * @phpstan-import-type InputValue from VariableBag
  */
 final class UriTemplate implements Stringable
+=======
+ */
+final class UriTemplate
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 {
     private readonly Template $template;
     private readonly VariableBag $defaultVariables;
@@ -71,17 +88,24 @@ final class UriTemplate implements Stringable
             ));
     }
 
+<<<<<<< HEAD
     /**
      * Returns the string representation of the UriTemplate.
      */
     public function __toString(): string
+=======
+    public function getTemplate(): string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return $this->template->value;
     }
 
     /**
+<<<<<<< HEAD
      * Returns the distinct variables placeholders used in the template.
      *
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @return array<string>
      */
     public function getVariableNames(): array
@@ -89,9 +113,12 @@ final class UriTemplate implements Stringable
         return $this->template->variableNames;
     }
 
+<<<<<<< HEAD
     /**
      * @return array<string, InputValue>
      */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getDefaultVariables(): array
     {
         return iterator_to_array($this->defaultVariables);
@@ -111,13 +138,18 @@ final class UriTemplate implements Stringable
     public function withDefaultVariables(iterable $defaultVariables): self
     {
         $defaultVariables = $this->filterVariables($defaultVariables);
+<<<<<<< HEAD
         if ($this->defaultVariables->equals($defaultVariables)) {
+=======
+        if ($defaultVariables == $this->defaultVariables) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return $this;
         }
 
         return new self($this->template, $defaultVariables);
     }
 
+<<<<<<< HEAD
     private function templateExpanded(iterable $variables = []): string
     {
         return $this->template->expand($this->filterVariables($variables)->replace($this->defaultVariables));
@@ -128,10 +160,13 @@ final class UriTemplate implements Stringable
         return $this->template->expandOrFail($this->filterVariables($variables)->replace($this->defaultVariables));
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     /**
      * @throws TemplateCanNotBeExpanded if the variables are invalid
      * @throws UriException if the resulting expansion cannot be converted to a UriInterface instance
      */
+<<<<<<< HEAD
     public function expand(iterable $variables = [], Rfc3986Uri|WhatWgUrl|Stringable|string|null $baseUri = null): UriInterface
     {
         $expanded = $this->templateExpanded($variables);
@@ -185,12 +220,20 @@ final class UriTemplate implements Stringable
                 default => $baseUrl,
             })
         );
+=======
+    public function expand(iterable $variables = []): UriInterface
+    {
+        return Uri::new($this->template->expand(
+            $this->filterVariables($variables)->replace($this->defaultVariables)
+        ));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
      * @throws TemplateCanNotBeExpanded if the variables are invalid or missing
      * @throws UriException if the resulting expansion cannot be converted to a UriInterface instance
      */
+<<<<<<< HEAD
     public function expandOrFail(iterable $variables = [], Rfc3986Uri|WhatWgUrl|Stringable|string|null $baseUri = null): UriInterface
     {
         $expanded = $this->templateExpandedOrFail($variables);
@@ -285,5 +328,12 @@ final class UriTemplate implements Stringable
     public function getTemplate(): string
     {
         return $this->__toString();
+=======
+    public function expandOrFail(iterable $variables = []): UriInterface
+    {
+        return Uri::new($this->template->expandOrFail(
+            $this->filterVariables($variables)->replace($this->defaultVariables)
+        ));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

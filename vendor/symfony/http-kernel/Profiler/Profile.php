@@ -14,9 +14,15 @@ namespace Symfony\Component\HttpKernel\Profiler;
 use Symfony\Component\HttpKernel\DataCollector\DataCollectorInterface;
 
 /**
+<<<<<<< HEAD
  * @author Fabien Potencier <fabien@symfony.com>
  *
  * @final since Symfony 7.4
+=======
+ * Profile.
+ *
+ * @author Fabien Potencier <fabien@symfony.com>
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  */
 class Profile
 {
@@ -248,9 +254,12 @@ class Profile
         return isset($this->collectors[$name]);
     }
 
+<<<<<<< HEAD
     /**
      * @internal since Symfony 7.4, will be replaced by `__serialize()` in 8.0
      */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function __sleep(): array
     {
         return ['token', 'parent', 'children', 'collectors', 'ip', 'method', 'url', 'time', 'statusCode', 'virtualType'];

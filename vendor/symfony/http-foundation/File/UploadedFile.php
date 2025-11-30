@@ -197,7 +197,11 @@ class UploadedFile extends File
                 throw new FileException(\sprintf('Could not move the file "%s" to "%s" (%s).', $this->getPathname(), $target, strip_tags($error)));
             }
 
+<<<<<<< HEAD
             @chmod($target, 0o666 & ~umask());
+=======
+            @chmod($target, 0666 & ~umask());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             return $target;
         }

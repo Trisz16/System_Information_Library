@@ -19,10 +19,17 @@ use Laravel\Boost\Install\GuidelineComposer;
 use Laravel\Boost\Install\GuidelineConfig;
 use Laravel\Boost\Install\GuidelineWriter;
 use Laravel\Boost\Install\Herd;
+<<<<<<< HEAD
 use Laravel\Boost\Install\Sail;
 use Laravel\Boost\Support\Config;
 use Laravel\Prompts\Concerns\Colors;
 use Laravel\Prompts\Terminal;
+=======
+use Laravel\Boost\Support\Config;
+use Laravel\Prompts\Concerns\Colors;
+use Laravel\Prompts\Terminal;
+use Symfony\Component\Console\Attribute\AsCommand;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 
@@ -31,18 +38,28 @@ use function Laravel\Prompts\intro;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\note;
 
+<<<<<<< HEAD
+=======
+#[AsCommand('boost:install', 'Install Laravel Boost')]
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 class InstallCommand extends Command
 {
     use Colors;
 
+<<<<<<< HEAD
     protected $signature = 'boost:install {--ignore-guidelines : Skip installing AI guidelines} {--ignore-mcp : Skip installing MCP server configuration}';
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     private CodeEnvironmentsDetector $codeEnvironmentsDetector;
 
     private Herd $herd;
 
+<<<<<<< HEAD
     private Sail $sail;
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     private Terminal $terminal;
 
     /** @var Collection<int, Agent> */
@@ -72,15 +89,19 @@ class InstallCommand extends Command
 
     private string $redCross;
 
+<<<<<<< HEAD
     private bool $installGuidelines;
 
     private bool $installMcpConfig;
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function __construct(protected Config $config)
     {
         parent::__construct();
     }
 
+<<<<<<< HEAD
     public function handle(
         CodeEnvironmentsDetector $codeEnvironmentsDetector,
         Herd $herd,
@@ -97,11 +118,18 @@ class InstallCommand extends Command
         }
 
         $this->bootstrap($codeEnvironmentsDetector, $herd, $sail, $terminal);
+=======
+    public function handle(CodeEnvironmentsDetector $codeEnvironmentsDetector, Herd $herd, Terminal $terminal): void
+    {
+        $this->bootstrap($codeEnvironmentsDetector, $herd, $terminal);
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $this->displayBoostHeader();
         $this->discoverEnvironment();
         $this->collectInstallationPreferences();
         $this->performInstallation();
         $this->outro();
+<<<<<<< HEAD
 
         return self::SUCCESS;
     }
@@ -111,6 +139,14 @@ class InstallCommand extends Command
         $this->codeEnvironmentsDetector = $codeEnvironmentsDetector;
         $this->herd = $herd;
         $this->sail = $sail;
+=======
+    }
+
+    protected function bootstrap(CodeEnvironmentsDetector $codeEnvironmentsDetector, Herd $herd, Terminal $terminal): void
+    {
+        $this->codeEnvironmentsDetector = $codeEnvironmentsDetector;
+        $this->herd = $herd;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $this->terminal = $terminal;
 
         $this->terminal->initDimensions();
@@ -161,6 +197,7 @@ class InstallCommand extends Command
 
     protected function performInstallation(): void
     {
+<<<<<<< HEAD
         if ($this->installGuidelines) {
             $this->installGuidelines();
         }
@@ -168,6 +205,13 @@ class InstallCommand extends Command
         usleep(750000);
 
         if ($this->installMcpConfig && $this->selectedTargetMcpClient->isNotEmpty()) {
+=======
+        $this->installGuidelines();
+
+        usleep(750000);
+
+        if ($this->selectedTargetMcpClient->isNotEmpty()) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $this->installMcpServerConfig();
         }
     }
@@ -237,10 +281,13 @@ class InstallCommand extends Command
      */
     protected function determineTestEnforcement(): bool
     {
+<<<<<<< HEAD
         if (! $this->installGuidelines) {
             return false;
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $hasMinimumTests = false;
 
         if (file_exists(base_path('vendor/bin/phpunit'))) {
@@ -263,17 +310,24 @@ class InstallCommand extends Command
      */
     protected function selectBoostFeatures(): Collection
     {
+<<<<<<< HEAD
         if (! $this->installMcpConfig) {
             return collect();
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $features = collect(['mcp_server', 'ai_guidelines']);
 
         if ($this->herd->isMcpAvailable() && $this->shouldConfigureHerdMcp()) {
             $features->push('herd_mcp');
         }
 
+<<<<<<< HEAD
         if ($this->sail->isInstalled() && ($this->sail->isActive() || $this->shouldConfigureSail())) {
+=======
+        if ($this->isSailInstalled() && ($this->isRunningInsideSail() || $this->shouldConfigureSail())) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $features->push('sail');
         }
 
@@ -303,10 +357,13 @@ class InstallCommand extends Command
      */
     protected function selectAiGuidelines(): Collection
     {
+<<<<<<< HEAD
         if (! $this->installGuidelines) {
             return collect();
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $options = app(GuidelineComposer::class)->guidelines()
             ->reject(fn (array $guideline): bool => $guideline['third_party'] === false);
 
@@ -333,10 +390,13 @@ class InstallCommand extends Command
      */
     protected function selectTargetMcpClients(): Collection
     {
+<<<<<<< HEAD
         if (! $this->installMcpConfig) {
             return collect();
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return $this->selectCodeEnvironments(
             McpClient::class,
             sprintf('Which code editors do you use to work on %s?', $this->projectName),
@@ -349,10 +409,13 @@ class InstallCommand extends Command
      */
     protected function selectTargetAgents(): Collection
     {
+<<<<<<< HEAD
         if (! $this->installGuidelines) {
             return collect();
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return $this->selectCodeEnvironments(
             Agent::class,
             sprintf('Which agents need AI guidelines for %s?', $this->projectName),
@@ -447,7 +510,10 @@ class InstallCommand extends Command
         $guidelineConfig->caresAboutLocalization = $this->detectLocalization();
         $guidelineConfig->hasAnApi = false;
         $guidelineConfig->aiGuidelines = $this->selectedAiGuidelines->values()->toArray();
+<<<<<<< HEAD
         $guidelineConfig->usesSail = $this->shouldUseSail();
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $composer = app(GuidelineComposer::class)->config($guidelineConfig);
         $guidelines = $composer->guidelines();
@@ -498,6 +564,7 @@ class InstallCommand extends Command
             }
         }
 
+<<<<<<< HEAD
         if ($this->installMcpConfig) {
             $this->config->setSail(
                 $this->shouldUseSail()
@@ -511,6 +578,19 @@ class InstallCommand extends Command
                 $this->selectedTargetMcpClient->map(fn (McpClient $mcpClient): string => $mcpClient->name())->values()->toArray()
             );
         }
+=======
+        $this->config->setSail(
+            $this->shouldUseSail()
+        );
+
+        $this->config->setHerdMcp(
+            $this->shouldInstallHerdMcp()
+        );
+
+        $this->config->setEditors(
+            $this->selectedTargetMcpClient->map(fn (McpClient $mcpClient): string => $mcpClient->name())->values()->toArray()
+        );
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $this->config->setAgents(
             $this->selectedTargetAgents->map(fn (Agent $agent): string => $agent->name())->values()->toArray()
@@ -533,6 +613,7 @@ class InstallCommand extends Command
 
     protected function shouldUseSail(): bool
     {
+<<<<<<< HEAD
         if ($this->selectedBoostFeatures->isEmpty()) {
             return $this->config->getSail();
         }
@@ -546,13 +627,38 @@ class InstallCommand extends Command
 
         if ($this->shouldUseSail()) {
             return $this->sail->buildMcpCommand($serverName);
+=======
+        return $this->selectedBoostFeatures->contains('sail');
+    }
+
+    protected function isSailInstalled(): bool
+    {
+        return file_exists(base_path('vendor/bin/sail')) &&
+               (file_exists(base_path('docker-compose.yml')) || file_exists(base_path('compose.yaml')));
+    }
+
+    protected function isRunningInsideSail(): bool
+    {
+        return get_current_user() === 'sail' || getenv('LARAVEL_SAIL') === '1';
+    }
+
+    protected function buildMcpCommand(McpClient $mcpClient): array
+    {
+        if ($this->shouldUseSail()) {
+            return ['laravel-boost', './vendor/bin/sail', 'artisan', 'boost:mcp'];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         $inWsl = $this->isRunningInWsl();
 
         return array_filter([
+<<<<<<< HEAD
             $serverName,
             $inWsl ? 'wsl.exe' : false,
+=======
+            'laravel-boost',
+            $inWsl ? 'wsl' : false,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $mcpClient->getPhpPath($inWsl),
             $mcpClient->getArtisanPath($inWsl),
             'boost:mcp',
@@ -581,6 +687,10 @@ class InstallCommand extends Command
             )->toArray()
         );
 
+<<<<<<< HEAD
+=======
+        /** @var McpClient $mcpClient */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         foreach ($this->selectedTargetMcpClient as $mcpClient) {
             $ideName = $mcpClient->mcpClientName();
             $ideDisplay = str_pad((string) $ideName, $longestIdeName);

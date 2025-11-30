@@ -282,8 +282,13 @@ final class StandardTagFactory implements TagFactory
             }
 
             $parameterName = $parameter->getName();
+<<<<<<< HEAD
             if (isset($locator[$typeHint ?? ''])) {
                 $arguments[$parameterName] = $locator[$typeHint ?? ''];
+=======
+            if (isset($locator[$typeHint])) {
+                $arguments[$parameterName] = $locator[$typeHint];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 continue;
             }
 

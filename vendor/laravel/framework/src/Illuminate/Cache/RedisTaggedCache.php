@@ -193,6 +193,7 @@ class RedisTaggedCache extends TaggedCache
             ->map(fn (string $key) => $this->store->getPrefix().$key)
             ->chunk(1000);
 
+<<<<<<< HEAD
         $connection = $this->store->connection();
 
         foreach ($entries as $cacheKeys) {
@@ -205,6 +206,10 @@ class RedisTaggedCache extends TaggedCache
             } else {
                 $connection->del(...$cacheKeys);
             }
+=======
+        foreach ($entries as $cacheKeys) {
+            $this->store->connection()->del(...$cacheKeys);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
     }
 

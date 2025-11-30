@@ -105,14 +105,22 @@ abstract class AttributeClassLoader implements LoaderInterface
         $globals = $this->getGlobals($class);
         $collection = new RouteCollection();
         $collection->addResource(new ReflectionClassResource($class));
+<<<<<<< HEAD
         if ($globals['env'] && !\in_array($this->env, $globals['env'], true)) {
+=======
+        if ($globals['env'] && $this->env !== $globals['env']) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return $collection;
         }
         $fqcnAlias = false;
 
         if (!$class->hasMethod('__invoke')) {
             foreach ($this->getAttributes($class) as $attr) {
+<<<<<<< HEAD
                 if ($attr->aliases) {
+=======
+                if ($attr->getAliases()) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     throw new InvalidArgumentException(\sprintf('Route aliases cannot be used on non-invokable class "%s".', $class->getName()));
                 }
             }
@@ -161,6 +169,7 @@ abstract class AttributeClassLoader implements LoaderInterface
      */
     protected function addRoute(RouteCollection $collection, object $attr, array $globals, \ReflectionClass $class, \ReflectionMethod $method): void
     {
+<<<<<<< HEAD
         if ($attr->envs && !\in_array($this->env, $attr->envs, true)) {
             return;
         }
@@ -169,6 +178,16 @@ abstract class AttributeClassLoader implements LoaderInterface
         $name = $globals['name'].$name;
 
         $requirements = $attr->requirements;
+=======
+        if ($attr->getEnv() && $attr->getEnv() !== $this->env) {
+            return;
+        }
+
+        $name = $attr->getName() ?? $this->getDefaultRouteName($class, $method);
+        $name = $globals['name'].$name;
+
+        $requirements = $attr->getRequirements();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         foreach ($requirements as $placeholder => $requirement) {
             if (\is_int($placeholder)) {
@@ -176,6 +195,7 @@ abstract class AttributeClassLoader implements LoaderInterface
             }
         }
 
+<<<<<<< HEAD
         $defaults = array_replace($globals['defaults'], $attr->defaults);
         $requirements = array_replace($globals['requirements'], $requirements);
         $options = array_replace($globals['options'], $attr->options);
@@ -187,6 +207,19 @@ abstract class AttributeClassLoader implements LoaderInterface
         $priority = $attr->priority ?? $globals['priority'];
 
         $path = $attr->path;
+=======
+        $defaults = array_replace($globals['defaults'], $attr->getDefaults());
+        $requirements = array_replace($globals['requirements'], $requirements);
+        $options = array_replace($globals['options'], $attr->getOptions());
+        $schemes = array_unique(array_merge($globals['schemes'], $attr->getSchemes()));
+        $methods = array_unique(array_merge($globals['methods'], $attr->getMethods()));
+
+        $host = $attr->getHost() ?? $globals['host'];
+        $condition = $attr->getCondition() ?? $globals['condition'];
+        $priority = $attr->getPriority() ?? $globals['priority'];
+
+        $path = $attr->getLocalizedPaths() ?: $attr->getPath();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $prefix = $globals['localized_paths'] ?: $globals['path'];
         $paths = [];
 
@@ -219,11 +252,19 @@ abstract class AttributeClassLoader implements LoaderInterface
                 continue;
             }
             foreach ($paths as $locale => $path) {
+<<<<<<< HEAD
                 if (preg_match(\sprintf('/\{(?|([^\}:<]++):%s(?:\.[^\}<]++)?|(%1$s))(?:<.*?>)?\}/', preg_quote($param->name)), $path, $matches)) {
                     if (\is_scalar($defaultValue = $param->getDefaultValue()) || null === $defaultValue) {
                         $defaults[$matches[1]] = $defaultValue;
                     } elseif ($defaultValue instanceof \BackedEnum) {
                         $defaults[$matches[1]] = $defaultValue->value;
+=======
+                if (preg_match(\sprintf('/\{%s(?:<.*?>)?\}/', preg_quote($param->name)), $path)) {
+                    if (\is_scalar($defaultValue = $param->getDefaultValue()) || null === $defaultValue) {
+                        $defaults[$param->name] = $defaultValue;
+                    } elseif ($defaultValue instanceof \BackedEnum) {
+                        $defaults[$param->name] = $defaultValue->value;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     }
                     break;
                 }
@@ -241,6 +282,7 @@ abstract class AttributeClassLoader implements LoaderInterface
             } else {
                 $collection->add($name, $route, $priority);
             }
+<<<<<<< HEAD
             foreach ($attr->aliases as $aliasAttribute) {
                 if ($aliasAttribute instanceof DeprecatedAlias) {
                     $alias = $collection->addAlias($aliasAttribute->aliasName, $name);
@@ -248,6 +290,15 @@ abstract class AttributeClassLoader implements LoaderInterface
                         $aliasAttribute->package,
                         $aliasAttribute->version,
                         $aliasAttribute->message
+=======
+            foreach ($attr->getAliases() as $aliasAttribute) {
+                if ($aliasAttribute instanceof DeprecatedAlias) {
+                    $alias = $collection->addAlias($aliasAttribute->getAliasName(), $name);
+                    $alias->setDeprecated(
+                        $aliasAttribute->getPackage(),
+                        $aliasAttribute->getVersion(),
+                        $aliasAttribute->getMessage()
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     );
                     continue;
                 }
@@ -299,6 +350,7 @@ abstract class AttributeClassLoader implements LoaderInterface
         if ($attribute = $class->getAttributes($this->routeAnnotationClass, \ReflectionAttribute::IS_INSTANCEOF)[0] ?? null) {
             $attr = $attribute->newInstance();
 
+<<<<<<< HEAD
             if (null !== $attr->name) {
                 $globals['name'] = $attr->name;
             }
@@ -340,6 +392,48 @@ abstract class AttributeClassLoader implements LoaderInterface
 
             $globals['priority'] = $attr->priority ?? 0;
             $globals['env'] = $attr->envs;
+=======
+            if (null !== $attr->getName()) {
+                $globals['name'] = $attr->getName();
+            }
+
+            if (null !== $attr->getPath()) {
+                $globals['path'] = $attr->getPath();
+            }
+
+            $globals['localized_paths'] = $attr->getLocalizedPaths();
+
+            if (null !== $attr->getRequirements()) {
+                $globals['requirements'] = $attr->getRequirements();
+            }
+
+            if (null !== $attr->getOptions()) {
+                $globals['options'] = $attr->getOptions();
+            }
+
+            if (null !== $attr->getDefaults()) {
+                $globals['defaults'] = $attr->getDefaults();
+            }
+
+            if (null !== $attr->getSchemes()) {
+                $globals['schemes'] = $attr->getSchemes();
+            }
+
+            if (null !== $attr->getMethods()) {
+                $globals['methods'] = $attr->getMethods();
+            }
+
+            if (null !== $attr->getHost()) {
+                $globals['host'] = $attr->getHost();
+            }
+
+            if (null !== $attr->getCondition()) {
+                $globals['condition'] = $attr->getCondition();
+            }
+
+            $globals['priority'] = $attr->getPriority() ?? 0;
+            $globals['env'] = $attr->getEnv();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             foreach ($globals['requirements'] as $placeholder => $requirement) {
                 if (\is_int($placeholder)) {

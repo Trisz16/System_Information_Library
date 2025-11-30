@@ -43,7 +43,10 @@ final class CommandDataCollector extends DataCollector
             'duration' => $command->duration,
             'max_memory_usage' => $command->maxMemoryUsage,
             'verbosity_level' => match ($command->output->getVerbosity()) {
+<<<<<<< HEAD
                 OutputInterface::VERBOSITY_SILENT => 'silent',
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 OutputInterface::VERBOSITY_QUIET => 'quiet',
                 OutputInterface::VERBOSITY_NORMAL => 'normal',
                 OutputInterface::VERBOSITY_VERBOSE => 'verbose',

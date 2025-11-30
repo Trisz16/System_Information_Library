@@ -2,7 +2,10 @@
 
 namespace Illuminate\Foundation\Bootstrap;
 
+<<<<<<< HEAD
 use Closure;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Config\Repository as RepositoryContract;
 use Illuminate\Contracts\Foundation\Application;
@@ -13,6 +16,7 @@ use Symfony\Component\Finder\Finder;
 class LoadConfiguration
 {
     /**
+<<<<<<< HEAD
      * The closure that resolves the permanent, static configuration if applicable.
      *
      * @var (Closure(Application): array<array-key, mixed>)|null
@@ -20,6 +24,8 @@ class LoadConfiguration
     protected static ?Closure $alwaysUseConfig = null;
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Bootstrap the given application.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
@@ -32,6 +38,7 @@ class LoadConfiguration
         // First we will see if we have a cache configuration file. If we do, we'll load
         // the configuration items from that file so that it is very quick. Otherwise
         // we will need to spin through every configuration file and load them all.
+<<<<<<< HEAD
         $loadedFromCache = false;
 
         if (self::$alwaysUseConfig !== null) {
@@ -46,12 +53,24 @@ class LoadConfiguration
 
         $app->instance('config_loaded_from_cache', $loadedFromCache);
 
+=======
+        if (file_exists($cached = $app->getCachedConfigPath())) {
+            $items = require $cached;
+
+            $app->instance('config_loaded_from_cache', $loadedFromCache = true);
+        }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         // Next we will spin through all of the configuration files in the configuration
         // directory and load each one into the repository. This will make all of the
         // options available to the developer for use in various parts of this app.
         $app->instance('config', $config = new Repository($items));
 
+<<<<<<< HEAD
         if (! $loadedFromCache) {
+=======
+        if (! isset($loadedFromCache)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $this->loadConfigurationFiles($app, $config);
         }
 
@@ -211,6 +230,7 @@ class LoadConfiguration
 
         return $config;
     }
+<<<<<<< HEAD
 
     /**
      * Set a callback to return the permanent, static configuration values.
@@ -222,4 +242,6 @@ class LoadConfiguration
     {
         static::$alwaysUseConfig = $alwaysUseConfig;
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

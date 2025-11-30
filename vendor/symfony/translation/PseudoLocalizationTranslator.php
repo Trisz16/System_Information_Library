@@ -55,7 +55,11 @@ final class PseudoLocalizationTranslator implements TranslatorInterface, Transla
      *  * parse_html:
      *      type: boolean
      *      default: false
+<<<<<<< HEAD
      *      description: parse the translated string as HTML - looking for HTML tags has a performance impact but allows to preserve them from alterations - it also allows to compute the visible translated string length which is useful to correctly expand or when it contains HTML
+=======
+     *      description: parse the translated string as HTML - looking for HTML tags has a performance impact but allows to preserve them from alterations - it also allows to compute the visible translated string length which is useful to correctly expand ot when it contains HTML
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *      warning: unclosed tags are unsupported, they will be fixed (closed) by the parser - eg, "foo <div>bar" => "foo <div>bar</div>"
      *
      *  * localizable_html_attributes:
@@ -166,6 +170,10 @@ final class PseudoLocalizationTranslator implements TranslatorInterface, Transla
 
             $parts[] = [false, false, '<'.$childNode->tagName];
 
+<<<<<<< HEAD
+=======
+            /** @var \DOMAttr $attribute */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             foreach ($childNode->attributes as $attribute) {
                 $parts[] = [false, false, ' '.$attribute->nodeName.'="'];
 
@@ -183,7 +191,11 @@ final class PseudoLocalizationTranslator implements TranslatorInterface, Transla
 
             $parts[] = [false, false, '>'];
 
+<<<<<<< HEAD
             $parts = array_merge($parts, $this->parseNode($childNode));
+=======
+            $parts = array_merge($parts, $this->parseNode($childNode, $parts));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             $parts[] = [false, false, '</'.$childNode->tagName.'>'];
         }

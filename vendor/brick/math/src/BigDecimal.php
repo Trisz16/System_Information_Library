@@ -9,6 +9,7 @@ use Brick\Math\Exception\MathException;
 use Brick\Math\Exception\NegativeNumberException;
 use Brick\Math\Internal\Calculator;
 use Brick\Math\Internal\CalculatorRegistry;
+<<<<<<< HEAD
 use InvalidArgumentException;
 use LogicException;
 use Override;
@@ -22,6 +23,10 @@ use function substr;
 
 use const STR_PAD_LEFT;
 
+=======
+use Override;
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 /**
  * Immutable, arbitrary-precision signed decimal numbers.
  */
@@ -57,6 +62,15 @@ final readonly class BigDecimal extends BigNumber
         $this->scale = $scale;
     }
 
+<<<<<<< HEAD
+=======
+    #[Override]
+    protected static function from(BigNumber $number): static
+    {
+        return $number->toBigDecimal();
+    }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     /**
      * Creates a BigDecimal from an unscaled value and a scale.
      *
@@ -68,13 +82,21 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public static function ofUnscaledValue(BigNumber|int|float|string $value, int $scale = 0): BigDecimal
+=======
+    public static function ofUnscaledValue(BigNumber|int|float|string $value, int $scale = 0) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $value = (string) BigInteger::of($value);
 
         if ($scale < 0) {
             if ($value !== '0') {
+<<<<<<< HEAD
                 $value .= str_repeat('0', -$scale);
+=======
+                $value .= \str_repeat('0', -$scale);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
             $scale = 0;
         }
@@ -87,7 +109,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public static function zero(): BigDecimal
+=======
+    public static function zero() : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         /** @var BigDecimal|null $zero */
         static $zero;
@@ -104,7 +130,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public static function one(): BigDecimal
+=======
+    public static function one() : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         /** @var BigDecimal|null $one */
         static $one;
@@ -121,7 +151,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public static function ten(): BigDecimal
+=======
+    public static function ten() : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         /** @var BigDecimal|null $ten */
         static $ten;
@@ -144,7 +178,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function plus(BigNumber|int|float|string $that): BigDecimal
+=======
+    public function plus(BigNumber|int|float|string $that) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $that = BigDecimal::of($that);
 
@@ -175,7 +213,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function minus(BigNumber|int|float|string $that): BigDecimal
+=======
+    public function minus(BigNumber|int|float|string $that) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $that = BigDecimal::of($that);
 
@@ -202,7 +244,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function multipliedBy(BigNumber|int|float|string $that): BigDecimal
+=======
+    public function multipliedBy(BigNumber|int|float|string $that) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $that = BigDecimal::of($that);
 
@@ -227,12 +273,21 @@ final readonly class BigDecimal extends BigNumber
      * @param int|null                   $scale        The desired scale, or null to use the scale of this number.
      * @param RoundingMode               $roundingMode An optional rounding mode, defaults to UNNECESSARY.
      *
+<<<<<<< HEAD
      * @throws InvalidArgumentException If the scale or rounding mode is invalid.
      * @throws MathException            If the number is invalid, is zero, or rounding was necessary.
      *
      * @pure
      */
     public function dividedBy(BigNumber|int|float|string $that, ?int $scale = null, RoundingMode $roundingMode = RoundingMode::UNNECESSARY): BigDecimal
+=======
+     * @throws \InvalidArgumentException If the scale or rounding mode is invalid.
+     * @throws MathException             If the number is invalid, is zero, or rounding was necessary.
+     *
+     * @pure
+     */
+    public function dividedBy(BigNumber|int|float|string $that, ?int $scale = null, RoundingMode $roundingMode = RoundingMode::UNNECESSARY) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $that = BigDecimal::of($that);
 
@@ -243,7 +298,11 @@ final readonly class BigDecimal extends BigNumber
         if ($scale === null) {
             $scale = $this->scale;
         } elseif ($scale < 0) {
+<<<<<<< HEAD
             throw new InvalidArgumentException('Scale cannot be negative.');
+=======
+            throw new \InvalidArgumentException('Scale cannot be negative.');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         if ($that->value === '1' && $that->scale === 0 && $scale === $this->scale) {
@@ -270,7 +329,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function exactlyDividedBy(BigNumber|int|float|string $that): BigDecimal
+=======
+    public function exactlyDividedBy(BigNumber|int|float|string $that) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $that = BigDecimal::of($that);
 
@@ -280,13 +343,22 @@ final readonly class BigDecimal extends BigNumber
 
         [, $b] = $this->scaleValues($this, $that);
 
+<<<<<<< HEAD
         $d = rtrim($b, '0');
         $scale = strlen($b) - strlen($d);
+=======
+        $d = \rtrim($b, '0');
+        $scale = \strlen($b) - \strlen($d);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $calculator = CalculatorRegistry::get();
 
         foreach ([5, 2] as $prime) {
+<<<<<<< HEAD
             for (; ;) {
+=======
+            for (;;) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $lastDigit = (int) $d[-1];
 
                 if ($lastDigit % $prime !== 0) {
@@ -313,14 +385,21 @@ final readonly class BigDecimal extends BigNumber
      *
      * @throws MathException If min/max are not convertible to a BigDecimal.
      */
+<<<<<<< HEAD
     public function clamp(BigNumber|int|float|string $min, BigNumber|int|float|string $max): BigDecimal
+=======
+    public function clamp(BigNumber|int|float|string $min, BigNumber|int|float|string $max) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($this->isLessThan($min)) {
             return BigDecimal::of($min);
         } elseif ($this->isGreaterThan($max)) {
             return BigDecimal::of($max);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return $this;
     }
 
@@ -329,11 +408,19 @@ final readonly class BigDecimal extends BigNumber
      *
      * The result has a scale of `$this->scale * $exponent`.
      *
+<<<<<<< HEAD
      * @throws InvalidArgumentException If the exponent is not in the range 0 to 1,000,000.
      *
      * @pure
      */
     public function power(int $exponent): BigDecimal
+=======
+     * @throws \InvalidArgumentException If the exponent is not in the range 0 to 1,000,000.
+     *
+     * @pure
+     */
+    public function power(int $exponent) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($exponent === 0) {
             return BigDecimal::one();
@@ -344,10 +431,17 @@ final readonly class BigDecimal extends BigNumber
         }
 
         if ($exponent < 0 || $exponent > Calculator::MAX_POWER) {
+<<<<<<< HEAD
             throw new InvalidArgumentException(sprintf(
                 'The exponent %d is not in the range 0 to %d.',
                 $exponent,
                 Calculator::MAX_POWER,
+=======
+            throw new \InvalidArgumentException(\sprintf(
+                'The exponent %d is not in the range 0 to %d.',
+                $exponent,
+                Calculator::MAX_POWER
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             ));
         }
 
@@ -365,7 +459,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function quotient(BigNumber|int|float|string $that): BigDecimal
+=======
+    public function quotient(BigNumber|int|float|string $that) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $that = BigDecimal::of($that);
 
@@ -392,7 +490,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function remainder(BigNumber|int|float|string $that): BigDecimal
+=======
+    public function remainder(BigNumber|int|float|string $that) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $that = BigDecimal::of($that);
 
@@ -423,7 +525,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function quotientAndRemainder(BigNumber|int|float|string $that): array
+=======
+    public function quotientAndRemainder(BigNumber|int|float|string $that) : array
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $that = BigDecimal::of($that);
 
@@ -447,6 +553,7 @@ final readonly class BigDecimal extends BigNumber
     /**
      * Returns the square root of this number, rounded down to the given number of decimals.
      *
+<<<<<<< HEAD
      * @throws InvalidArgumentException If the scale is negative.
      * @throws NegativeNumberException  If this number is negative.
      *
@@ -456,6 +563,17 @@ final readonly class BigDecimal extends BigNumber
     {
         if ($scale < 0) {
             throw new InvalidArgumentException('Scale cannot be negative.');
+=======
+     * @throws \InvalidArgumentException If the scale is negative.
+     * @throws NegativeNumberException If this number is negative.
+     *
+     * @pure
+     */
+    public function sqrt(int $scale) : BigDecimal
+    {
+        if ($scale < 0) {
+            throw new \InvalidArgumentException('Scale cannot be negative.');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         if ($this->value === '0') {
@@ -471,15 +589,26 @@ final readonly class BigDecimal extends BigNumber
 
         if ($addDigits > 0) {
             // add zeros
+<<<<<<< HEAD
             $value .= str_repeat('0', $addDigits);
         } elseif ($addDigits < 0) {
             // trim digits
             if (-$addDigits >= strlen($this->value)) {
+=======
+            $value .= \str_repeat('0', $addDigits);
+        } elseif ($addDigits < 0) {
+            // trim digits
+            if (-$addDigits >= \strlen($this->value)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 // requesting a scale too low, will always yield a zero result
                 return new BigDecimal('0', $scale);
             }
 
+<<<<<<< HEAD
             $value = substr($value, 0, $addDigits);
+=======
+            $value = \substr($value, 0, $addDigits);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         $value = CalculatorRegistry::get()->sqrt($value);
@@ -492,7 +621,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function withPointMovedLeft(int $n): BigDecimal
+=======
+    public function withPointMovedLeft(int $n) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($n === 0) {
             return $this;
@@ -510,7 +643,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function withPointMovedRight(int $n): BigDecimal
+=======
+    public function withPointMovedRight(int $n) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($n === 0) {
             return $this;
@@ -525,7 +662,11 @@ final readonly class BigDecimal extends BigNumber
 
         if ($scale < 0) {
             if ($value !== '0') {
+<<<<<<< HEAD
                 $value .= str_repeat('0', -$scale);
+=======
+                $value .= \str_repeat('0', -$scale);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
             $scale = 0;
         }
@@ -538,19 +679,31 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function stripTrailingZeros(): BigDecimal
+=======
+    public function stripTrailingZeros() : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($this->scale === 0) {
             return $this;
         }
 
+<<<<<<< HEAD
         $trimmedValue = rtrim($this->value, '0');
+=======
+        $trimmedValue = \rtrim($this->value, '0');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if ($trimmedValue === '') {
             return BigDecimal::zero();
         }
 
+<<<<<<< HEAD
         $trimmableZeros = strlen($this->value) - strlen($trimmedValue);
+=======
+        $trimmableZeros = \strlen($this->value) - \strlen($trimmedValue);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if ($trimmableZeros === 0) {
             return $this;
@@ -560,7 +713,11 @@ final readonly class BigDecimal extends BigNumber
             $trimmableZeros = $this->scale;
         }
 
+<<<<<<< HEAD
         $value = substr($this->value, 0, -$trimmableZeros);
+=======
+        $value = \substr($this->value, 0, -$trimmableZeros);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $scale = $this->scale - $trimmableZeros;
 
         return new BigDecimal($value, $scale);
@@ -571,7 +728,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function abs(): BigDecimal
+=======
+    public function abs() : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return $this->isNegative() ? $this->negated() : $this;
     }
@@ -581,13 +742,21 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function negated(): BigDecimal
+=======
+    public function negated() : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return new BigDecimal(CalculatorRegistry::get()->neg($this->value), $this->scale);
     }
 
     #[Override]
+<<<<<<< HEAD
     public function compareTo(BigNumber|int|float|string $that): int
+=======
+    public function compareTo(BigNumber|int|float|string $that) : int
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $that = BigNumber::of($that);
 
@@ -601,11 +770,19 @@ final readonly class BigDecimal extends BigNumber
             return CalculatorRegistry::get()->cmp($a, $b);
         }
 
+<<<<<<< HEAD
         return -$that->compareTo($this);
     }
 
     #[Override]
     public function getSign(): int
+=======
+        return - $that->compareTo($this);
+    }
+
+    #[Override]
+    public function getSign() : int
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return ($this->value === '0') ? 0 : (($this->value[0] === '-') ? -1 : 1);
     }
@@ -613,7 +790,11 @@ final readonly class BigDecimal extends BigNumber
     /**
      * @pure
      */
+<<<<<<< HEAD
     public function getUnscaledValue(): BigInteger
+=======
+    public function getUnscaledValue() : BigInteger
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return self::newBigInteger($this->value);
     }
@@ -621,7 +802,11 @@ final readonly class BigDecimal extends BigNumber
     /**
      * @pure
      */
+<<<<<<< HEAD
     public function getScale(): int
+=======
+    public function getScale() : int
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return $this->scale;
     }
@@ -650,7 +835,11 @@ final readonly class BigDecimal extends BigNumber
             return 0;
         }
 
+<<<<<<< HEAD
         $length = strlen($value);
+=======
+        $length = \strlen($value);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return ($value[0] === '-') ? $length - 1 : $length;
     }
@@ -662,7 +851,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function getIntegralPart(): string
+=======
+    public function getIntegralPart() : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($this->scale === 0) {
             return $this->value;
@@ -670,7 +863,11 @@ final readonly class BigDecimal extends BigNumber
 
         $value = $this->getUnscaledValueWithLeadingZeros();
 
+<<<<<<< HEAD
         return substr($value, 0, -$this->scale);
+=======
+        return \substr($value, 0, -$this->scale);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -682,7 +879,11 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function getFractionalPart(): string
+=======
+    public function getFractionalPart() : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($this->scale === 0) {
             return '';
@@ -690,7 +891,11 @@ final readonly class BigDecimal extends BigNumber
 
         $value = $this->getUnscaledValueWithLeadingZeros();
 
+<<<<<<< HEAD
         return substr($value, -$this->scale);
+=======
+        return \substr($value, -$this->scale);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -698,6 +903,7 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     public function hasNonZeroFractionalPart(): bool
     {
         return $this->getFractionalPart() !== str_repeat('0', $this->scale);
@@ -705,6 +911,15 @@ final readonly class BigDecimal extends BigNumber
 
     #[Override]
     public function toBigInteger(): BigInteger
+=======
+    public function hasNonZeroFractionalPart() : bool
+    {
+        return $this->getFractionalPart() !== \str_repeat('0', $this->scale);
+    }
+
+    #[Override]
+    public function toBigInteger() : BigInteger
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $zeroScaleDecimal = $this->scale === 0 ? $this : $this->dividedBy(1, 0);
 
@@ -712,22 +927,37 @@ final readonly class BigDecimal extends BigNumber
     }
 
     #[Override]
+<<<<<<< HEAD
     public function toBigDecimal(): BigDecimal
+=======
+    public function toBigDecimal() : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return $this;
     }
 
     #[Override]
+<<<<<<< HEAD
     public function toBigRational(): BigRational
     {
         $numerator = self::newBigInteger($this->value);
         $denominator = self::newBigInteger('1' . str_repeat('0', $this->scale));
+=======
+    public function toBigRational() : BigRational
+    {
+        $numerator = self::newBigInteger($this->value);
+        $denominator = self::newBigInteger('1' . \str_repeat('0', $this->scale));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return self::newBigRational($numerator, $denominator, false);
     }
 
     #[Override]
+<<<<<<< HEAD
     public function toScale(int $scale, RoundingMode $roundingMode = RoundingMode::UNNECESSARY): BigDecimal
+=======
+    public function toScale(int $scale, RoundingMode $roundingMode = RoundingMode::UNNECESSARY) : BigDecimal
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($scale === $this->scale) {
             return $this;
@@ -737,13 +967,21 @@ final readonly class BigDecimal extends BigNumber
     }
 
     #[Override]
+<<<<<<< HEAD
     public function toInt(): int
+=======
+    public function toInt() : int
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return $this->toBigInteger()->toInt();
     }
 
     #[Override]
+<<<<<<< HEAD
     public function toFloat(): float
+=======
+    public function toFloat() : float
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return (float) (string) $this;
     }
@@ -752,7 +990,11 @@ final readonly class BigDecimal extends BigNumber
      * @return numeric-string
      */
     #[Override]
+<<<<<<< HEAD
     public function __toString(): string
+=======
+    public function __toString() : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($this->scale === 0) {
             /** @var numeric-string */
@@ -762,7 +1004,11 @@ final readonly class BigDecimal extends BigNumber
         $value = $this->getUnscaledValueWithLeadingZeros();
 
         /** @phpstan-ignore return.type */
+<<<<<<< HEAD
         return substr($value, 0, -$this->scale) . '.' . substr($value, -$this->scale);
+=======
+        return \substr($value, 0, -$this->scale) . '.' . \substr($value, -$this->scale);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -784,13 +1030,21 @@ final readonly class BigDecimal extends BigNumber
      *
      * @param array{value: string, scale: int} $data
      *
+<<<<<<< HEAD
      * @throws LogicException
+=======
+     * @throws \LogicException
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function __unserialize(array $data): void
     {
         /** @phpstan-ignore isset.initializedProperty */
         if (isset($this->value)) {
+<<<<<<< HEAD
             throw new LogicException('__unserialize() is an internal function, it must not be called directly.');
+=======
+            throw new \LogicException('__unserialize() is an internal function, it must not be called directly.');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         /** @phpstan-ignore deadCode.unreachable */
@@ -798,12 +1052,15 @@ final readonly class BigDecimal extends BigNumber
         $this->scale = $data['scale'];
     }
 
+<<<<<<< HEAD
     #[Override]
     protected static function from(BigNumber $number): static
     {
         return $number->toBigDecimal();
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     /**
      * Puts the internal values of the given decimal numbers on the same scale.
      *
@@ -811,15 +1068,25 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     private function scaleValues(BigDecimal $x, BigDecimal $y): array
+=======
+    private function scaleValues(BigDecimal $x, BigDecimal $y) : array
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $a = $x->value;
         $b = $y->value;
 
         if ($b !== '0' && $x->scale > $y->scale) {
+<<<<<<< HEAD
             $b .= str_repeat('0', $x->scale - $y->scale);
         } elseif ($a !== '0' && $x->scale < $y->scale) {
             $a .= str_repeat('0', $y->scale - $x->scale);
+=======
+            $b .= \str_repeat('0', $x->scale - $y->scale);
+        } elseif ($a !== '0' && $x->scale < $y->scale) {
+            $a .= \str_repeat('0', $y->scale - $x->scale);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         return [$a, $b];
@@ -828,12 +1095,20 @@ final readonly class BigDecimal extends BigNumber
     /**
      * @pure
      */
+<<<<<<< HEAD
     private function valueWithMinScale(int $scale): string
+=======
+    private function valueWithMinScale(int $scale) : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $value = $this->value;
 
         if ($this->value !== '0' && $scale > $this->scale) {
+<<<<<<< HEAD
             $value .= str_repeat('0', $scale - $this->scale);
+=======
+            $value .= \str_repeat('0', $scale - $this->scale);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         return $value;
@@ -844,12 +1119,20 @@ final readonly class BigDecimal extends BigNumber
      *
      * @pure
      */
+<<<<<<< HEAD
     private function getUnscaledValueWithLeadingZeros(): string
+=======
+    private function getUnscaledValueWithLeadingZeros() : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $value = $this->value;
         $targetLength = $this->scale + 1;
         $negative = ($value[0] === '-');
+<<<<<<< HEAD
         $length = strlen($value);
+=======
+        $length = \strlen($value);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if ($negative) {
             $length--;
@@ -860,10 +1143,17 @@ final readonly class BigDecimal extends BigNumber
         }
 
         if ($negative) {
+<<<<<<< HEAD
             $value = substr($value, 1);
         }
 
         $value = str_pad($value, $targetLength, '0', STR_PAD_LEFT);
+=======
+            $value = \substr($value, 1);
+        }
+
+        $value = \str_pad($value, $targetLength, '0', STR_PAD_LEFT);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if ($negative) {
             $value = '-' . $value;

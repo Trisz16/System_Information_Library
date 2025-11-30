@@ -118,7 +118,11 @@ class ConstantEnumerator extends Enumerator
      * Optionally restrict constants to a given category, e.g. "date". If the
      * category is "internal", include all non-user-defined constants.
      *
+<<<<<<< HEAD
      * @param string|null $category
+=======
+     * @param string $category
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @return array
      */
@@ -132,9 +136,14 @@ class ConstantEnumerator extends Enumerator
 
         if ($category === 'internal') {
             unset($consts['user']);
+<<<<<<< HEAD
             $values = \array_values($consts);
 
             return $values ? \array_merge(...$values) : [];
+=======
+
+            return \array_merge(...\array_values($consts));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         foreach ($consts as $key => $value) {

@@ -73,6 +73,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
      */
     private static array $freshCache = [];
 
+<<<<<<< HEAD
     public const VERSION = '7.4.0';
     public const VERSION_ID = 70400;
     public const MAJOR_VERSION = 7;
@@ -82,6 +83,17 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
 
     public const END_OF_MAINTENANCE = '11/2028';
     public const END_OF_LIFE = '11/2029';
+=======
+    public const VERSION = '7.3.5';
+    public const VERSION_ID = 70305;
+    public const MAJOR_VERSION = 7;
+    public const MINOR_VERSION = 3;
+    public const RELEASE_VERSION = 5;
+    public const EXTRA_VERSION = '';
+
+    public const END_OF_MAINTENANCE = '01/2026';
+    public const END_OF_LIFE = '01/2026';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     public function __construct(
         protected string $environment,
@@ -303,12 +315,15 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
         return $this->getCacheDir();
     }
 
+<<<<<<< HEAD
     public function getShareDir(): ?string
     {
         // Returns $this->getCacheDir() for backward compatibility
         return $this->getCacheDir();
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function getLogDir(): string
     {
         return $this->getProjectDir().'/var/log';
@@ -424,7 +439,11 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
         $oldContainer = \is_object($this->container) ? new \ReflectionClass($this->container) : $this->container = null;
 
         try {
+<<<<<<< HEAD
             is_dir($buildDir) ?: mkdir($buildDir, 0o777, true);
+=======
+            is_dir($buildDir) ?: mkdir($buildDir, 0777, true);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             if ($lock = fopen($cachePath.'.lock', 'w+')) {
                 if (!flock($lock, \LOCK_EX | \LOCK_NB, $wouldBlock) && !flock($lock, $wouldBlock ? \LOCK_SH : \LOCK_EX)) {
@@ -584,14 +603,24 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
             'kernel.runtime_mode.cli' => '%env(not:default:kernel.runtime_mode.web:)%',
             'kernel.runtime_mode.worker' => '%env(bool:default::key:worker:default:kernel.runtime_mode:)%',
             'kernel.debug' => $this->debug,
+<<<<<<< HEAD
             'kernel.build_dir' => realpath($dir = $this->warmupDir ?: $this->getBuildDir()) ?: $dir,
             'kernel.cache_dir' => realpath($dir = ($this->getCacheDir() === $this->getBuildDir() ? ($this->warmupDir ?: $this->getCacheDir()) : $this->getCacheDir())) ?: $dir,
             'kernel.logs_dir' => realpath($dir = $this->getLogDir()) ?: $dir,
+=======
+            'kernel.build_dir' => realpath($buildDir = $this->warmupDir ?: $this->getBuildDir()) ?: $buildDir,
+            'kernel.cache_dir' => realpath($cacheDir = ($this->getCacheDir() === $this->getBuildDir() ? ($this->warmupDir ?: $this->getCacheDir()) : $this->getCacheDir())) ?: $cacheDir,
+            'kernel.logs_dir' => realpath($this->getLogDir()) ?: $this->getLogDir(),
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             'kernel.bundles' => $bundles,
             'kernel.bundles_metadata' => $bundlesMetadata,
             'kernel.charset' => $this->getCharset(),
             'kernel.container_class' => $this->getContainerClass(),
+<<<<<<< HEAD
         ] + (null !== ($dir = $this->getShareDir()) ? ['kernel.share_dir' => realpath($dir) ?: $dir] : []);
+=======
+        ];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -603,7 +632,11 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
     {
         foreach (['cache' => $this->getCacheDir(), 'build' => $this->warmupDir ?: $this->getBuildDir()] as $name => $dir) {
             if (!is_dir($dir)) {
+<<<<<<< HEAD
                 if (false === @mkdir($dir, 0o777, true) && !is_dir($dir)) {
+=======
+                if (false === @mkdir($dir, 0777, true) && !is_dir($dir)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     throw new \RuntimeException(\sprintf('Unable to create the "%s" directory (%s).', $name, $dir));
                 }
             } elseif (!is_writable($dir)) {
@@ -703,7 +736,11 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
 
         foreach ($content as $file => $code) {
             $fs->dumpFile($dir.$file, $code);
+<<<<<<< HEAD
             @chmod($dir.$file, 0o666 & ~umask());
+=======
+            @chmod($dir.$file, 0666 & ~umask());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
         $legacyFile = \dirname($dir.key($content)).'.legacy';
         if (is_file($legacyFile)) {
@@ -720,6 +757,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
     {
         $env = $this->getEnvironment();
         $locator = new FileLocator($this);
+<<<<<<< HEAD
         $resolver = new LoaderResolver(array_merge(class_exists(XmlFileLoader::class) ? [
             new XmlFileLoader($container, $locator, $env),
         ] : [], [
@@ -730,6 +768,17 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
             new DirectoryLoader($container, $locator, $env),
             new ClosureLoader($container, $env),
         ]));
+=======
+        $resolver = new LoaderResolver([
+            new XmlFileLoader($container, $locator, $env),
+            new YamlFileLoader($container, $locator, $env),
+            new IniFileLoader($container, $locator, $env),
+            new PhpFileLoader($container, $locator, $env, class_exists(ConfigBuilderGenerator::class) ? new ConfigBuilderGenerator($this->getBuildDir()) : null),
+            new GlobFileLoader($container, $locator, $env),
+            new DirectoryLoader($container, $locator, $env),
+            new ClosureLoader($container, $env),
+        ]);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return new DelegatingLoader($resolver);
     }
@@ -782,6 +831,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
         return $container;
     }
 
+<<<<<<< HEAD
     public function __serialize(): array
     {
         if (self::class === (new \ReflectionMethod($this, '__sleep'))->class || self::class !== (new \ReflectionMethod($this, '__serialize'))->class) {
@@ -869,6 +919,15 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
     {
         trigger_deprecation('symfony/http-kernel', '7.4', 'Calling "%s::__wakeup()" is deprecated, use "__unserialize()" instead.', get_debug_type($this));
 
+=======
+    public function __sleep(): array
+    {
+        return ['environment', 'debug'];
+    }
+
+    public function __wakeup(): void
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (\is_object($this->environment) || \is_object($this->debug)) {
             throw new \BadMethodCallException('Cannot unserialize '.__CLASS__);
         }

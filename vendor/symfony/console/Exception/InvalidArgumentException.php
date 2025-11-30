@@ -16,6 +16,7 @@ namespace Symfony\Component\Console\Exception;
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {
+<<<<<<< HEAD
     /**
      * @internal
      */
@@ -29,4 +30,6 @@ class InvalidArgumentException extends \InvalidArgumentException implements Exce
 
         return new self($error);
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

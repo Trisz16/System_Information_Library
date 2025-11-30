@@ -198,6 +198,7 @@ class QueueManager implements FactoryContract, MonitorContract
     }
 
     /**
+<<<<<<< HEAD
      * Pause a queue by its connection and name.
      *
      * @param  string  $connection
@@ -255,6 +256,8 @@ class QueueManager implements FactoryContract, MonitorContract
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Add a queue connection resolver.
      *
      * @param  string  $driver

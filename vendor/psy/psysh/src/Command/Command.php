@@ -154,9 +154,13 @@ abstract class Command extends BaseCommand
                 }
 
                 $name = $argument->getName();
+<<<<<<< HEAD
                 // @phan-suppress-next-line PhanParamSuspiciousOrder - intentionally padding empty string to create spaces
                 $pad = \str_pad('', $max - \strlen($name));
                 // @phan-suppress-next-line PhanParamSuspiciousOrder - intentionally padding empty string to create spaces
+=======
+                $pad = \str_pad('', $max - \strlen($name));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $description = \str_replace("\n", "\n".\str_pad('', $max + 2, ' '), $argument->getDescription());
 
                 $messages[] = \sprintf(' <info>%s</info>%s %s%s', $name, $pad, $description, $default);
@@ -188,7 +192,10 @@ abstract class Command extends BaseCommand
                 }
 
                 $multiple = $option->isArray() ? '<comment> (multiple values allowed)</comment>' : '';
+<<<<<<< HEAD
                 // @phan-suppress-next-line PhanParamSuspiciousOrder - intentionally padding empty string to create spaces
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $description = \str_replace("\n", "\n".\str_pad('', $max + 2, ' '), $option->getDescription());
 
                 $optionMax = $max - \strlen($option->getName()) - 2;

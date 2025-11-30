@@ -1,7 +1,10 @@
 [
+<<<<<<< HEAD
     "Pest\\Profanity\\Plugin",
     "Pest\\Arch\\Plugin",
     "Pest\\Laravel\\Plugin",
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     "Pest\\Mutate\\Plugins\\Mutate",
     "Pest\\Plugins\\Configuration",
     "Pest\\Plugins\\Bail",
@@ -20,5 +23,12 @@
     "Pest\\Plugins\\Verbose",
     "Pest\\Plugins\\Version",
     "Pest\\Plugins\\Shard",
+<<<<<<< HEAD
     "Pest\\Plugins\\Parallel"
+=======
+    "Pest\\Plugins\\Parallel",
+    "Pest\\Arch\\Plugin",
+    "Pest\\Laravel\\Plugin",
+    "Pest\\Profanity\\Plugin"
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 ]

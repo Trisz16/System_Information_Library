@@ -13,6 +13,7 @@ namespace Symfony\Component\Console\SignalRegistry;
 
 final class SignalRegistry
 {
+<<<<<<< HEAD
     /**
      * @var array<int, array<callable>>
      */
@@ -28,6 +29,10 @@ final class SignalRegistry
      */
     private array $originalHandlers = [];
 
+=======
+    private array $signalHandlers = [];
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function __construct()
     {
         if (\function_exists('pcntl_async_signals')) {
@@ -37,6 +42,7 @@ final class SignalRegistry
 
     public function register(int $signal, callable $signalHandler): void
     {
+<<<<<<< HEAD
         $previous = pcntl_signal_get_handler($signal);
 
         if (!isset($this->originalHandlers[$signal])) {
@@ -46,12 +52,23 @@ final class SignalRegistry
         if (!isset($this->signalHandlers[$signal])) {
             if (\is_callable($previous) && [$this, 'handle'] !== $previous) {
                 $this->signalHandlers[$signal][] = $previous;
+=======
+        if (!isset($this->signalHandlers[$signal])) {
+            $previousCallback = pcntl_signal_get_handler($signal);
+
+            if (\is_callable($previousCallback)) {
+                $this->signalHandlers[$signal][] = $previousCallback;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
         }
 
         $this->signalHandlers[$signal][] = $signalHandler;
 
+<<<<<<< HEAD
         pcntl_signal($signal, [$this, 'handle']);
+=======
+        pcntl_signal($signal, $this->handle(...));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     public static function isSupported(): bool
@@ -73,6 +90,7 @@ final class SignalRegistry
     }
 
     /**
+<<<<<<< HEAD
      * Pushes the current active handlers onto the stack and clears the active list.
      *
      * This prepares the registry for a new set of handlers within a specific scope.
@@ -107,6 +125,8 @@ final class SignalRegistry
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @internal
      */
     public function scheduleAlarm(int $seconds): void

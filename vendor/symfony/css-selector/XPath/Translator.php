@@ -91,6 +91,10 @@ class Translator implements TranslatorInterface
     {
         $selectors = $this->parseSelectors($cssExpr);
 
+<<<<<<< HEAD
+=======
+        /** @var SelectorNode $selector */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         foreach ($selectors as $index => $selector) {
             if (null !== $selector->getPseudoElement()) {
                 throw new ExpressionErrorException('Pseudo-elements are not supported.');

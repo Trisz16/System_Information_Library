@@ -6,9 +6,15 @@ namespace Laravel\Mcp\Server\Methods;
 
 use Generator;
 use Illuminate\Container\Container;
+<<<<<<< HEAD
 use Illuminate\Validation\ValidationException;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\ResponseFactory;
+=======
+use Illuminate\Support\Collection;
+use Illuminate\Validation\ValidationException;
+use Laravel\Mcp\Response;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Laravel\Mcp\Server\Contracts\Method;
 use Laravel\Mcp\Server\Exceptions\JsonRpcException;
 use Laravel\Mcp\Server\Methods\Concerns\InteractsWithResponses;
@@ -59,6 +65,7 @@ class GetPrompt implements Method
     }
 
     /**
+<<<<<<< HEAD
      * @return callable(ResponseFactory): array<string, mixed>
      */
     protected function serializable(Prompt $prompt): callable
@@ -70,5 +77,18 @@ class GetPrompt implements Method
                 'content' => $response->content()->toPrompt($prompt),
             ])->all(),
         ]);
+=======
+     * @return callable(Collection<int, Response>): array{description?: string, messages: array<int, array{role: string, content: array<int, array<string, mixed>}>}
+     */
+    protected function serializable(Prompt $prompt): callable
+    {
+        return fn (Collection $responses): array => [
+            'description' => $prompt->description(),
+            'messages' => $responses->map(fn (Response $response): array => [
+                'role' => $response->role()->value,
+                'content' => $response->content()->toPrompt($prompt),
+            ])->all(),
+        ];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

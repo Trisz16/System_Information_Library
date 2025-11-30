@@ -57,7 +57,11 @@ class TraceableUrlMatcher extends UrlMatcher
             $method = 'GET';
         }
         $supportsTrailingSlash = 'GET' === $method && $this instanceof RedirectableUrlMatcherInterface;
+<<<<<<< HEAD
         $trimmedPathinfo = '' === ($trimmedPathinfo = rtrim($pathinfo, '/')) ? '/' : $trimmedPathinfo;
+=======
+        $trimmedPathinfo = rtrim($pathinfo, '/') ?: '/';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         foreach ($routes as $name => $route) {
             $compiledRoute = $route->compile();

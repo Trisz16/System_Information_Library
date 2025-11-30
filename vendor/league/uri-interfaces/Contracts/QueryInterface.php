@@ -28,7 +28,10 @@ use Stringable;
  * @method bool hasPair(string $key, ?string $value) Tells whether the pair exists in the query.
  * @method ?string toFormData() Returns the string representation using the applicat/www-form-urlencoded rules
  * @method ?string toRFC3986() Returns the string representation using RFC3986 rules
+<<<<<<< HEAD
  * @method self normalize() returns the normalized string representation of the component
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  */
 interface QueryInterface extends Countable, IteratorAggregate, UriComponentInterface
 {

@@ -533,7 +533,11 @@ class Arrays
 	 */
 	public static function toKey(mixed $value): int|string
 	{
+<<<<<<< HEAD
 		return key(@[$value => null]);
+=======
+		return key([$value => null]);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 	}
 
 

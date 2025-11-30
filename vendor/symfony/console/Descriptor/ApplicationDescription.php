@@ -85,6 +85,10 @@ class ApplicationDescription
         foreach ($this->sortCommands($all) as $namespace => $commands) {
             $names = [];
 
+<<<<<<< HEAD
+=======
+            /** @var Command $command */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             foreach ($commands as $name => $command) {
                 if (!$command->getName() || (!$this->showHidden && $command->isHidden())) {
                     continue;
@@ -103,9 +107,12 @@ class ApplicationDescription
         }
     }
 
+<<<<<<< HEAD
     /**
      * @return array<string, array<string, Command>>
      */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     private function sortCommands(array $commands): array
     {
         $namespacedCommands = [];

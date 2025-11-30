@@ -25,7 +25,11 @@ class TextPart extends AbstractPart
 {
     private const DEFAULT_ENCODERS = ['quoted-printable', 'base64', '8bit'];
 
+<<<<<<< HEAD
     /** @internal, to be removed in 8.0 */
+=======
+    /** @internal */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     protected Headers $_headers;
 
     private static array $encoders = [];
@@ -238,6 +242,7 @@ class TextPart extends AbstractPart
         return 'quoted-printable';
     }
 
+<<<<<<< HEAD
     public function __serialize(): array
     {
         if (self::class === (new \ReflectionMethod($this, '__sleep'))->class || self::class !== (new \ReflectionMethod($this, '__serialize'))->class) {
@@ -341,6 +346,10 @@ class TextPart extends AbstractPart
     {
         trigger_deprecation('symfony/mime', '7.4', 'Calling "%s::__sleep()" is deprecated, use "__serialize()" instead.', get_debug_type($this));
 
+=======
+    public function __sleep(): array
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         // convert resources to strings for serialization
         if (null !== $this->seekable) {
             $this->body = $this->getBody();
@@ -352,6 +361,7 @@ class TextPart extends AbstractPart
         return ['_headers', 'body', 'charset', 'subtype', 'disposition', 'name', 'encoding'];
     }
 
+<<<<<<< HEAD
     /**
      * @deprecated since Symfony 7.4, will be replaced by `__unserialize()` in 8.0
      */
@@ -359,6 +369,10 @@ class TextPart extends AbstractPart
     {
         trigger_deprecation('symfony/mime', '7.4', 'Calling "%s::__wakeup()" is deprecated, use "__unserialize()" instead.', get_debug_type($this));
 
+=======
+    public function __wakeup(): void
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $r = new \ReflectionProperty(AbstractPart::class, 'headers');
         $r->setValue($this, $this->_headers);
         unset($this->_headers);

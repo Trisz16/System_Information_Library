@@ -714,6 +714,7 @@ final class Generator
     }
 
     /**
+<<<<<<< HEAD
      * @template T of object
      *
      * @param class-string<T> $className
@@ -723,6 +724,13 @@ final class Generator
      * @return ReflectionClass<T>
      *
      * @phpstan-ignore throws.unusedType
+=======
+     * @param class-string $className
+     *
+     * @throws ReflectionException
+     *
+     * @phpstan-ignore missingType.generics, throws.unusedType
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     private function reflectClass(string $className): ReflectionClass
     {

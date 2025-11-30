@@ -236,12 +236,21 @@ abstract class AbstractCloner implements ClonerInterface
     /**
      * Adds casters for resources and objects.
      *
+<<<<<<< HEAD
      * Maps resources or object types to a callback.
      * Use types as keys and callable casters as values.
      * Prefix types with `::`,
      * see e.g. self::$defaultCasters.
      *
      * @param array<string, callable> $casters A map of casters
+=======
+     * Maps resources or objects types to a callback.
+     * Types are in the key, with a callable caster for value.
+     * Resource types are to be prefixed with a `:`,
+     * see e.g. static::$defaultCasters.
+     *
+     * @param callable[] $casters A map of casters
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function addCasters(array $casters): void
     {
@@ -251,6 +260,7 @@ abstract class AbstractCloner implements ClonerInterface
     }
 
     /**
+<<<<<<< HEAD
      * Adds default casters for resources and objects.
      *
      * Maps resources or object types to a callback.
@@ -266,6 +276,8 @@ abstract class AbstractCloner implements ClonerInterface
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Sets the maximum number of items to clone past the minimum depth in nested structures.
      */
     public function setMaxItems(int $maxItems): void

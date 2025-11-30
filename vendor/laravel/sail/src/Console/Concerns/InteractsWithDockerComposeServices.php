@@ -35,7 +35,10 @@ trait InteractsWithDockerComposeServices
         'meilisearch',
         'typesense',
         'minio',
+<<<<<<< HEAD
         'rustfs',
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'mailpit',
         'rabbitmq',
         'selenium',
@@ -108,7 +111,11 @@ trait InteractsWithDockerComposeServices
         // Merge volumes...
         collect($services)
             ->filter(function ($service) {
+<<<<<<< HEAD
                 return in_array($service, ['mysql', 'pgsql', 'mariadb', 'mongodb', 'redis', 'valkey', 'meilisearch', 'typesense', 'minio', 'rustfs', 'rabbitmq']);
+=======
+                return in_array($service, ['mysql', 'pgsql', 'mariadb', 'mongodb', 'redis', 'valkey', 'meilisearch', 'typesense', 'minio', 'rabbitmq']);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             })->filter(function ($service) use ($compose) {
                 return ! array_key_exists($service, $compose['volumes'] ?? []);
             })->each(function ($service) use (&$compose) {

@@ -8,6 +8,7 @@ use Predis\Command\ServerFlushDatabase;
 class PredisClusterConnection extends PredisConnection
 {
     /**
+<<<<<<< HEAD
      * Get the keys that match the given pattern.
      *
      * @param  string  $pattern
@@ -25,6 +26,8 @@ class PredisClusterConnection extends PredisConnection
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Flush the selected Redis database on all cluster nodes.
      *
      * @return void

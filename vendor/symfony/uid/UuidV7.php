@@ -14,11 +14,17 @@ namespace Symfony\Component\Uid;
 use Symfony\Component\Uid\Exception\InvalidArgumentException;
 
 /**
+<<<<<<< HEAD
  * A v7 UUID is lexicographically sortable and contains a 58-bit timestamp and 64 extra unique bits.
  *
  * Within the same millisecond, the unique bits are incremented by a 24-bit random number.
  * This method provides microsecond precision for the timestamp, and minimizes both the
  * risk of collisions and the consumption of the OS' entropy pool.
+=======
+ * A v7 UUID is lexicographically sortable and contains a 48-bit timestamp and 74 extra unique bits.
+ *
+ * Within the same millisecond, monotonicity is ensured by incrementing the random part by a random increment.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  *
  * @author Nicolas Grekas <p@tchwork.com>
  */
@@ -27,7 +33,10 @@ class UuidV7 extends Uuid implements TimeBasedUidInterface
     protected const TYPE = 7;
 
     private static string $time = '';
+<<<<<<< HEAD
     private static int $subMs = 0;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     private static array $rand = [];
     private static string $seed;
     private static array $seedParts;
@@ -50,15 +59,21 @@ class UuidV7 extends Uuid implements TimeBasedUidInterface
         if (4 > \strlen($time)) {
             $time = '000'.$time;
         }
+<<<<<<< HEAD
         $time .= substr(1000 + (hexdec(substr($this->uid, 14, 4)) >> 2 & 0x3FF), -3);
 
         return \DateTimeImmutable::createFromFormat('U.u', substr_replace($time, '.', -6, 0));
+=======
+
+        return \DateTimeImmutable::createFromFormat('U.v', substr_replace($time, '.', -3, 0));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     public static function generate(?\DateTimeInterface $time = null): string
     {
         if (null === $mtime = $time) {
             $time = microtime(false);
+<<<<<<< HEAD
             $subMs = (int) substr($time, 5, 3);
             $time = substr($time, 11).substr($time, 2, 3);
         } elseif (0 > $time = $time->format('Uu')) {
@@ -66,11 +81,21 @@ class UuidV7 extends Uuid implements TimeBasedUidInterface
         } else {
             $subMs = (int) substr($time, -3);
             $time = substr($time, 0, -3);
+=======
+            $time = substr($time, 11).substr($time, 2, 3);
+        } elseif (0 > $time = $time->format('Uv')) {
+            throw new InvalidArgumentException('The timestamp must be positive.');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         if ($time > self::$time || (null !== $mtime && $time !== self::$time)) {
             randomize:
+<<<<<<< HEAD
             self::$rand = unpack(\PHP_INT_SIZE >= 8 ? 'L*' : 'S*', isset(self::$seed) ? random_bytes(8) : self::$seed = random_bytes(16));
+=======
+            self::$rand = unpack('S*', isset(self::$seed) ? random_bytes(10) : self::$seed = random_bytes(16));
+            self::$rand[1] &= 0x03FF;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             self::$time = $time;
         } else {
             // Within the same ms, we increment the rand part by a random 24-bit number.
@@ -80,8 +105,13 @@ class UuidV7 extends Uuid implements TimeBasedUidInterface
             // them into 16 x 32-bit numbers; we take the first byte of each of these
             // numbers to get 5 extra 24-bit numbers. Then, we consume those numbers
             // one-by-one and run this logic every 21 iterations.
+<<<<<<< HEAD
             // self::$rand holds the random part of the UUID, split into 2 x 32-bit numbers
             // or 4 x 16-bit for x86 portability. We increment this random part by the next
+=======
+            // self::$rand holds the random part of the UUID, split into 5 x 16-bit
+            // numbers for x86 portability. We increment this random part by the next
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             // 24-bit number in the self::$seedParts list and decrement self::$seedIndex.
 
             if (!self::$seedIndex) {
@@ -95,6 +125,7 @@ class UuidV7 extends Uuid implements TimeBasedUidInterface
                 self::$seedIndex = 21;
             }
 
+<<<<<<< HEAD
             if (\PHP_INT_SIZE >= 8) {
                 self::$rand[2] = 0xFFFFFFFF & $carry = self::$rand[2] + 1 + (self::$seedParts[self::$seedIndex--] & 0xFFFFFF);
                 self::$rand[1] = 0xFFFFFFFF & $carry = self::$rand[1] + ($carry >> 32);
@@ -121,10 +152,29 @@ class UuidV7 extends Uuid implements TimeBasedUidInterface
 
                     goto randomize;
                 }
+=======
+            self::$rand[5] = 0xFFFF & $carry = self::$rand[5] + 1 + (self::$seedParts[self::$seedIndex--] & 0xFFFFFF);
+            self::$rand[4] = 0xFFFF & $carry = self::$rand[4] + ($carry >> 16);
+            self::$rand[3] = 0xFFFF & $carry = self::$rand[3] + ($carry >> 16);
+            self::$rand[2] = 0xFFFF & $carry = self::$rand[2] + ($carry >> 16);
+            self::$rand[1] += $carry >> 16;
+
+            if (0xFC00 & self::$rand[1]) {
+                if (\PHP_INT_SIZE >= 8 || 10 > \strlen($time = self::$time)) {
+                    $time = (string) (1 + $time);
+                } elseif ('999999999' === $mtime = substr($time, -9)) {
+                    $time = (1 + substr($time, 0, -9)).'000000000';
+                } else {
+                    $time = substr_replace($time, str_pad(++$mtime, 9, '0', \STR_PAD_LEFT), -9);
+                }
+
+                goto randomize;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
 
             $time = self::$time;
         }
+<<<<<<< HEAD
         self::$subMs = $subMs;
 
         if (\PHP_INT_SIZE >= 8) {
@@ -144,6 +194,22 @@ class UuidV7 extends Uuid implements TimeBasedUidInterface
             self::$rand[2],
             self::$rand[3],
             self::$rand[4],
+=======
+
+        if (\PHP_INT_SIZE >= 8) {
+            $time = dechex($time);
+        } else {
+            $time = bin2hex(BinaryUtil::fromBase($time, BinaryUtil::BASE10));
+        }
+
+        return substr_replace(\sprintf('%012s-%04x-%04x-%04x%04x%04x',
+            $time,
+            0x7000 | (self::$rand[1] << 2) | (self::$rand[2] >> 14),
+            0x8000 | (self::$rand[2] & 0x3FFF),
+            self::$rand[3],
+            self::$rand[4],
+            self::$rand[5],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         ), '-', 8, 0);
     }
 }

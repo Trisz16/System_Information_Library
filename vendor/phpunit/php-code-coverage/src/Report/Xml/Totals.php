@@ -29,27 +29,47 @@ final readonly class Totals
         $dom = $container->ownerDocument;
 
         $this->linesNode = $dom->createElementNS(
+<<<<<<< HEAD
             Facade::XML_NAMESPACE,
+=======
+            'https://schema.phpunit.de/coverage/1.0',
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             'lines',
         );
 
         $this->methodsNode = $dom->createElementNS(
+<<<<<<< HEAD
             Facade::XML_NAMESPACE,
+=======
+            'https://schema.phpunit.de/coverage/1.0',
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             'methods',
         );
 
         $this->functionsNode = $dom->createElementNS(
+<<<<<<< HEAD
             Facade::XML_NAMESPACE,
+=======
+            'https://schema.phpunit.de/coverage/1.0',
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             'functions',
         );
 
         $this->classesNode = $dom->createElementNS(
+<<<<<<< HEAD
             Facade::XML_NAMESPACE,
+=======
+            'https://schema.phpunit.de/coverage/1.0',
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             'classes',
         );
 
         $this->traitsNode = $dom->createElementNS(
+<<<<<<< HEAD
             Facade::XML_NAMESPACE,
+=======
+            'https://schema.phpunit.de/coverage/1.0',
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             'traits',
         );
 

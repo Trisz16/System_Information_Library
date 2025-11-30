@@ -130,6 +130,7 @@ trait ReplacesAttributes
     }
 
     /**
+<<<<<<< HEAD
      * Replace all place-holders for the encoding rule.
      *
      * @param  string  $message
@@ -144,6 +145,8 @@ trait ReplacesAttributes
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Replace all place-holders for the extensions rule.
      *
      * @param  string  $message
@@ -952,7 +955,11 @@ trait ReplacesAttributes
      */
     private function replaceWhileKeepingCase(string $message, array $mapping): string
     {
+<<<<<<< HEAD
         $fn = [fn ($v) => $v, Str::upper(...), Str::ucfirst(...)];
+=======
+        $fn = [Str::lower(...), Str::upper(...), Str::ucfirst(...)];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $cases = array_reduce(
             array_keys($mapping),

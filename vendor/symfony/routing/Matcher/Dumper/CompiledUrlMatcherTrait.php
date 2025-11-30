@@ -57,7 +57,11 @@ trait CompiledUrlMatcherTrait
             } finally {
                 $this->context->setScheme($scheme);
             }
+<<<<<<< HEAD
         } elseif ('' !== $trimmedPathinfo = rtrim($pathinfo, '/')) {
+=======
+        } elseif ('/' !== $trimmedPathinfo = rtrim($pathinfo, '/') ?: '/') {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $pathinfo = $trimmedPathinfo === $pathinfo ? $pathinfo.'/' : $trimmedPathinfo;
             if ($ret = $this->doMatch($pathinfo, $allow, $allowSchemes)) {
                 return $this->redirect($pathinfo, $ret['_route']) + $ret;
@@ -73,8 +77,13 @@ trait CompiledUrlMatcherTrait
     private function doMatch(string $pathinfo, array &$allow = [], array &$allowSchemes = []): array
     {
         $allow = $allowSchemes = [];
+<<<<<<< HEAD
         $pathinfo = '' === ($pathinfo = rawurldecode($pathinfo)) ? '/' : $pathinfo;
         $trimmedPathinfo = '' === ($trimmedPathinfo = rtrim($pathinfo, '/')) ? '/' : $trimmedPathinfo;
+=======
+        $pathinfo = rawurldecode($pathinfo) ?: '/';
+        $trimmedPathinfo = rtrim($pathinfo, '/') ?: '/';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $context = $this->context;
         $requestMethod = $canonicalMethod = $context->getMethod();
 

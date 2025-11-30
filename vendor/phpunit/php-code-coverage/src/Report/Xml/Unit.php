@@ -19,6 +19,7 @@ final readonly class Unit
 {
     private DOMElement $contextNode;
 
+<<<<<<< HEAD
     public function __construct(
         DOMElement $context,
         string $name,
@@ -42,11 +43,49 @@ final readonly class Unit
                 'namespace',
             ),
         );
+=======
+    public function __construct(DOMElement $context, string $name)
+    {
+        $this->contextNode = $context;
+
+        $this->setName($name);
+    }
+
+    public function setLines(int $start, int $executable, int $executed): void
+    {
+        $this->contextNode->setAttribute('start', (string) $start);
+        $this->contextNode->setAttribute('executable', (string) $executable);
+        $this->contextNode->setAttribute('executed', (string) $executed);
+    }
+
+    public function setCrap(float $crap): void
+    {
+        $this->contextNode->setAttribute('crap', (string) $crap);
+    }
+
+    public function setNamespace(string $namespace): void
+    {
+        $node = $this->contextNode->getElementsByTagNameNS(
+            'https://schema.phpunit.de/coverage/1.0',
+            'namespace',
+        )->item(0);
+
+        if ($node === null) {
+            $node = $this->contextNode->appendChild(
+                $this->contextNode->ownerDocument->createElementNS(
+                    'https://schema.phpunit.de/coverage/1.0',
+                    'namespace',
+                ),
+            );
+        }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         assert($node instanceof DOMElement);
 
         $node->setAttribute('name', $namespace);
     }
 
+<<<<<<< HEAD
     public function addMethod(
         string $name,
         string $signature,
@@ -60,12 +99,20 @@ final readonly class Unit
         $node = $this->contextNode->appendChild(
             $this->contextNode->ownerDocument->createElementNS(
                 Facade::XML_NAMESPACE,
+=======
+    public function addMethod(string $name): Method
+    {
+        $node = $this->contextNode->appendChild(
+            $this->contextNode->ownerDocument->createElementNS(
+                'https://schema.phpunit.de/coverage/1.0',
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 'method',
             ),
         );
 
         assert($node instanceof DOMElement);
 
+<<<<<<< HEAD
         new Method(
             $node,
             $name,
@@ -77,5 +124,13 @@ final readonly class Unit
             $coverage,
             $crap,
         );
+=======
+        return new Method($node, $name);
+    }
+
+    private function setName(string $name): void
+    {
+        $this->contextNode->setAttribute('name', $name);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

@@ -106,6 +106,7 @@ class UnicodeString extends AbstractUnicodeString
             return false;
         }
 
+<<<<<<< HEAD
         $grapheme = grapheme_extract($this->string, \strlen($suffix), \GRAPHEME_EXTR_MAXBYTES, \strlen($this->string) - \strlen($suffix)) ?: '';
 
         if ($this->ignoreCase) {
@@ -113,6 +114,13 @@ class UnicodeString extends AbstractUnicodeString
         }
 
         return $suffix === $grapheme;
+=======
+        if ($this->ignoreCase) {
+            return 0 === mb_stripos(grapheme_extract($this->string, \strlen($suffix), \GRAPHEME_EXTR_MAXBYTES, \strlen($this->string) - \strlen($suffix)), $suffix, 0, 'UTF-8');
+        }
+
+        return $suffix === grapheme_extract($this->string, \strlen($suffix), \GRAPHEME_EXTR_MAXBYTES, \strlen($this->string) - \strlen($suffix));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     public function equalsTo(string|iterable|AbstractString $string): bool
@@ -357,6 +365,7 @@ class UnicodeString extends AbstractUnicodeString
             return false;
         }
 
+<<<<<<< HEAD
         $grapheme = grapheme_extract($this->string, \strlen($prefix), \GRAPHEME_EXTR_MAXBYTES) ?: '';
 
         if ($this->ignoreCase) {
@@ -370,6 +379,17 @@ class UnicodeString extends AbstractUnicodeString
     {
         $this->string = $data['string'] ?? $data["\0*\0string"];
 
+=======
+        if ($this->ignoreCase) {
+            return 0 === mb_stripos(grapheme_extract($this->string, \strlen($prefix), \GRAPHEME_EXTR_MAXBYTES), $prefix, 0, 'UTF-8');
+        }
+
+        return $prefix === grapheme_extract($this->string, \strlen($prefix), \GRAPHEME_EXTR_MAXBYTES);
+    }
+
+    public function __wakeup(): void
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (!\is_string($this->string)) {
             throw new \BadMethodCallException('Cannot unserialize '.__CLASS__);
         }

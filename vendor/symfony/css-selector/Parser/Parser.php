@@ -190,7 +190,11 @@ class Parser implements ParserInterface
                 }
 
                 $identifier = $stream->getNextIdentifier();
+<<<<<<< HEAD
                 if (\in_array(strtolower($identifier), ['first-line', 'first-letter', 'before', 'after'], true)) {
+=======
+                if (\in_array(strtolower($identifier), ['first-line', 'first-letter', 'before', 'after'])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     // Special case: CSS 2.1 pseudo-elements can have a single ':'.
                     // Any new pseudo-element must have two.
                     $pseudoElement = $identifier;

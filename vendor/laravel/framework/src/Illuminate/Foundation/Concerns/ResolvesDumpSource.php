@@ -13,7 +13,10 @@ trait ResolvesDumpSource
      * @var array<string, string>
      */
     protected $editorHrefs = [
+<<<<<<< HEAD
         'antigravity' => 'antigravity://file/{file}:{line}',
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         'atom' => 'atom://core/open/file?filename={file}&line={line}',
         'cursor' => 'cursor://file/{file}:{line}',
         'emacs' => 'emacs://open?url=file://{file}&line={line}',

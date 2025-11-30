@@ -46,6 +46,7 @@ class GenerateUuidCommand extends Command
                 new InputOption('format', 'f', InputOption::VALUE_REQUIRED, \sprintf('The UUID output format ("%s")', implode('", "', $this->getAvailableFormatOptions())), 'rfc4122'),
             ])
             ->setHelp(<<<'EOF'
+<<<<<<< HEAD
                 The <info>%command.name%</info> generates a UUID.
 
                     <info>php %command.full_name%</info>
@@ -78,6 +79,40 @@ class GenerateUuidCommand extends Command
 
                     <info>php %command.full_name% --format=base58</info>
                 EOF
+=======
+The <info>%command.name%</info> generates a UUID.
+
+    <info>php %command.full_name%</info>
+
+To generate a time-based UUID:
+
+    <info>php %command.full_name% --time-based=now</info>
+
+To specify a time-based UUID's node:
+
+    <info>php %command.full_name% --time-based=@1613480254 --node=fb3502dc-137e-4849-8886-ac90d07f64a7</info>
+
+To generate a name-based UUID:
+
+    <info>php %command.full_name% --name-based=foo</info>
+
+To specify a name-based UUID's namespace:
+
+    <info>php %command.full_name% --name-based=bar --namespace=fb3502dc-137e-4849-8886-ac90d07f64a7</info>
+
+To generate a random-based UUID:
+
+    <info>php %command.full_name% --random-based</info>
+
+To generate several UUIDs:
+
+    <info>php %command.full_name% --count=10</info>
+
+To output a specific format:
+
+    <info>php %command.full_name% --format=base58</info>
+EOF
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             )
         ;
     }

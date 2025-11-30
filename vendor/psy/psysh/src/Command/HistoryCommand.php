@@ -99,6 +99,7 @@ HELP
         $this->validateOnlyOne($input, ['show', 'head', 'tail']);
         $this->validateOnlyOne($input, ['save', 'replay', 'clear']);
 
+<<<<<<< HEAD
         // For --show, slice first (uses original line numbers), then filter
         $show = $input->getOption('show');
 
@@ -107,6 +108,13 @@ HELP
         $tail = $input->getOption('tail');
 
         $history = $this->getHistorySlice($show);
+=======
+        $history = $this->getHistorySlice(
+            $input->getOption('show'),
+            $input->getOption('head'),
+            $input->getOption('tail')
+        );
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $highlighted = false;
 
         $this->filter->bind($input);
@@ -124,16 +132,22 @@ HELP
                     }
                 } else {
                     unset($history[$i]);
+<<<<<<< HEAD
                     unset($highlighted[$i]);
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 }
             }
         }
 
+<<<<<<< HEAD
         $history = $this->applyHeadOrTail($history, $head, $tail);
         if ($highlighted) {
             $highlighted = $this->applyHeadOrTail($highlighted, $head, $tail);
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if ($save = $input->getOption('save')) {
             $output->writeln(\sprintf('Saving history in %s...', ConfigPaths::prettyPath($save)));
             \file_put_contents($save, \implode(\PHP_EOL, $history).\PHP_EOL);
@@ -187,6 +201,7 @@ HELP
     }
 
     /**
+<<<<<<< HEAD
      * Retrieve a slice of the readline history by range.
      *
      * @param string|null $show Range specification (e.g., "5..10")
@@ -215,11 +230,37 @@ HELP
     private function applyHeadOrTail(array $history, ?string $head, ?string $tail): array
     {
         if ($head) {
+=======
+     * Retrieve a slice of the readline history.
+     *
+     * @param string|null $show
+     * @param string|null $head
+     * @param string|null $tail
+     *
+     * @return array A slice of history
+     */
+    private function getHistorySlice($show, $head, $tail): array
+    {
+        $history = $this->readline->listHistory();
+
+        // don't show the current `history` invocation
+        \array_pop($history);
+
+        if ($show) {
+            list($start, $end) = $this->extractRange($show);
+            $length = $end - $start;
+        } elseif ($head) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             if (!\preg_match('/^\d+$/', $head)) {
                 throw new \InvalidArgumentException('Please specify an integer argument for --head');
             }
 
+<<<<<<< HEAD
             return \array_slice($history, 0, (int) $head, true);
+=======
+            $start = 0;
+            $length = (int) $head;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         } elseif ($tail) {
             if (!\preg_match('/^\d+$/', $tail)) {
                 throw new \InvalidArgumentException('Please specify an integer argument for --tail');
@@ -227,11 +268,19 @@ HELP
 
             $start = \count($history) - (int) $tail;
             $length = (int) $tail + 1;
+<<<<<<< HEAD
 
             return \array_slice($history, $start, $length, true);
         }
 
         return $history;
+=======
+        } else {
+            return $history;
+        }
+
+        return \array_slice($history, $start, $length, true);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**

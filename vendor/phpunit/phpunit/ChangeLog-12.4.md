@@ -2,6 +2,7 @@
 
 All notable changes of the PHPUnit 12.4 release series are documented in this file using the [Keep a CHANGELOG](https://keepachangelog.com/) principles.
 
+<<<<<<< HEAD
 ## [12.4.4] - 2025-11-21
 
 ### Fixed
@@ -25,6 +26,8 @@ All notable changes of the PHPUnit 12.4 release series are documented in this fi
 
 * [#6391](https://github.com/sebastianbergmann/phpunit/issues/6391): Errors during backup of global variables and static properties are not reported
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 ## [12.4.1] - 2025-10-09
 
 ### Fixed
@@ -45,8 +48,11 @@ All notable changes of the PHPUnit 12.4 release series are documented in this fi
 * [#6284](https://github.com/sebastianbergmann/phpunit/issues/6284): `#[RunClassInSeparateProcess]` attribute
 * [#6355](https://github.com/sebastianbergmann/phpunit/issues/6355): Support for version constraint string argument without explicit version comparison operator
 
+<<<<<<< HEAD
 [12.4.4]: https://github.com/sebastianbergmann/phpunit/compare/12.4.3...12.4.4
 [12.4.3]: https://github.com/sebastianbergmann/phpunit/compare/12.4.2...12.4.3
 [12.4.2]: https://github.com/sebastianbergmann/phpunit/compare/12.4.1...12.4.2
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 [12.4.1]: https://github.com/sebastianbergmann/phpunit/compare/12.4.0...12.4.1
 [12.4.0]: https://github.com/sebastianbergmann/phpunit/compare/12.3.15...12.4.0

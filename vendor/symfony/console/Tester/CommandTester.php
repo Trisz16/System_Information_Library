@@ -24,12 +24,18 @@ class CommandTester
 {
     use TesterTrait;
 
+<<<<<<< HEAD
     private Command $command;
 
     public function __construct(
         callable|Command $command,
     ) {
         $this->command = $command instanceof Command ? $command : new Command(null, $command);
+=======
+    public function __construct(
+        private Command $command,
+    ) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**

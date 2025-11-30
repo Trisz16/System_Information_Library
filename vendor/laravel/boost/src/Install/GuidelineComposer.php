@@ -10,7 +10,10 @@ use Illuminate\Support\Str;
 use Laravel\Boost\Support\Composer;
 use Laravel\Roster\Enums\Packages;
 use Laravel\Roster\Package;
+<<<<<<< HEAD
 use Laravel\Roster\PackageCollection;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Laravel\Roster\Roster;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
@@ -25,6 +28,11 @@ class GuidelineComposer
 
     protected GuidelineConfig $config;
 
+<<<<<<< HEAD
+=======
+    protected GuidelineAssist $guidelineAssist;
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     /**
      * Package priority system to handle conflicts between packages.
      * When a higher-priority package is present, lower-priority packages are excluded from guidelines.
@@ -43,6 +51,7 @@ class GuidelineComposer
         Packages::MCP,
     ];
 
+<<<<<<< HEAD
     /**
      * Packages that should be excluded from automatic guideline inclusion.
      * These packages require explicit configuration to be included.
@@ -53,6 +62,8 @@ class GuidelineComposer
         Packages::SAIL,
     ];
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function __construct(protected Roster $roster, protected Herd $herd)
     {
         $this->packagePriorities = [
@@ -60,6 +71,10 @@ class GuidelineComposer
             Packages::FLUXUI_PRO->value => [Packages::FLUXUI_FREE->value],
         ];
         $this->config = new GuidelineConfig;
+<<<<<<< HEAD
+=======
+        $this->guidelineAssist = new GuidelineAssist($roster);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     public function config(GuidelineConfig $config): self
@@ -114,6 +129,7 @@ class GuidelineComposer
             return $this->guidelines;
         }
 
+<<<<<<< HEAD
         $base = collect()
             ->merge($this->getCoreGuidelines())
             ->merge($this->getConditionalGuidelines())
@@ -214,10 +230,87 @@ class GuidelineComposer
     protected function getThirdPartyGuidelines(): Collection
     {
         $guidelines = collect();
+=======
+        return $this->guidelines = $this->find();
+    }
+
+    /**
+     * Key is the 'guideline key' and value is the rendered blade.
+     *
+     * @return \Illuminate\Support\Collection<string, array>
+     */
+    protected function find(): Collection
+    {
+        $guidelines = collect();
+        $guidelines->put('foundation', $this->guideline('foundation'));
+        $guidelines->put('boost', $this->guideline('boost/core'));
+        $guidelines->put('php', $this->guideline('php/core'));
+
+        // TODO: AI-48: Use composer target version, not PHP version. Production could be 8.1, but local is 8.4
+        // $phpMajorMinor = PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
+        // $guidelines->put('php/v'.$phpMajorMinor, $this->guidelinesDir('php/'.$phpMajorMinor));
+
+        if (str_contains((string) config('app.url'), '.test') && $this->herd->isInstalled()) {
+            $guidelines->put('herd', $this->guideline('herd/core'));
+        }
+
+        if ($this->config->laravelStyle) {
+            $guidelines->put('laravel/style', $this->guideline('laravel/style'));
+        }
+
+        if ($this->config->hasAnApi) {
+            $guidelines->put('laravel/api', $this->guideline('laravel/api'));
+        }
+
+        if ($this->config->caresAboutLocalization) {
+            $guidelines->put('laravel/localization', $this->guideline('laravel/localization'));
+            // In future, if using NextJS localization/etc.. then have a diff. rule here
+        }
+
+        // Add all core and version specific docs for Roster supported packages
+        // We don't add guidelines for packages unsupported by Roster right now
+        foreach ($this->roster->packages() as $package) {
+            // Skip packages that should be excluded due to priority rules
+            if ($this->shouldExcludePackage($package)) {
+                continue;
+            }
+
+            $guidelineDir = str_replace('_', '-', strtolower($package->name()));
+
+            $guidelines->put(
+                $guidelineDir.'/core',
+                $this->guideline($guidelineDir.'/core')
+            ); // Always add package core
+            $packageGuidelines = $this->guidelinesDir($guidelineDir.'/'.$package->majorVersion());
+            foreach ($packageGuidelines as $guideline) {
+                $suffix = $guideline['name'] === 'core' ? '' : '/'.$guideline['name'];
+                $guidelines->put(
+                    $guidelineDir.'/v'.$package->majorVersion().$suffix,
+                    $guideline
+                );
+            }
+        }
+
+        if ($this->config->enforceTests) {
+            $guidelines->put('tests', $this->guideline('enforce-tests'));
+        }
+
+        $userGuidelines = $this->guidelinesDir($this->customGuidelinePath());
+        $pathsUsed = $guidelines->pluck('path');
+
+        foreach ($userGuidelines as $guideline) {
+            if ($pathsUsed->contains($guideline['path'])) {
+                continue; // Don't include this twice if it's an override
+            }
+
+            $guidelines->put('.ai/'.$guideline['name'], $guideline);
+        }
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         collect(Composer::packagesDirectoriesWithBoostGuidelines())
             ->each(function (string $path, string $package) use ($guidelines): void {
                 $packageGuidelines = $this->guidelinesDir($path, true);
+<<<<<<< HEAD
 
                 foreach ($packageGuidelines as $guideline) {
                     $guidelines->put($package, $guideline);
@@ -230,6 +323,26 @@ class GuidelineComposer
                 fn (mixed $guideline, string $name): bool => in_array($name, $this->config->aiGuidelines, true),
             )
         );
+=======
+                $pathsUsed = $guidelines->pluck('path');
+
+                foreach ($packageGuidelines as $guideline) {
+                    if ($pathsUsed->contains($guideline['path'])) {
+                        continue; // Don't include this twice if it's an override
+                    }
+
+                    $guidelines->put($package, $guideline);
+                }
+            })->when(
+                isset($this->config->aiGuidelines),
+                fn (Collection $collection): Collection => $collection->filter(
+                    fn (string $name): bool => in_array($name, $this->config->aiGuidelines, true),
+                )
+            );
+
+        return $guidelines
+            ->where(fn (array $guideline): bool => ! empty(trim((string) $guideline['content'])));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -237,6 +350,7 @@ class GuidelineComposer
      */
     protected function shouldExcludePackage(Package $package): bool
     {
+<<<<<<< HEAD
         if (in_array($package->package(), $this->optInPackages, true)) {
             return true;
         }
@@ -246,6 +360,14 @@ class GuidelineComposer
 
             if ($packageIsInExclusionList && $this->roster->uses(Packages::from($priorityPackage))) {
                 return true;
+=======
+        foreach ($this->packagePriorities as $priorityPackage => $excludedPackages) {
+            if (in_array($package->package()->value, $excludedPackages, true)) {
+                $priorityEnum = Packages::from($priorityPackage);
+                if ($this->roster->uses($priorityEnum)) {
+                    return true;
+                }
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
         }
 
@@ -253,7 +375,11 @@ class GuidelineComposer
     }
 
     /**
+<<<<<<< HEAD
      * @return array<array{content: string, name: string, description: string, path: ?string, custom: bool, third_party: bool}>
+=======
+     * @return array<array{content: string, name: string, path: ?string, custom: bool}>
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     protected function guidelinesDir(string $dirPath, bool $thirdParty = false): array
     {
@@ -271,9 +397,13 @@ class GuidelineComposer
             return [];
         }
 
+<<<<<<< HEAD
         return collect($finder)
             ->map(fn (SplFileInfo $file): array => $this->guideline($file->getRealPath(), $thirdParty))
             ->all();
+=======
+        return array_map(fn (SplFileInfo $file): array => $this->guideline($file->getRealPath(), $thirdParty), iterator_to_array($finder));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     protected function renderContent(string $content, string $path): string
@@ -295,7 +425,11 @@ class GuidelineComposer
 
         $content = str_replace(array_keys($placeholders), array_values($placeholders), $content);
         $rendered = Blade::render($content, [
+<<<<<<< HEAD
             'assist' => $this->getGuidelineAssist(),
+=======
+            'assist' => $this->guidelineAssist,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         ]);
 
         return str_replace(array_values($placeholders), array_keys($placeholders), $rendered);
@@ -331,7 +465,11 @@ class GuidelineComposer
             ->after('# ')
             ->before("\n")
             ->trim()
+<<<<<<< HEAD
             ->limit(50)
+=======
+            ->limit(50, '...')
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             ->whenEmpty(fn () => Str::of('No description provided'))
             ->value();
 
@@ -363,11 +501,14 @@ class GuidelineComposer
         }, $content);
     }
 
+<<<<<<< HEAD
     protected function getGuidelineAssist(): GuidelineAssist
     {
         return new GuidelineAssist($this->roster, $this->config);
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     protected function prependPackageGuidelinePath(string $path): string
     {
         return $this->prependGuidelinePath($path, __DIR__.'/../../.ai/');
@@ -406,11 +547,15 @@ class GuidelineComposer
 
         // The path is not a custom guideline, check if the user has an override for this
         $basePath = realpath(__DIR__.'/../../');
+<<<<<<< HEAD
         $relativePath = Str::of($path)
             ->replace([$basePath, '.ai'.DIRECTORY_SEPARATOR, '.ai/'], '')
             ->ltrim('/\\')
             ->toString();
 
+=======
+        $relativePath = ltrim(str_replace([$basePath, '.ai'.DIRECTORY_SEPARATOR, '.ai/'], '', $path), '/\\');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $customPath = $this->prependUserGuidelinePath($relativePath);
 
         return file_exists($customPath) ? $customPath : $path;

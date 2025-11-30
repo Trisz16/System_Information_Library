@@ -55,10 +55,13 @@ trait InteractsWithContentTypes
         $types = (array) $contentTypes;
 
         foreach ($accepts as $accept) {
+<<<<<<< HEAD
             if ($accept && $pos = strpos($accept, ';')) {
                 $accept = trim(substr($accept, 0, $pos));
             }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             if ($accept === '*/*' || $accept === '*') {
                 return true;
             }
@@ -90,10 +93,13 @@ trait InteractsWithContentTypes
         $contentTypes = (array) $contentTypes;
 
         foreach ($accepts as $accept) {
+<<<<<<< HEAD
             if ($accept && $pos = strpos($accept, ';')) {
                 $accept = trim(substr($accept, 0, $pos));
             }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             if (in_array($accept, ['*/*', '*'])) {
                 return $contentTypes[0];
             }

@@ -1,7 +1,11 @@
 {
     "name": "laravel/pint",
     "description": "An opinionated code formatter for PHP.",
+<<<<<<< HEAD
     "keywords": ["php", "format", "formatter", "lint", "linter", "dev"],
+=======
+    "keywords": ["php", "format", "formatter", "lint", "linter"],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     "homepage": "https://laravel.com",
     "type": "project",
     "license": "MIT",
@@ -23,6 +27,7 @@
         "ext-xml": "*"
     },
     "require-dev": {
+<<<<<<< HEAD
         "friendsofphp/php-cs-fixer": "^3.90.0",
         "illuminate/view": "^12.40.1",
         "larastan/larastan": "^3.8.0",
@@ -30,6 +35,15 @@
         "mockery/mockery": "^1.6.12",
         "nunomaduro/termwind": "^2.3.3",
         "pestphp/pest": "^3.8.4"
+=======
+        "friendsofphp/php-cs-fixer": "^3.87.2",
+        "illuminate/view": "^11.46.0",
+        "larastan/larastan": "^3.7.1",
+        "laravel-zero/framework": "^11.45.0",
+        "mockery/mockery": "^1.6.12",
+        "nunomaduro/termwind": "^2.3.1",
+        "pestphp/pest": "^2.36.0"
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     },
     "autoload": {
         "psr-4": {

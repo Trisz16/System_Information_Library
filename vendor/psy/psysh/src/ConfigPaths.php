@@ -28,8 +28,13 @@ class ConfigPaths
      *
      * @see self::overrideDirs
      *
+<<<<<<< HEAD
      * @param string[]          $overrides Directory overrides
      * @param EnvInterface|null $env
+=======
+     * @param string[]     $overrides Directory overrides
+     * @param EnvInterface $env
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function __construct(array $overrides = [], ?EnvInterface $env = null)
     {
@@ -358,7 +363,11 @@ class ConfigPaths
         $relativeTo = $relativeTo ?: \getcwd();
         if ($relativeTo !== false) {
             $relativeTo = \rtrim(\strtr($relativeTo, '\\', '/'), '/').'/';
+<<<<<<< HEAD
             if (\strpos($path, $relativeTo) === 0) {
+=======
+            if (\str_starts_with($path, $relativeTo)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 return './'.\substr($path, \strlen($relativeTo));
             }
         }
@@ -367,7 +376,11 @@ class ConfigPaths
         $homeDir = $homeDir ?: (new self())->homeDir();
         if ($homeDir && $homeDir !== '/') {
             $homeDir = \rtrim(\strtr($homeDir, '\\', '/'), '/').'/';
+<<<<<<< HEAD
             if (\strpos($path, $homeDir) === 0) {
+=======
+            if (\str_starts_with($path, $homeDir)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 return '~/'.\substr($path, \strlen($homeDir));
             }
         }

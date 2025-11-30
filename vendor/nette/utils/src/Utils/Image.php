@@ -239,8 +239,13 @@ class Image
 	 */
 	public static function detectTypeFromFile(string $file, &$width = null, &$height = null): ?int
 	{
+<<<<<<< HEAD
 		[$width, $height, $type] = Helpers::falseToNull(@getimagesize($file)); // @ - files smaller than 12 bytes causes read error
 		return $type && isset(self::Formats[$type]) ? $type : null;
+=======
+		[$width, $height, $type] = @getimagesize($file); // @ - files smaller than 12 bytes causes read error
+		return isset(self::Formats[$type]) ? $type : null;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 	}
 
 
@@ -250,8 +255,13 @@ class Image
 	 */
 	public static function detectTypeFromString(string $s, &$width = null, &$height = null): ?int
 	{
+<<<<<<< HEAD
 		[$width, $height, $type] = Helpers::falseToNull(@getimagesizefromstring($s)); // @ - strings smaller than 12 bytes causes read error
 		return $type && isset(self::Formats[$type]) ? $type : null;
+=======
+		[$width, $height, $type] = @getimagesizefromstring($s); // @ - strings smaller than 12 bytes causes read error
+		return isset(self::Formats[$type]) ? $type : null;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 	}
 
 

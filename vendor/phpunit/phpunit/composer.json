@@ -104,7 +104,10 @@
             "tests/unit/Framework/Assert/assertNullTest.php",
             "tests/unit/Framework/Assert/assertSameSizeTest.php",
             "tests/unit/Framework/Assert/assertSameTest.php",
+<<<<<<< HEAD
             "tests/unit/TextUI/Output/Default/ResultPrinterTest.php",
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             "tests/_files/CoveredFunction.php",
             "tests/_files/Generator.php",
             "tests/_files/NamespaceCoveredFunction.php",

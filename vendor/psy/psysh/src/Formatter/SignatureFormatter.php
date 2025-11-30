@@ -365,7 +365,11 @@ class SignatureFormatter implements ReflectorFormatter
     /**
      * Print function param or return type(s).
      *
+<<<<<<< HEAD
      * @param \ReflectionType|null $type
+=======
+     * @param \ReflectionType $type
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     private static function formatReflectionType(?\ReflectionType $type, bool $indicateNullable): string
     {

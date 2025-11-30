@@ -23,11 +23,17 @@ use function substr;
 use DateTimeImmutable;
 use DOMDocument;
 use SebastianBergmann\CodeCoverage\CodeCoverage;
+<<<<<<< HEAD
 use SebastianBergmann\CodeCoverage\Data\ProcessedClassType;
 use SebastianBergmann\CodeCoverage\Data\ProcessedFunctionType;
 use SebastianBergmann\CodeCoverage\Data\ProcessedTraitType;
 use SebastianBergmann\CodeCoverage\Node\AbstractNode;
 use SebastianBergmann\CodeCoverage\Node\Directory as DirectoryNode;
+=======
+use SebastianBergmann\CodeCoverage\Node\AbstractNode;
+use SebastianBergmann\CodeCoverage\Node\Directory as DirectoryNode;
+use SebastianBergmann\CodeCoverage\Node\File;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use SebastianBergmann\CodeCoverage\Node\File as FileNode;
 use SebastianBergmann\CodeCoverage\PathExistsButIsNotDirectoryException;
 use SebastianBergmann\CodeCoverage\Util\Filesystem;
@@ -38,10 +44,17 @@ use SebastianBergmann\CodeCoverage\XmlException;
 use SebastianBergmann\Environment\Runtime;
 
 /**
+<<<<<<< HEAD
+=======
+ * @phpstan-import-type ProcessedClassType from File
+ * @phpstan-import-type ProcessedTraitType from File
+ * @phpstan-import-type ProcessedFunctionType from File
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * @phpstan-import-type TestType from CodeCoverage
  */
 final class Facade
 {
+<<<<<<< HEAD
     public const string XML_NAMESPACE = 'https://schema.phpunit.de/coverage/1.0';
     private string $target;
     private Project $project;
@@ -52,6 +65,15 @@ final class Facade
     {
         $this->phpUnitVersion = $version;
         $this->includeSource  = $includeSource;
+=======
+    private string $target;
+    private Project $project;
+    private readonly string $phpUnitVersion;
+
+    public function __construct(string $version)
+    {
+        $this->phpUnitVersion = $version;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -81,12 +103,19 @@ final class Facade
 
     private function setBuildInformation(): void
     {
+<<<<<<< HEAD
         $this->project->buildInformation(
             new Runtime,
             new DateTimeImmutable,
             $this->phpUnitVersion,
             Version::id(),
         );
+=======
+        $buildNode = $this->project->buildInformation();
+        $buildNode->setRuntimeInformation(new Runtime);
+        $buildNode->setBuildTime(new DateTimeImmutable);
+        $buildNode->setGeneratorVersions($this->phpUnitVersion, Version::id());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -142,7 +171,10 @@ final class Facade
         $fileObject = $context->addFile(
             $file->name(),
             $file->id() . '.xml',
+<<<<<<< HEAD
             $file->sha1(),
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         );
 
         $this->setTotals($file, $fileObject->totals());
@@ -152,7 +184,11 @@ final class Facade
             strlen($this->project->projectSourceDirectory()),
         );
 
+<<<<<<< HEAD
         $fileReport = new Report($path, $file->sha1());
+=======
+        $fileReport = new Report($path);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $this->setTotals($file, $fileReport->totals());
 
@@ -170,6 +206,7 @@ final class Facade
             }
 
             $coverage = $fileReport->lineCoverage((string) $line);
+<<<<<<< HEAD
             $coverage->finalize($tests);
         }
 
@@ -178,10 +215,24 @@ final class Facade
                 file_get_contents($file->pathAsString()),
             );
         }
+=======
+
+            foreach ($tests as $test) {
+                $coverage->addTest($test);
+            }
+
+            $coverage->finalize();
+        }
+
+        $fileReport->source()->setSourceCode(
+            file_get_contents($file->pathAsString()),
+        );
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $this->saveDocument($fileReport->asDom(), $file->id());
     }
 
+<<<<<<< HEAD
     private function processUnit(ProcessedClassType|ProcessedTraitType $unit, Report $report): void
     {
         if ($unit instanceof ProcessedClassType) {
@@ -214,10 +265,42 @@ final class Facade
                 (string) $method->executedLines,
                 (string) $method->coverage,
                 $method->crap,
+=======
+    /**
+     * @param ProcessedClassType|ProcessedTraitType $unit
+     */
+    private function processUnit(array $unit, Report $report): void
+    {
+        if (isset($unit['className'])) {
+            $unitObject = $report->classObject($unit['className']);
+        } else {
+            $unitObject = $report->traitObject($unit['traitName']);
+        }
+
+        $unitObject->setLines(
+            $unit['startLine'],
+            $unit['executableLines'],
+            $unit['executedLines'],
+        );
+
+        $unitObject->setCrap((float) $unit['crap']);
+        $unitObject->setNamespace($unit['namespace']);
+
+        foreach ($unit['methods'] as $method) {
+            $methodObject = $unitObject->addMethod($method['methodName']);
+            $methodObject->setSignature($method['signature']);
+            $methodObject->setLines((string) $method['startLine'], (string) $method['endLine']);
+            $methodObject->setCrap($method['crap']);
+            $methodObject->setTotals(
+                (string) $method['executableLines'],
+                (string) $method['executedLines'],
+                (string) $method['coverage'],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             );
         }
     }
 
+<<<<<<< HEAD
     private function processFunction(ProcessedFunctionType $function, Report $report): void
     {
         $report->functionObject(
@@ -230,6 +313,19 @@ final class Facade
             (string) $function->coverage,
             $function->crap,
         );
+=======
+    /**
+     * @param ProcessedFunctionType $function
+     */
+    private function processFunction(array $function, Report $report): void
+    {
+        $functionObject = $report->functionObject($function['functionName']);
+
+        $functionObject->setSignature($function['signature']);
+        $functionObject->setLines((string) $function['startLine']);
+        $functionObject->setCrap($function['crap']);
+        $functionObject->setTotals((string) $function['executableLines'], (string) $function['executedLines'], (string) $function['coverage']);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -282,6 +378,7 @@ final class Facade
         return $this->target;
     }
 
+<<<<<<< HEAD
     private function targetFilePath(string $name): string
     {
         $filename = sprintf('%s/%s.xml', $this->targetDirectory(), $name);
@@ -291,11 +388,21 @@ final class Facade
         return $filename;
     }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     /**
      * @throws XmlException
      */
     private function saveDocument(DOMDocument $document, string $name): void
     {
+<<<<<<< HEAD
         Filesystem::write($this->targetFilePath($name), Xml::asString($document));
+=======
+        $filename = sprintf('%s/%s.xml', $this->targetDirectory(), $name);
+
+        $this->initTargetDirectory(dirname($filename));
+
+        Filesystem::write($filename, Xml::asString($document));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

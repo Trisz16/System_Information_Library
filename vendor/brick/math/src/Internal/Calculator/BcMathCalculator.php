@@ -7,6 +7,7 @@ namespace Brick\Math\Internal\Calculator;
 use Brick\Math\Internal\Calculator;
 use Override;
 
+<<<<<<< HEAD
 use function bcadd;
 use function bcdiv;
 use function bcmod;
@@ -16,6 +17,8 @@ use function bcpowmod;
 use function bcsqrt;
 use function bcsub;
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 /**
  * Calculator implementation built around the bcmath library.
  *
@@ -24,6 +27,7 @@ use function bcsub;
 final readonly class BcMathCalculator extends Calculator
 {
     #[Override]
+<<<<<<< HEAD
     public function add(string $a, string $b): string
     {
         return bcadd($a, $b, 0);
@@ -58,11 +62,48 @@ final readonly class BcMathCalculator extends Calculator
     {
         $q = bcdiv($a, $b, 0);
         $r = bcmod($a, $b, 0);
+=======
+    public function add(string $a, string $b) : string
+    {
+        return \bcadd($a, $b, 0);
+    }
+
+    #[Override]
+    public function sub(string $a, string $b) : string
+    {
+        return \bcsub($a, $b, 0);
+    }
+
+    #[Override]
+    public function mul(string $a, string $b) : string
+    {
+        return \bcmul($a, $b, 0);
+    }
+
+    #[Override]
+    public function divQ(string $a, string $b) : string
+    {
+        return \bcdiv($a, $b, 0);
+    }
+
+    #[Override]
+    public function divR(string $a, string $b) : string
+    {
+        return \bcmod($a, $b, 0);
+    }
+
+    #[Override]
+    public function divQR(string $a, string $b) : array
+    {
+        $q = \bcdiv($a, $b, 0);
+        $r = \bcmod($a, $b, 0);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return [$q, $r];
     }
 
     #[Override]
+<<<<<<< HEAD
     public function pow(string $a, int $e): string
     {
         return bcpow($a, (string) $e, 0);
@@ -78,5 +119,22 @@ final readonly class BcMathCalculator extends Calculator
     public function sqrt(string $n): string
     {
         return bcsqrt($n, 0);
+=======
+    public function pow(string $a, int $e) : string
+    {
+        return \bcpow($a, (string) $e, 0);
+    }
+
+    #[Override]
+    public function modPow(string $base, string $exp, string $mod) : string
+    {
+        return \bcpowmod($base, $exp, $mod, 0);
+    }
+
+    #[Override]
+    public function sqrt(string $n) : string
+    {
+        return \bcsqrt($n, 0);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

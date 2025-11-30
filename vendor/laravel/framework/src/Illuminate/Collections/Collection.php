@@ -1033,7 +1033,11 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      */
     public function prepend($value, $key = null)
     {
+<<<<<<< HEAD
         $this->items = Arr::prepend($this->items, ...(func_num_args() > 1 ? func_get_args() : [$value]));
+=======
+        $this->items = Arr::prepend($this->items, ...func_get_args());
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return $this;
     }
@@ -1282,6 +1286,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Create chunks representing a "sliding window" view of the items in the collection.
      *
+<<<<<<< HEAD
      * @param  positive-int  $size
      * @param  positive-int  $step
      * @return static<int, static>
@@ -1296,6 +1301,14 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
             throw new InvalidArgumentException('Step value must be at least 1.');
         }
 
+=======
+     * @param  int  $size
+     * @param  int  $step
+     * @return static<int, static>
+     */
+    public function sliding($size = 2, $step = 1)
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $chunks = floor(($this->count() - $size) / $step) + 1;
 
         return static::times($chunks, fn ($number) => $this->slice(($number - 1) * $step, $size));

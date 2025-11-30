@@ -7,6 +7,10 @@ namespace Laravel\Boost\Install;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Boost\Install\Assists\Inertia;
 use Laravel\Roster\Enums\NodePackageManager;
+<<<<<<< HEAD
+=======
+use Laravel\Roster\Enums\Packages;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use Laravel\Roster\Roster;
 use ReflectionClass;
 use Symfony\Component\Finder\Finder;
@@ -23,7 +27,11 @@ class GuidelineAssist
 
     protected static array $classes = [];
 
+<<<<<<< HEAD
     public function __construct(public Roster $roster, public GuidelineConfig $config)
+=======
+    public function __construct(public Roster $roster)
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $this->modelPaths = $this->discover(fn ($reflection): bool => ($reflection->isSubclassOf(Model::class) && ! $reflection->isAbstract()));
         $this->controllerPaths = $this->discover(fn (ReflectionClass $reflection): bool => (stripos($reflection->getName(), 'controller') !== false || stripos($reflection->getNamespaceName(), 'controller') !== false));
@@ -159,6 +167,14 @@ class GuidelineAssist
         return file_get_contents(current($this->enumPaths));
     }
 
+<<<<<<< HEAD
+=======
+    public function packageGte(Packages $package, string $version): bool
+    {
+        return $this->roster->usesVersion($package, $version, '>=');
+    }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function inertia(): Inertia
     {
         return new Inertia($this->roster);
@@ -168,6 +184,7 @@ class GuidelineAssist
     {
         return ($this->roster->nodePackageManager() ?? NodePackageManager::NPM)->value;
     }
+<<<<<<< HEAD
 
     public function nodePackageManagerCommand(string $command): string
     {
@@ -211,4 +228,6 @@ class GuidelineAssist
     {
         return Sail::BINARY_PATH;
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

@@ -37,8 +37,11 @@ final readonly class SuccessfulSchemaDetectionResult extends SchemaDetectionResu
     }
 
     /**
+<<<<<<< HEAD
      * @throws void
      *
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @return non-empty-string
      */
     public function version(): string

@@ -20,6 +20,7 @@
         "egulias/email-validator": "^2.1.10|^3|^4",
         "psr/event-dispatcher": "^1",
         "psr/log": "^1|^2|^3",
+<<<<<<< HEAD
         "symfony/event-dispatcher": "^6.4|^7.0|^8.0",
         "symfony/mime": "^7.2|^8.0",
         "symfony/service-contracts": "^2.5|^3"
@@ -29,6 +30,17 @@
         "symfony/http-client": "^6.4|^7.0|^8.0",
         "symfony/messenger": "^6.4|^7.0|^8.0",
         "symfony/twig-bridge": "^6.4|^7.0|^8.0"
+=======
+        "symfony/event-dispatcher": "^6.4|^7.0",
+        "symfony/mime": "^7.2",
+        "symfony/service-contracts": "^2.5|^3"
+    },
+    "require-dev": {
+        "symfony/console": "^6.4|^7.0",
+        "symfony/http-client": "^6.4|^7.0",
+        "symfony/messenger": "^6.4|^7.0",
+        "symfony/twig-bridge": "^6.4|^7.0"
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     },
     "conflict": {
         "symfony/http-client-contracts": "<2.5",

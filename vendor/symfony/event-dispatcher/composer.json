@@ -16,6 +16,7 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
         "php": ">=8.4",
         "symfony/event-dispatcher-contracts": "^2.5|^3"
     },
@@ -32,6 +33,23 @@
     },
     "conflict": {
         "symfony/security-http": "<7.4",
+=======
+        "php": ">=8.2",
+        "symfony/event-dispatcher-contracts": "^2.5|^3"
+    },
+    "require-dev": {
+        "symfony/dependency-injection": "^6.4|^7.0",
+        "symfony/expression-language": "^6.4|^7.0",
+        "symfony/config": "^6.4|^7.0",
+        "symfony/error-handler": "^6.4|^7.0",
+        "symfony/http-foundation": "^6.4|^7.0",
+        "symfony/service-contracts": "^2.5|^3",
+        "symfony/stopwatch": "^6.4|^7.0",
+        "psr/log": "^1|^2|^3"
+    },
+    "conflict": {
+        "symfony/dependency-injection": "<6.4",
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         "symfony/service-contracts": "<2.5"
     },
     "provide": {

@@ -78,9 +78,12 @@ class PhpSubprocess extends Process
         throw new LogicException(\sprintf('The "%s()" method cannot be called when using "%s".', __METHOD__, self::class));
     }
 
+<<<<<<< HEAD
     /**
      * @param (callable('out'|'err', string):void)|null $callback
      */
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     public function start(?callable $callback = null, array $env = []): void
     {
         if (null === $this->getCommandLine()) {

@@ -31,12 +31,21 @@ class InspectUlidCommand extends Command
                 new InputArgument('ulid', InputArgument::REQUIRED, 'The ULID to inspect'),
             ])
             ->setHelp(<<<'EOF'
+<<<<<<< HEAD
                 The <info>%command.name%</info> displays information about a ULID.
 
                     <info>php %command.full_name% 01EWAKBCMWQ2C94EXNN60ZBS0Q</info>
                     <info>php %command.full_name% 1BVdfLn3ERmbjYBLCdaaLW</info>
                     <info>php %command.full_name% 01771535-b29c-b898-923b-b5a981f5e417</info>
                 EOF
+=======
+The <info>%command.name%</info> displays information about a ULID.
+
+    <info>php %command.full_name% 01EWAKBCMWQ2C94EXNN60ZBS0Q</info>
+    <info>php %command.full_name% 1BVdfLn3ERmbjYBLCdaaLW</info>
+    <info>php %command.full_name% 01771535-b29c-b898-923b-b5a981f5e417</info>
+EOF
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             )
         ;
     }

@@ -14,7 +14,10 @@ class UpdateCommand extends Command
     {
         $this->callSilently(InstallCommand::class, [
             '--no-interaction' => true,
+<<<<<<< HEAD
             '--ignore-mcp' => true,
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         ]);
 
         $this->components->info('Boost guidelines updated successfully.');

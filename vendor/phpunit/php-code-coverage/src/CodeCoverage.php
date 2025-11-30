@@ -39,7 +39,11 @@ use SebastianBergmann\CodeCoverage\Test\TestStatus\TestStatus;
 /**
  * Provides collection functionality for PHP code coverage information.
  *
+<<<<<<< HEAD
  * @phpstan-type TestType array{size: string, status: string, time: float}
+=======
+ * @phpstan-type TestType array{size: string, status: string}
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * @phpstan-type TargetedLines array<non-empty-string, list<positive-int>>
  */
 final class CodeCoverage
@@ -189,11 +193,19 @@ final class CodeCoverage
         $this->cachedReport = null;
     }
 
+<<<<<<< HEAD
     public function stop(bool $append = true, ?TestStatus $status = null, null|false|TargetCollection $covers = null, ?TargetCollection $uses = null, float $time = 0.0): RawCodeCoverageData
     {
         $data = $this->driver->stop();
 
         $this->append($data, null, $append, $status, $covers, $uses, $time);
+=======
+    public function stop(bool $append = true, ?TestStatus $status = null, null|false|TargetCollection $covers = null, ?TargetCollection $uses = null): RawCodeCoverageData
+    {
+        $data = $this->driver->stop();
+
+        $this->append($data, null, $append, $status, $covers, $uses);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $this->currentId    = null;
         $this->currentSize  = null;
@@ -207,7 +219,11 @@ final class CodeCoverage
      * @throws TestIdMissingException
      * @throws UnintentionallyCoveredCodeException
      */
+<<<<<<< HEAD
     public function append(RawCodeCoverageData $rawData, ?string $id = null, bool $append = true, ?TestStatus $status = null, null|false|TargetCollection $covers = null, ?TargetCollection $uses = null, float $time = 0.0): void
+=======
+    public function append(RawCodeCoverageData $rawData, ?string $id = null, bool $append = true, ?TestStatus $status = null, null|false|TargetCollection $covers = null, ?TargetCollection $uses = null): void
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($id === null) {
             $id = $this->currentId;
@@ -280,7 +296,10 @@ final class CodeCoverage
         $this->tests[$id] = [
             'size'   => $size->asString(),
             'status' => $status->asString(),
+<<<<<<< HEAD
             'time'   => $time,
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         ];
 
         $this->data->markCodeAsExecutedByTestCase($id, $rawData);

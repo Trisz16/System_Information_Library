@@ -62,7 +62,10 @@ class Request
     public const METHOD_OPTIONS = 'OPTIONS';
     public const METHOD_TRACE = 'TRACE';
     public const METHOD_CONNECT = 'CONNECT';
+<<<<<<< HEAD
     public const METHOD_QUERY = 'QUERY';
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     /**
      * @var string[]
@@ -82,6 +85,7 @@ class Request
     protected static bool $httpMethodParameterOverride = false;
 
     /**
+<<<<<<< HEAD
      * The HTTP methods that can be overridden.
      *
      * @var uppercase-string[]|null
@@ -89,6 +93,8 @@ class Request
     protected static ?array $allowedHttpMethodOverride = null;
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Custom parameters.
      */
     public ParameterBag $attributes;
@@ -102,8 +108,11 @@ class Request
 
     /**
      * Query string parameters ($_GET).
+<<<<<<< HEAD
      *
      * @var InputBag<string>
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public InputBag $query;
 
@@ -119,8 +128,11 @@ class Request
 
     /**
      * Cookies ($_COOKIE).
+<<<<<<< HEAD
      *
      * @var InputBag<string>
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public InputBag $cookies;
 
@@ -206,6 +218,7 @@ class Request
         self::HEADER_X_FORWARDED_PREFIX => 'X_FORWARDED_PREFIX',
     ];
 
+<<<<<<< HEAD
     /**
      * This mapping is used when no exact MIME match is found in $formats.
      *
@@ -228,6 +241,8 @@ class Request
         'yaml' => 'yaml',
     ];
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     private bool $isIisRewrite = false;
 
     /**
@@ -287,6 +302,7 @@ class Request
     {
         $request = self::createRequestFromFactory($_GET, $_POST, [], $_COOKIE, $_FILES, $_SERVER);
 
+<<<<<<< HEAD
         if (!\in_array($request->server->get('REQUEST_METHOD', 'GET'), ['PUT', 'DELETE', 'PATCH', 'QUERY'], true)) {
             return $request;
         }
@@ -300,6 +316,11 @@ class Request
             } catch (\RequestParseBodyException) {
             }
         } elseif (str_starts_with($request->headers->get('CONTENT_TYPE', ''), 'application/x-www-form-urlencoded')) {
+=======
+        if (str_starts_with($request->headers->get('CONTENT_TYPE', ''), 'application/x-www-form-urlencoded')
+            && \in_array(strtoupper($request->server->get('REQUEST_METHOD', 'GET')), ['PUT', 'DELETE', 'PATCH'], true)
+        ) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             parse_str($request->getContent(), $data);
             $request->request = new InputBag($data);
         }
@@ -344,13 +365,17 @@ class Request
         $server['PATH_INFO'] = '';
         $server['REQUEST_METHOD'] = strtoupper($method);
 
+<<<<<<< HEAD
         if (($i = strcspn($uri, ':/?#')) && ':' === ($uri[$i] ?? null) && (strspn($uri, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+-.') !== $i || strcspn($uri, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'))) {
             throw new BadRequestException('Invalid URI: Scheme is malformed.');
         }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (false === $components = parse_url(\strlen($uri) !== strcspn($uri, '?#') ? $uri : $uri.'#')) {
             throw new BadRequestException('Invalid URI.');
         }
 
+<<<<<<< HEAD
         $part = ($components['user'] ?? '').':'.($components['pass'] ?? '');
 
         if (':' !== $part && \strlen($part) !== strcspn($part, '[]')) {
@@ -359,6 +384,8 @@ class Request
         if (($part = $components['host'] ?? '') && !self::isHostValid($part)) {
             throw new BadRequestException('Invalid URI: Host is malformed.');
         }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (false !== ($i = strpos($uri, '\\')) && $i < strcspn($uri, '?#')) {
             throw new BadRequestException('Invalid URI: A URI cannot contain a backslash.');
         }
@@ -405,7 +432,10 @@ class Request
             case 'POST':
             case 'PUT':
             case 'DELETE':
+<<<<<<< HEAD
             case 'QUERY':
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 if (!isset($server['CONTENT_TYPE'])) {
                     $server['CONTENT_TYPE'] = 'application/x-www-form-urlencoded';
                 }
@@ -496,8 +526,13 @@ class Request
         $dup->method = null;
         $dup->format = null;
 
+<<<<<<< HEAD
         if (!$dup->attributes->has('_format') && $this->attributes->has('_format')) {
             $dup->attributes->set('_format', $this->attributes->get('_format'));
+=======
+        if (!$dup->get('_format') && $this->get('_format')) {
+            $dup->attributes->set('_format', $this->get('_format'));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         if (!$dup->getRequestFormat(null)) {
@@ -699,6 +734,7 @@ class Request
     }
 
     /**
+<<<<<<< HEAD
      * Sets the list of HTTP methods that can be overridden.
      *
      * Set to null to allow all methods to be overridden (default). Set to an
@@ -727,6 +763,8 @@ class Request
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Gets a "parameter" value from any bag.
      *
      * This method is mainly useful for libraries that want to provide some flexibility. If you don't need the
@@ -735,12 +773,19 @@ class Request
      *
      * Order of precedence: PATH (routing placeholders or custom attributes), GET, POST
      *
+<<<<<<< HEAD
      * @deprecated since Symfony 7.4, use properties `->attributes`, `query` or `request` directly instead
      */
     public function get(string $key, mixed $default = null): mixed
     {
         trigger_deprecation('symfony/http-foundation', '7.4', 'Request::get() is deprecated, use properties ->attributes, query or request directly instead.');
 
+=======
+     * @internal use explicit input sources instead
+     */
+    public function get(string $key, mixed $default = null): mixed
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if ($this !== $result = $this->attributes->get($key, $this)) {
             return $result;
         }
@@ -1150,7 +1195,11 @@ class Request
 
         $https = $this->server->get('HTTPS');
 
+<<<<<<< HEAD
         return $https && (!\is_string($https) || 'off' !== strtolower($https));
+=======
+        return $https && 'off' !== strtolower($https);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -1167,16 +1216,30 @@ class Request
     {
         if ($this->isFromTrustedProxy() && $host = $this->getTrustedValues(self::HEADER_X_FORWARDED_HOST)) {
             $host = $host[0];
+<<<<<<< HEAD
         } else {
             $host = $this->headers->get('HOST') ?: $this->server->get('SERVER_NAME') ?: $this->server->get('SERVER_ADDR', '');
+=======
+        } elseif (!$host = $this->headers->get('HOST')) {
+            if (!$host = $this->server->get('SERVER_NAME')) {
+                $host = $this->server->get('SERVER_ADDR', '');
+            }
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         // trim and remove port number from host
         // host is lowercase as per RFC 952/2181
         $host = strtolower(preg_replace('/:\d+$/', '', trim($host)));
 
+<<<<<<< HEAD
         // the host can come from the user (HTTP_HOST and depending on the configuration, SERVER_NAME too can come from the user)
         if ($host && !self::isHostValid($host)) {
+=======
+        // as the host can come from the user (HTTP_HOST and depending on the configuration, SERVER_NAME too can come from the user)
+        // check that it does not contain forbidden characters (see RFC 952 and RFC 2181)
+        // use preg_replace() instead of preg_match() to prevent DoS attacks with long host names
+        if ($host && '' !== preg_replace('/(?:^\[)?[a-zA-Z0-9-:\]_]+\.?/', '', $host)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             if (!$this->isHostValid) {
                 return '';
             }
@@ -1241,7 +1304,11 @@ class Request
 
         $this->method = strtoupper($this->server->get('REQUEST_METHOD', 'GET'));
 
+<<<<<<< HEAD
         if ('POST' !== $this->method || !(self::$allowedHttpMethodOverride ?? true)) {
+=======
+        if ('POST' !== $this->method) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return $this->method;
         }
 
@@ -1257,6 +1324,7 @@ class Request
 
         $method = strtoupper($method);
 
+<<<<<<< HEAD
         if (\in_array($method, ['GET', 'HEAD', 'CONNECT', 'TRACE'], true)) {
             trigger_deprecation('symfony/http-foundation', '7.4', 'HTTP method override is deprecated for methods GET, HEAD, CONNECT and TRACE; it will be ignored in Symfony 8.0.', $method);
         }
@@ -1266,6 +1334,13 @@ class Request
         }
 
         if (\strlen($method) !== strspn($method, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')) {
+=======
+        if (\in_array($method, ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'PATCH', 'PURGE', 'TRACE'], true)) {
+            return $this->method = $method;
+        }
+
+        if (!preg_match('/^[A-Z]++$/D', $method)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             throw new SuspiciousOperationException('Invalid HTTP method override.');
         }
 
@@ -1310,6 +1385,7 @@ class Request
 
     /**
      * Gets the format associated with the mime type.
+<<<<<<< HEAD
      *
      *  Resolution order:
      *   1) Exact match on the full MIME type (e.g. "application/json").
@@ -1326,6 +1402,11 @@ class Request
     public function getFormat(?string $mimeType/* , bool $subtypeFallback = false */): ?string
     {
         $subtypeFallback = 2 <= \func_num_args() ? func_get_arg(1) : false;
+=======
+     */
+    public function getFormat(?string $mimeType): ?string
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $canonicalMimeType = null;
         if ($mimeType && false !== $pos = strpos($mimeType, ';')) {
             $canonicalMimeType = trim(substr($mimeType, 0, $pos));
@@ -1335,6 +1416,7 @@ class Request
             static::initializeFormats();
         }
 
+<<<<<<< HEAD
         $exactFormat = null;
         $canonicalFormat = null;
 
@@ -1369,6 +1451,14 @@ class Request
             }
             if (!str_contains($subtype, '+')) {
                 return $subtype;
+=======
+        foreach (static::$formats as $format => $mimeTypes) {
+            if (\in_array($mimeType, (array) $mimeTypes, true)) {
+                return $format;
+            }
+            if (null !== $canonicalMimeType && \in_array($canonicalMimeType, (array) $mimeTypes, true)) {
+                return $format;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
         }
 
@@ -1378,21 +1468,31 @@ class Request
     /**
      * Associates a format with mime types.
      *
+<<<<<<< HEAD
      * @param string          $format    The format to set
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @param string|string[] $mimeTypes The associated mime types (the preferred one must be the first as it will be used as the content type)
      */
     public function setFormat(?string $format, string|array $mimeTypes): void
     {
+<<<<<<< HEAD
         if (null === $format) {
             trigger_deprecation('symfony/http-foundation', '7.4', 'Passing "null" as the first argument of "%s()" is deprecated. The argument will be non-nullable in Symfony 8.0.', __METHOD__);
             $format = '';
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (null === static::$formats) {
             static::initializeFormats();
         }
 
+<<<<<<< HEAD
         static::$formats[$format] = (array) $mimeTypes;
+=======
+        static::$formats[$format] = \is_array($mimeTypes) ? $mimeTypes : [$mimeTypes];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -1484,7 +1584,11 @@ class Request
      */
     public function isMethodSafe(): bool
     {
+<<<<<<< HEAD
         return \in_array($this->getMethod(), ['GET', 'HEAD', 'OPTIONS', 'TRACE', 'QUERY'], true);
+=======
+        return \in_array($this->getMethod(), ['GET', 'HEAD', 'OPTIONS', 'TRACE']);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -1492,7 +1596,11 @@ class Request
      */
     public function isMethodIdempotent(): bool
     {
+<<<<<<< HEAD
         return \in_array($this->getMethod(), ['HEAD', 'GET', 'PUT', 'DELETE', 'TRACE', 'OPTIONS', 'PURGE', 'QUERY'], true);
+=======
+        return \in_array($this->getMethod(), ['HEAD', 'GET', 'PUT', 'DELETE', 'TRACE', 'OPTIONS', 'PURGE']);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -1502,7 +1610,11 @@ class Request
      */
     public function isMethodCacheable(): bool
     {
+<<<<<<< HEAD
         return \in_array($this->getMethod(), ['GET', 'HEAD', 'QUERY'], true);
+=======
+        return \in_array($this->getMethod(), ['GET', 'HEAD']);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -2025,8 +2137,14 @@ class Request
         }
 
         $pathInfo = substr($requestUri, \strlen($baseUrl));
+<<<<<<< HEAD
         if ('' === $pathInfo || '/' !== $pathInfo[0]) {
             return '/'.$pathInfo;
+=======
+        if ('' === $pathInfo) {
+            // If substr() returns false then PATH_INFO is set to an empty string
+            return '/';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         return $pathInfo;
@@ -2049,6 +2167,7 @@ class Request
             'atom' => ['application/atom+xml'],
             'rss' => ['application/rss+xml'],
             'form' => ['application/x-www-form-urlencoded', 'multipart/form-data'],
+<<<<<<< HEAD
             'soap' => ['application/soap+xml'],
             'problem' => ['application/problem+json'],
             'hal' => ['application/hal+json', 'application/hal+xml'],
@@ -2057,6 +2176,8 @@ class Request
             'wbxml' => ['application/vnd.wap.wbxml'],
             'pdf' => ['application/pdf'],
             'csv' => ['text/csv'],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         ];
     }
 
@@ -2241,6 +2362,7 @@ class Request
 
         return $this->isIisRewrite;
     }
+<<<<<<< HEAD
 
     /**
      * See https://url.spec.whatwg.org/.
@@ -2258,4 +2380,6 @@ class Request
         // use preg_replace() instead of preg_match() to prevent DoS attacks with long host names
         return '' === preg_replace('/[-a-zA-Z0-9_]++\.?/', '', $host);
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

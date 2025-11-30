@@ -12,13 +12,23 @@
 namespace Psy\CodeCleaner;
 
 use PhpParser\Node;
+<<<<<<< HEAD
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name; // @phan-suppress-current-line PhanUnreferencedUseNormal - used for type checks
+=======
+use PhpParser\Node\Name;
+use PhpParser\Node\Name\FullyQualified as FullyQualifiedName;
+use PhpParser\Node\Stmt\GroupUse;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Use_;
 use PhpParser\Node\Stmt\UseItem;
 use PhpParser\Node\Stmt\UseUse;
+<<<<<<< HEAD
 use Psy\Exception\FatalErrorException;
+=======
+use PhpParser\NodeTraverser;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
 /**
  * Provide implicit use statements for subsequent execution.
@@ -29,6 +39,7 @@ use Psy\Exception\FatalErrorException;
  *
  * ... which it then applies implicitly to all future evaluated code, until the
  * current namespace is replaced by another namespace.
+<<<<<<< HEAD
  *
  * Extends NamespaceAwarePass to leverage shared alias tracking.
  */
@@ -110,10 +121,41 @@ class UseStatementPass extends NamespaceAwarePass
             $this->cleaner->setAliasesForNamespace(null, $this->aliases);
         }
 
+=======
+ */
+class UseStatementPass extends CodeCleanerPass
+{
+    private array $aliases = [];
+    private array $lastAliases = [];
+    private ?Name $lastNamespace = null;
+
+    /**
+     * Re-load the last set of use statements on re-entering a namespace.
+     *
+     * This isn't how namespaces normally work, but because PsySH has to spin
+     * up a new namespace for every line of code, we do this to make things
+     * work like you'd expect.
+     *
+     * @param Node $node
+     *
+     * @return int|Node|null Replacement node (or special return value)
+     */
+    public function enterNode(Node $node)
+    {
+        if ($node instanceof Namespace_) {
+            // If this is the same namespace as last namespace, let's do ourselves
+            // a favor and reload all the aliases...
+            if (\strtolower($node->name ?: '') === \strtolower($this->lastNamespace ?: '')) {
+                $this->aliases = $this->lastAliases;
+            }
+        }
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return null;
     }
 
     /**
+<<<<<<< HEAD
      * Validate that a use statement doesn't conflict with existing aliases.
      *
      * @throws FatalErrorException if the alias is already in use
@@ -151,5 +193,88 @@ class UseStatementPass extends NamespaceAwarePass
         }
 
         return $useStatements;
+=======
+     * If this statement is a namespace, forget all the aliases we had.
+     *
+     * If it's a use statement, remember the alias for later. Otherwise, apply
+     * remembered aliases to the code.
+     *
+     * @param Node $node
+     *
+     * @return int|Node|Node[]|null Replacement node (or special return value)
+     */
+    public function leaveNode(Node $node)
+    {
+        // Store a reference to every "use" statement, because we'll need them in a bit.
+        if ($node instanceof Use_) {
+            foreach ($node->uses as $useItem) {
+                $this->aliases[\strtolower($useItem->getAlias())] = $useItem->name;
+            }
+
+            // @todo Rename to Node_Visitor::REMOVE_NODE once we drop support for PHP-Parser 4.x
+            return NodeTraverser::REMOVE_NODE;
+        }
+
+        // Expand every "use" statement in the group into a full, standalone "use" and store 'em with the others.
+        if ($node instanceof GroupUse) {
+            foreach ($node->uses as $useItem) {
+                $this->aliases[\strtolower($useItem->getAlias())] = Name::concat($node->prefix, $useItem->name, [
+                    'startLine' => $node->prefix->getAttribute('startLine'),
+                    'endLine'   => $useItem->name->getAttribute('endLine'),
+                ]);
+            }
+
+            // @todo Rename to Node_Visitor::REMOVE_NODE once we drop support for PHP-Parser 4.x
+            return NodeTraverser::REMOVE_NODE;
+        }
+
+        // Start fresh, since we're done with this namespace.
+        if ($node instanceof Namespace_) {
+            $this->lastNamespace = $node->name;
+            $this->lastAliases = $this->aliases;
+            $this->aliases = [];
+
+            return null;
+        }
+
+        // Do nothing with UseItem; this an entry in the list of uses in the use statement.
+        // @todo Remove UseUse once we drop support for PHP-Parser 4.x
+        if ($node instanceof UseUse || $node instanceof UseItem) {
+            return null;
+        }
+
+        // For everything else, we'll implicitly thunk all aliases into fully-qualified names.
+        // @phpstan-ignore-next-line foreach.nonIterable (Node implements Traversable)
+        foreach ($node as $name => $subNode) {
+            if ($subNode instanceof Name) {
+                if ($replacement = $this->findAlias($subNode)) {
+                    $node->$name = $replacement;
+                }
+            }
+        }
+
+        return $node;
+    }
+
+    /**
+     * Find class/namespace aliases.
+     *
+     * @param Name $name
+     *
+     * @return FullyQualifiedName|null
+     */
+    private function findAlias(Name $name)
+    {
+        $that = \strtolower($name);
+        foreach ($this->aliases as $alias => $prefix) {
+            if ($that === $alias) {
+                return new FullyQualifiedName($prefix->toString());
+            } elseif (\substr($that, 0, \strlen($alias) + 1) === $alias.'\\') {
+                return new FullyQualifiedName($prefix->toString().\substr($name, \strlen($alias)));
+            }
+        }
+
+        return null;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

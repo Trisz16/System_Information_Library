@@ -185,7 +185,11 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
 
         // Etag headers cannot be merged, they render the response uncacheable
         // by default (except if the response also has max-age etc.).
+<<<<<<< HEAD
         if (null === $response->getEtag() && \in_array($response->getStatusCode(), [200, 203, 300, 301, 410], true)) {
+=======
+        if (null === $response->getEtag() && \in_array($response->getStatusCode(), [200, 203, 300, 301, 410])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return false;
         }
 

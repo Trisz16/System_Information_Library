@@ -26,6 +26,7 @@ class TranslatableMessage implements TranslatableInterface
     ) {
     }
 
+<<<<<<< HEAD
     /**
      * @deprecated since Symfony 7.4
      */
@@ -33,6 +34,10 @@ class TranslatableMessage implements TranslatableInterface
     {
         trigger_deprecation('symfony/translation', '7.4', 'Method "%s()" is deprecated.', __METHOD__);
 
+=======
+    public function __toString(): string
+    {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return $this->getMessage();
     }
 

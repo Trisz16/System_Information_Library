@@ -7,6 +7,7 @@ namespace Brick\Math\Internal\Calculator;
 use Brick\Math\Internal\Calculator;
 use Override;
 
+<<<<<<< HEAD
 use function assert;
 use function in_array;
 use function intdiv;
@@ -21,6 +22,8 @@ use function substr;
 use const PHP_INT_SIZE;
 use const STR_PAD_LEFT;
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 /**
  * Calculator implementation using only native PHP code.
  *
@@ -40,7 +43,10 @@ final readonly class NativeCalculator extends Calculator
 
     /**
      * @pure
+<<<<<<< HEAD
      *
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @codeCoverageIgnore
      */
     public function __construct()
@@ -52,7 +58,11 @@ final readonly class NativeCalculator extends Calculator
     }
 
     #[Override]
+<<<<<<< HEAD
     public function add(string $a, string $b): string
+=======
+    public function add(string $a, string $b) : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         /**
          * @var numeric-string $a
@@ -84,13 +94,21 @@ final readonly class NativeCalculator extends Calculator
     }
 
     #[Override]
+<<<<<<< HEAD
     public function sub(string $a, string $b): string
+=======
+    public function sub(string $a, string $b) : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return $this->add($a, $this->neg($b));
     }
 
     #[Override]
+<<<<<<< HEAD
     public function mul(string $a, string $b): string
+=======
+    public function mul(string $a, string $b) : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         /**
          * @var numeric-string $a
@@ -134,7 +152,11 @@ final readonly class NativeCalculator extends Calculator
     }
 
     #[Override]
+<<<<<<< HEAD
     public function divQ(string $a, string $b): string
+=======
+    public function divQ(string $a, string $b) : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return $this->divQR($a, $b)[0];
     }
@@ -146,7 +168,11 @@ final readonly class NativeCalculator extends Calculator
     }
 
     #[Override]
+<<<<<<< HEAD
     public function divQR(string $a, string $b): array
+=======
+    public function divQR(string $a, string $b) : array
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($a === '0') {
             return ['0', '0'];
@@ -179,7 +205,11 @@ final readonly class NativeCalculator extends Calculator
 
                 return [
                     (string) $q,
+<<<<<<< HEAD
                     (string) $r,
+=======
+                    (string) $r
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 ];
             }
         }
@@ -200,7 +230,11 @@ final readonly class NativeCalculator extends Calculator
     }
 
     #[Override]
+<<<<<<< HEAD
     public function pow(string $a, int $e): string
+=======
+    public function pow(string $a, int $e) : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($e === 0) {
             return '1';
@@ -225,10 +259,17 @@ final readonly class NativeCalculator extends Calculator
     }
 
     /**
+<<<<<<< HEAD
      * Algorithm from: https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/.
      */
     #[Override]
     public function modPow(string $base, string $exp, string $mod): string
+=======
+     * Algorithm from: https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
+     */
+    #[Override]
+    public function modPow(string $base, string $exp, string $mod) : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         // special case: the algorithm below fails with 0 power 0 mod 1 (returns 1 instead of 0)
         if ($base === '0' && $exp === '0' && $mod === '1') {
@@ -260,21 +301,36 @@ final readonly class NativeCalculator extends Calculator
     }
 
     /**
+<<<<<<< HEAD
      * Adapted from https://cp-algorithms.com/num_methods/roots_newton.html.
      */
     #[Override]
     public function sqrt(string $n): string
+=======
+     * Adapted from https://cp-algorithms.com/num_methods/roots_newton.html
+     */
+    #[Override]
+    public function sqrt(string $n) : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($n === '0') {
             return '0';
         }
 
         // initial approximation
+<<<<<<< HEAD
         $x = str_repeat('9', intdiv(strlen($n), 2) ?: 1);
 
         $decreased = false;
 
         for (; ;) {
+=======
+        $x = \str_repeat('9', \intdiv(\strlen($n), 2) ?: 1);
+
+        $decreased = false;
+
+        for (;;) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $nx = $this->divQ($this->add($x, $this->divQ($n, $x)), '2');
 
             if ($x === $nx || $this->cmp($nx, $x) > 0 && $decreased) {
@@ -293,14 +349,22 @@ final readonly class NativeCalculator extends Calculator
      *
      * @pure
      */
+<<<<<<< HEAD
     private function doAdd(string $a, string $b): string
+=======
+    private function doAdd(string $a, string $b) : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         [$a, $b, $length] = $this->pad($a, $b);
 
         $carry = 0;
         $result = '';
 
+<<<<<<< HEAD
         for ($i = $length - $this->maxDigits; ; $i -= $this->maxDigits) {
+=======
+        for ($i = $length - $this->maxDigits;; $i -= $this->maxDigits) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $blockLength = $this->maxDigits;
 
             if ($i < 0) {
@@ -309,6 +373,7 @@ final readonly class NativeCalculator extends Calculator
             }
 
             /** @var numeric-string $blockA */
+<<<<<<< HEAD
             $blockA = substr($a, $i, $blockLength);
 
             /** @var numeric-string $blockB */
@@ -323,6 +388,22 @@ final readonly class NativeCalculator extends Calculator
             } else {
                 if ($sumLength < $blockLength) {
                     $sum = str_repeat('0', $blockLength - $sumLength) . $sum;
+=======
+            $blockA = \substr($a, $i, $blockLength);
+
+            /** @var numeric-string $blockB */
+            $blockB = \substr($b, $i, $blockLength);
+
+            $sum = (string) ($blockA + $blockB + $carry);
+            $sumLength = \strlen($sum);
+
+            if ($sumLength > $blockLength) {
+                $sum = \substr($sum, 1);
+                $carry = 1;
+            } else {
+                if ($sumLength < $blockLength) {
+                    $sum = \str_repeat('0', $blockLength - $sumLength) . $sum;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 }
                 $carry = 0;
             }
@@ -346,7 +427,11 @@ final readonly class NativeCalculator extends Calculator
      *
      * @pure
      */
+<<<<<<< HEAD
     private function doSub(string $a, string $b): string
+=======
+    private function doSub(string $a, string $b) : string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if ($a === $b) {
             return '0';
@@ -370,7 +455,11 @@ final readonly class NativeCalculator extends Calculator
 
         $complement = 10 ** $this->maxDigits;
 
+<<<<<<< HEAD
         for ($i = $length - $this->maxDigits; ; $i -= $this->maxDigits) {
+=======
+        for ($i = $length - $this->maxDigits;; $i -= $this->maxDigits) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $blockLength = $this->maxDigits;
 
             if ($i < 0) {
@@ -379,10 +468,17 @@ final readonly class NativeCalculator extends Calculator
             }
 
             /** @var numeric-string $blockA */
+<<<<<<< HEAD
             $blockA = substr($a, $i, $blockLength);
 
             /** @var numeric-string $blockB */
             $blockB = substr($b, $i, $blockLength);
+=======
+            $blockA = \substr($a, $i, $blockLength);
+
+            /** @var numeric-string $blockB */
+            $blockB = \substr($b, $i, $blockLength);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             $sum = $blockA - $blockB - $carry;
 
@@ -394,10 +490,17 @@ final readonly class NativeCalculator extends Calculator
             }
 
             $sum = (string) $sum;
+<<<<<<< HEAD
             $sumLength = strlen($sum);
 
             if ($sumLength < $blockLength) {
                 $sum = str_repeat('0', $blockLength - $sumLength) . $sum;
+=======
+            $sumLength = \strlen($sum);
+
+            if ($sumLength < $blockLength) {
+                $sum = \str_repeat('0', $blockLength - $sumLength) . $sum;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             }
 
             $result = $sum . $result;
@@ -410,7 +513,11 @@ final readonly class NativeCalculator extends Calculator
         // Carry cannot be 1 when the loop ends, as a > b
         assert($carry === 0);
 
+<<<<<<< HEAD
         $result = ltrim($result, '0');
+=======
+        $result = \ltrim($result, '0');
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if ($invert) {
             $result = $this->neg($result);
@@ -424,17 +531,30 @@ final readonly class NativeCalculator extends Calculator
      *
      * @pure
      */
+<<<<<<< HEAD
     private function doMul(string $a, string $b): string
     {
         $x = strlen($a);
         $y = strlen($b);
 
         $maxDigits = intdiv($this->maxDigits, 2);
+=======
+    private function doMul(string $a, string $b) : string
+    {
+        $x = \strlen($a);
+        $y = \strlen($b);
+
+        $maxDigits = \intdiv($this->maxDigits, 2);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $complement = 10 ** $maxDigits;
 
         $result = '0';
 
+<<<<<<< HEAD
         for ($i = $x - $maxDigits; ; $i -= $maxDigits) {
+=======
+        for ($i = $x - $maxDigits;; $i -= $maxDigits) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $blockALength = $maxDigits;
 
             if ($i < 0) {
@@ -442,12 +562,20 @@ final readonly class NativeCalculator extends Calculator
                 $i = 0;
             }
 
+<<<<<<< HEAD
             $blockA = (int) substr($a, $i, $blockALength);
+=======
+            $blockA = (int) \substr($a, $i, $blockALength);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             $line = '';
             $carry = 0;
 
+<<<<<<< HEAD
             for ($j = $y - $maxDigits; ; $j -= $maxDigits) {
+=======
+            for ($j = $y - $maxDigits;; $j -= $maxDigits) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $blockBLength = $maxDigits;
 
                 if ($j < 0) {
@@ -455,14 +583,22 @@ final readonly class NativeCalculator extends Calculator
                     $j = 0;
                 }
 
+<<<<<<< HEAD
                 $blockB = (int) substr($b, $j, $blockBLength);
+=======
+                $blockB = (int) \substr($b, $j, $blockBLength);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
                 $mul = $blockA * $blockB + $carry;
                 $value = $mul % $complement;
                 $carry = ($mul - $value) / $complement;
 
                 $value = (string) $value;
+<<<<<<< HEAD
                 $value = str_pad($value, $maxDigits, '0', STR_PAD_LEFT);
+=======
+                $value = \str_pad($value, $maxDigits, '0', STR_PAD_LEFT);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
                 $line = $value . $line;
 
@@ -475,10 +611,17 @@ final readonly class NativeCalculator extends Calculator
                 $line = $carry . $line;
             }
 
+<<<<<<< HEAD
             $line = ltrim($line, '0');
 
             if ($line !== '') {
                 $line .= str_repeat('0', $x - $blockALength - $i);
+=======
+            $line = \ltrim($line, '0');
+
+            if ($line !== '') {
+                $line .= \str_repeat('0', $x - $blockALength - $i);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $result = $this->add($result, $line);
             }
 
@@ -497,7 +640,11 @@ final readonly class NativeCalculator extends Calculator
      *
      * @pure
      */
+<<<<<<< HEAD
     private function doDiv(string $a, string $b): array
+=======
+    private function doDiv(string $a, string $b) : array
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         $cmp = $this->doCmp($a, $b);
 
@@ -505,8 +652,13 @@ final readonly class NativeCalculator extends Calculator
             return ['0', $a];
         }
 
+<<<<<<< HEAD
         $x = strlen($a);
         $y = strlen($b);
+=======
+        $x = \strlen($a);
+        $y = \strlen($b);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         // we now know that a >= b && x >= y
 
@@ -518,11 +670,16 @@ final readonly class NativeCalculator extends Calculator
         $nb = $b * 1; // cast to number
         // performance optimization in cases where the remainder will never cause int overflow
         if (is_int(($nb - 1) * 10 + 9)) {
+<<<<<<< HEAD
             $r = (int) substr($a, 0, $z - 1);
+=======
+            $r = (int) \substr($a, 0, $z - 1);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             for ($i = $z - 1; $i < $x; $i++) {
                 $n = $r * 10 + (int) $a[$i];
                 /** @var int $nb */
+<<<<<<< HEAD
                 $q .= intdiv($n, $nb);
                 $r = $n % $nb;
             }
@@ -532,6 +689,17 @@ final readonly class NativeCalculator extends Calculator
 
         for (; ;) {
             $focus = substr($a, 0, $z);
+=======
+                $q .= \intdiv($n, $nb);
+                $r = $n % $nb;
+            }
+
+            return [\ltrim($q, '0') ?: '0', (string) $r];
+        }
+
+        for (;;) {
+            $focus = \substr($a, 0, $z);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             $cmp = $this->doCmp($focus, $b);
 
@@ -543,7 +711,11 @@ final readonly class NativeCalculator extends Calculator
                 $z++;
             }
 
+<<<<<<< HEAD
             $zeros = str_repeat('0', $x - $z);
+=======
+            $zeros = \str_repeat('0', $x - $z);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             $q = $this->add($q, '1' . $zeros);
             $a = $this->sub($a, $b . $zeros);
@@ -554,7 +726,11 @@ final readonly class NativeCalculator extends Calculator
                 break;
             }
 
+<<<<<<< HEAD
             $x = strlen($a);
+=======
+            $x = \strlen($a);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             if ($x < $y) { // remainder < dividend
                 break;
@@ -573,10 +749,17 @@ final readonly class NativeCalculator extends Calculator
      *
      * @pure
      */
+<<<<<<< HEAD
     private function doCmp(string $a, string $b): int
     {
         $x = strlen($a);
         $y = strlen($b);
+=======
+    private function doCmp(string $a, string $b) : int
+    {
+        $x = \strlen($a);
+        $y = \strlen($b);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         $cmp = $x <=> $y;
 
@@ -584,7 +767,11 @@ final readonly class NativeCalculator extends Calculator
             return $cmp;
         }
 
+<<<<<<< HEAD
         return strcmp($a, $b) <=> 0; // enforce -1|0|1
+=======
+        return \strcmp($a, $b) <=> 0; // enforce -1|0|1
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -596,6 +783,7 @@ final readonly class NativeCalculator extends Calculator
      *
      * @pure
      */
+<<<<<<< HEAD
     private function pad(string $a, string $b): array
     {
         $x = strlen($a);
@@ -603,12 +791,25 @@ final readonly class NativeCalculator extends Calculator
 
         if ($x > $y) {
             $b = str_repeat('0', $x - $y) . $b;
+=======
+    private function pad(string $a, string $b) : array
+    {
+        $x = \strlen($a);
+        $y = \strlen($b);
+
+        if ($x > $y) {
+            $b = \str_repeat('0', $x - $y) . $b;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             return [$a, $b, $x];
         }
 
         if ($x < $y) {
+<<<<<<< HEAD
             $a = str_repeat('0', $y - $x) . $a;
+=======
+            $a = \str_repeat('0', $y - $x) . $a;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             return [$a, $b, $y];
         }

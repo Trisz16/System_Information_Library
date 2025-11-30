@@ -16,7 +16,11 @@ use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Uid\UuidV1;
 use Symfony\Component\Uid\UuidV4;
 use Symfony\Component\Uid\UuidV5;
+<<<<<<< HEAD
 use Symfony\Component\Uid\UuidV7;
+=======
+use Symfony\Component\Uid\UuidV6;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
 class UuidFactory
 {
@@ -27,7 +31,11 @@ class UuidFactory
     private ?Uuid $timeBasedNode;
     private ?Uuid $nameBasedNamespace;
 
+<<<<<<< HEAD
     public function __construct(string|int $defaultClass = UuidV7::class, string|int $timeBasedClass = UuidV7::class, string|int $nameBasedClass = UuidV5::class, string|int $randomBasedClass = UuidV4::class, Uuid|string|null $timeBasedNode = null, Uuid|string|null $nameBasedNamespace = null)
+=======
+    public function __construct(string|int $defaultClass = UuidV6::class, string|int $timeBasedClass = UuidV6::class, string|int $nameBasedClass = UuidV5::class, string|int $randomBasedClass = UuidV4::class, Uuid|string|null $timeBasedNode = null, Uuid|string|null $nameBasedNamespace = null)
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if (null !== $timeBasedNode && !$timeBasedNode instanceof Uuid) {
             $timeBasedNode = Uuid::fromString($timeBasedNode);

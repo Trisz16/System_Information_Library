@@ -1228,7 +1228,11 @@ class Str
      * @param  string|iterable<string>  $replace
      * @param  string|iterable<string>  $subject
      * @param  bool  $caseSensitive
+<<<<<<< HEAD
      * @return ($subject is string ? string : string[])
+=======
+     * @return string|string[]
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public static function replace($search, $replace, $subject, $caseSensitive = true)
     {

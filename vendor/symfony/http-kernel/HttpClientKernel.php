@@ -73,7 +73,11 @@ final class HttpClientKernel implements HttpKernelInterface
 
     private function getBody(Request $request): ?AbstractPart
     {
+<<<<<<< HEAD
         if (\in_array($request->getMethod(), ['GET', 'HEAD'], true)) {
+=======
+        if (\in_array($request->getMethod(), ['GET', 'HEAD'])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return null;
         }
 

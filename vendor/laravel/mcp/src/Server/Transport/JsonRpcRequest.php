@@ -60,6 +60,7 @@ class JsonRpcRequest
         return $this->params[$key] ?? $default;
     }
 
+<<<<<<< HEAD
     /**
      * @return array<string, mixed>|null
      */
@@ -71,5 +72,10 @@ class JsonRpcRequest
     public function toRequest(): Request
     {
         return new Request($this->params['arguments'] ?? [], $this->sessionId, $this->meta());
+=======
+    public function toRequest(): Request
+    {
+        return new Request($this->params['arguments'] ?? [], $this->sessionId);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 }

@@ -25,7 +25,10 @@ class AsCommand
      * @param string[]    $aliases     The list of aliases of the command. The command will be executed when using one of them (i.e. "cache:clean")
      * @param bool        $hidden      If true, the command won't be shown when listing all the available commands, but it can still be run as any other command
      * @param string|null $help        The help content of the command, displayed with the help page
+<<<<<<< HEAD
      * @param string[]    $usages      The list of usage examples, displayed with the help page
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function __construct(
         public string $name,
@@ -33,7 +36,10 @@ class AsCommand
         array $aliases = [],
         bool $hidden = false,
         public ?string $help = null,
+<<<<<<< HEAD
         public array $usages = [],
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     ) {
         if (!$hidden && !$aliases) {
             return;

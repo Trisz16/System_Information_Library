@@ -103,9 +103,15 @@ class Presenter
      *
      * If $depth is 0, the value will be presented as a ref instead.
      *
+<<<<<<< HEAD
      * @param mixed    $value
      * @param int|null $depth   (default: null)
      * @param int      $options One of Presenter constants
+=======
+     * @param mixed $value
+     * @param int   $depth   (default: null)
+     * @param int   $options One of Presenter constants
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      */
     public function present($value, ?int $depth = null, int $options = 0): string
     {

@@ -70,9 +70,14 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
     public function match(string $pathinfo): array
     {
         $this->allow = $this->allowSchemes = [];
+<<<<<<< HEAD
         $pathinfo = '' === ($pathinfo = rawurldecode($pathinfo)) ? '/' : $pathinfo;
 
         if ($ret = $this->matchCollection($pathinfo, $this->routes)) {
+=======
+
+        if ($ret = $this->matchCollection(rawurldecode($pathinfo) ?: '/', $this->routes)) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return $ret;
         }
 
@@ -115,7 +120,11 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
             $method = 'GET';
         }
         $supportsTrailingSlash = 'GET' === $method && $this instanceof RedirectableUrlMatcherInterface;
+<<<<<<< HEAD
         $trimmedPathinfo = '' === ($trimmedPathinfo = rtrim($pathinfo, '/')) ? '/' : $trimmedPathinfo;
+=======
+        $trimmedPathinfo = rtrim($pathinfo, '/') ?: '/';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         foreach ($routes as $name => $route) {
             $compiledRoute = $route->compile();

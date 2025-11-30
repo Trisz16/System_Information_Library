@@ -16,6 +16,7 @@ namespace League\Uri;
 use League\Uri\Exceptions\ConversionFailed;
 use League\Uri\Exceptions\MissingFeature;
 use League\Uri\Exceptions\SyntaxError;
+<<<<<<< HEAD
 use League\Uri\Idna\Converter as IdnaConverter;
 use Stringable;
 use Throwable;
@@ -30,16 +31,30 @@ use function filter_var;
 use function function_exists;
 use function implode;
 use function in_array;
+=======
+use League\Uri\Idna\Converter;
+use Stringable;
+
+use function array_merge;
+use function explode;
+use function filter_var;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use function inet_pton;
 use function preg_match;
 use function rawurldecode;
 use function sprintf;
+<<<<<<< HEAD
 use function str_replace;
 use function strpos;
 use function strtolower;
 use function substr;
 
 use const FILTER_FLAG_IPV4;
+=======
+use function strpos;
+use function substr;
+
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use const FILTER_FLAG_IPV6;
 use const FILTER_VALIDATE_IP;
 
@@ -51,8 +66,13 @@ use const FILTER_VALIDATE_IP;
  * @author  Ignace Nyamagana Butera <nyamsprod@gmail.com>
  * @since   6.0.0
  *
+<<<<<<< HEAD
  * @phpstan-type AuthorityMap array{user: ?string, pass: ?string, host: ?string, port: ?int}
  * @phpstan-type ComponentMap array{scheme: ?string, user: ?string, pass: ?string, host: ?string, port: ?int, path: string, query: ?string, fragment: ?string}
+=======
+ * @phpstan-type AuthorityMap array{user:?string, pass:?string, host:?string, port:?int}
+ * @phpstan-type ComponentMap array{scheme:?string, user:?string, pass:?string, host:?string, port:?int, path:string, query:?string, fragment:?string}
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * @phpstan-type InputComponentMap array{scheme? : ?string, user? : ?string, pass? : ?string, host? : ?string, port? : ?int, path? : ?string, query? : ?string, fragment? : ?string}
  */
 final class UriString
@@ -73,12 +93,17 @@ final class UriString
      * @var array<string, array<string>>
      */
     private const URI_SHORTCUTS = [
+<<<<<<< HEAD
         '' => ['path' => ''],
+=======
+        '' => [],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         '#' => ['fragment' => ''],
         '?' => ['query' => ''],
         '?#' => ['query' => '', 'fragment' => ''],
         '/' => ['path' => '/'],
         '//' => ['host' => ''],
+<<<<<<< HEAD
         '///' => ['host' => '', 'path' => '/'],
     ];
 
@@ -95,6 +120,16 @@ final class UriString
      * @var string
      */
     private const REGEXP_INVALID_URI_RFC3987_CHARS = '/[\x00-\x1f\x7f\s]/';
+=======
+    ];
+
+    /**
+     * Range of invalid characters in URI string.
+     *
+     * @var string
+     */
+    private const REGEXP_INVALID_URI_CHARS = '/[\x00-\x1f\x7f]/';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
     /**
      * RFC3986 regular expression URI splitter.
@@ -178,9 +213,12 @@ final class UriString
      */
     private const REGEXP_IDN_PATTERN = '/[^\x20-\x7f]/';
 
+<<<<<<< HEAD
     /** @var array<string,int> */
     private const DOT_SEGMENTS = ['.' => 1, '..' => 1];
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     /**
      * Only the address block fe80::/10 can have a Zone ID attach to
      * let's detect the link local significant 10 bits.
@@ -197,6 +235,7 @@ final class UriString
     private const MAXIMUM_HOST_CACHED = 100;
 
     /**
+<<<<<<< HEAD
      * Generate an IRI string representation (RFC3987) from its parsed representation
      * returned by League\UriString::parse() or PHP's parse_url.
      *
@@ -236,6 +275,8 @@ final class UriString
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Generate a URI string representation from its parsed representation
      * returned by League\UriString::parse() or PHP's parse_url.
      *
@@ -252,13 +293,18 @@ final class UriString
         return self::buildUri(
             $components['scheme'] ?? null,
             self::buildAuthority($components),
+<<<<<<< HEAD
             $components['path'] ?? null,
+=======
+            $components['path'] ?? '',
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $components['query'] ?? null,
             $components['fragment'] ?? null,
         );
     }
 
     /**
+<<<<<<< HEAD
      * Generates a URI string representation based on RFC3986 algorithm.
      *
      * Valid URI component MUST be provided without their URI delimiters
@@ -275,6 +321,23 @@ final class UriString
         ?string $fragment = null,
     ): string {
         self::validateComponents($scheme, $authority, $path);
+=======
+     * Generate a URI string representation based on RFC3986 algorithm.
+     *
+     * valid URI component MUST be provided without their URI delimiters
+     * but properly encoded.
+     *
+     * @link https://tools.ietf.org/html/rfc3986#section-5.3
+     * @link https://tools.ietf.org/html/rfc3986#section-7.5
+     */
+    public static function buildUri(
+        ?string $scheme,
+        ?string $authority,
+        string $path,
+        ?string $query,
+        ?string $fragment,
+    ): string {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $uri = '';
         if (null !== $scheme) {
             $uri .= $scheme.':';
@@ -307,6 +370,7 @@ final class UriString
             return null;
         }
 
+<<<<<<< HEAD
         $userInfo = $components['user'] ?? null;
         if (isset($components['pass'])) {
             $userInfo .= ':'.$components['pass'];
@@ -318,10 +382,14 @@ final class UriString
         }
 
         $authority .= $components['host'];
+=======
+        $authority = $components['host'];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (isset($components['port'])) {
             $authority .= ':'.$components['port'];
         }
 
+<<<<<<< HEAD
         return $authority;
     }
 
@@ -528,6 +596,18 @@ final class UriString
     public static function containsRfc3987Chars(Stringable|string $uri): bool
     {
         return 1 !== preg_match(self::REGEXP_INVALID_URI_RFC3987_CHARS, (string) $uri);
+=======
+        if (!isset($components['user'])) {
+            return $authority;
+        }
+
+        $authority = '@'.$authority;
+        if (!isset($components['pass'])) {
+            return $components['user'].$authority;
+        }
+
+        return $components['user'].':'.$components['pass'].$authority;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -577,14 +657,26 @@ final class UriString
         $uri = (string) $uri;
         if (isset(self::URI_SHORTCUTS[$uri])) {
             /** @var ComponentMap $components */
+<<<<<<< HEAD
             $components = [...self::URI_COMPONENTS, ...self::URI_SHORTCUTS[$uri]];
+=======
+            $components = array_merge(self::URI_COMPONENTS, self::URI_SHORTCUTS[$uri]);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
             return $components;
         }
 
+<<<<<<< HEAD
         self::containsRfc3987Chars($uri) || throw new SyntaxError(sprintf('The uri `%s` contains invalid characters', $uri));
 
         //if the first character is a known URI delimiter, parsing can be simplified
+=======
+        if (1 === preg_match(self::REGEXP_INVALID_URI_CHARS, $uri)) {
+            throw new SyntaxError(sprintf('The uri `%s` contains invalid characters', $uri));
+        }
+
+        //if the first character is a known URI delimiter parsing can be simplified
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $first_char = $uri[0];
 
         //The URI is made of the fragment only
@@ -635,6 +727,7 @@ final class UriString
     }
 
     /**
+<<<<<<< HEAD
      * Assert the URI internal state is valid.
      *
      * @link https://tools.ietf.org/html/rfc3986#section-3
@@ -670,6 +763,8 @@ final class UriString
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Parses the URI authority part.
      *
      * @link https://tools.ietf.org/html/rfc3986#section-3.2
@@ -728,6 +823,7 @@ final class UriString
      *
      * @throws SyntaxError if the registered name is invalid
      */
+<<<<<<< HEAD
     private static function filterHost(Stringable|string|null $host): ?string
     {
         if (null !== $host) {
@@ -735,6 +831,11 @@ final class UriString
         }
 
         if (null === $host || '' === $host) {
+=======
+    private static function filterHost(string $host): string
+    {
+        if ('' === $host) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return $host;
         }
 
@@ -765,6 +866,7 @@ final class UriString
     }
 
     /**
+<<<<<<< HEAD
      * Tells whether the scheme component is valid.
      */
     public static function isValidScheme(Stringable|string|null $scheme): bool
@@ -786,17 +888,24 @@ final class UriString
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Throws if the host is not a registered name and not a valid IDN host.
      *
      * @link https://tools.ietf.org/html/rfc3986#section-3.2.2
      *
      * @throws SyntaxError if the registered name is invalid
+<<<<<<< HEAD
      * @throws MissingFeature if IDN support or ICU requirement, are not available or met.
+=======
+     * @throws MissingFeature if IDN support or ICU requirement are not available or met.
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * @throws ConversionFailed if the submitted IDN host cannot be converted to a valid ascii form
      */
     private static function filterRegisteredName(string $host): void
     {
         $formattedHost = rawurldecode($host);
+<<<<<<< HEAD
         if ($formattedHost !== $host) {
             if (IdnaConverter::toAscii($formattedHost)->hasErrors()) {
                 throw new SyntaxError(sprintf('Host `%s` is invalid: the host is not a valid registered name', $host));
@@ -805,6 +914,8 @@ final class UriString
             return;
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if (1 === preg_match(self::REGEXP_REGISTERED_NAME, $formattedHost)) {
             return;
         }
@@ -814,7 +925,11 @@ final class UriString
             throw new SyntaxError(sprintf('Host `%s` is invalid: the host is not a valid registered name', $host));
         }
 
+<<<<<<< HEAD
         IdnaConverter::toAsciiOrFail($host);
+=======
+        Converter::toAsciiOrFail($host);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -844,6 +959,7 @@ final class UriString
         return false !== filter_var($ipHost, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)
             && str_starts_with((string)inet_pton($ipHost), self::ZONE_ID_ADDRESS_BLOCK);
     }
+<<<<<<< HEAD
 
     private static function normalizeHost(?string $host): ?string
     {
@@ -865,4 +981,6 @@ final class UriString
 
         return $host;
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

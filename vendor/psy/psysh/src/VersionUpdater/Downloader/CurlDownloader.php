@@ -58,9 +58,13 @@ class CurlDownloader implements Downloader
         \curl_setopt($curl, \CURLOPT_URL, $url);
         $result = \curl_exec($curl);
         $error = \curl_error($curl);
+<<<<<<< HEAD
         if (\PHP_VERSION_ID < 80000) {
             \curl_close($curl);
         }
+=======
+        \curl_close($curl);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         \fclose($outputHandle);
 

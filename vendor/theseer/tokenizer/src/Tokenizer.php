@@ -8,7 +8,11 @@ class Tokenizer {
      *
      * @var array
      */
+<<<<<<< HEAD
     private const MAP = [
+=======
+    private $map = [
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         '(' => 'T_OPEN_BRACKET',
         ')' => 'T_CLOSE_BRACKET',
         '[' => 'T_OPEN_SQUARE',
@@ -58,7 +62,11 @@ class Tokenizer {
             if (\is_string($tok)) {
                 $token = new Token(
                     $lastToken->getLine(),
+<<<<<<< HEAD
                     self::MAP[$tok],
+=======
+                    $this->map[$tok],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     $tok
                 );
                 $result->addToken($token);
@@ -110,6 +118,7 @@ class Tokenizer {
         );
 
         $final = new TokenCollection();
+<<<<<<< HEAD
         $prevLine = $prev->getLine();
 
         foreach ($tokens as $token) {
@@ -119,15 +128,29 @@ class Tokenizer {
             while ($gap > 1) {
                 $linebreak = new Token(
                     $prevLine + 1,
+=======
+
+        foreach ($tokens as $token) {
+            $gap = $token->getLine() - $prev->getLine();
+
+            while ($gap > 1) {
+                $linebreak = new Token(
+                    $prev->getLine() + 1,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                     'T_WHITESPACE',
                     ''
                 );
                 $final->addToken($linebreak);
+<<<<<<< HEAD
                 $prevLine = $linebreak->getLine();
+=======
+                $prev = $linebreak;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $gap--;
             }
 
             $final->addToken($token);
+<<<<<<< HEAD
             $prevLine = $line;
         }
 
@@ -136,14 +159,32 @@ class Tokenizer {
         while ($gap > 0) {
             $linebreak = new Token(
                 $prevLine + 1,
+=======
+            $prev = $token;
+        }
+
+        $gap = $maxLine - $prev->getLine();
+
+        while ($gap > 0) {
+            $linebreak = new Token(
+                $prev->getLine() + 1,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 'T_WHITESPACE',
                 ''
             );
             $final->addToken($linebreak);
+<<<<<<< HEAD
             $prevLine = $linebreak->getLine();
+=======
+            $prev = $linebreak;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $gap--;
         }
 
         return $final;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e

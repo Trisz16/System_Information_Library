@@ -148,7 +148,11 @@ trait ManagesStacks
      */
     public function yieldPushContent($section, $default = '')
     {
+<<<<<<< HEAD
         if ($this->isStackEmpty($section)) {
+=======
+        if (! isset($this->pushes[$section]) && ! isset($this->prepends[$section])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return $default;
         }
 
@@ -166,6 +170,7 @@ trait ManagesStacks
     }
 
     /**
+<<<<<<< HEAD
      * Determine if the stack has any content in it.
      */
     public function isStackEmpty(string $section): bool
@@ -174,6 +179,8 @@ trait ManagesStacks
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Flush all of the stacks.
      *
      * @return void

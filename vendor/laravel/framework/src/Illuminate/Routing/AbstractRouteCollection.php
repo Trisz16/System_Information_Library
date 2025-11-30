@@ -79,6 +79,7 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
      */
     protected function matchAgainstRoutes(array $routes, $request, $includingMethod = true)
     {
+<<<<<<< HEAD
         $fallbackRoute = null;
 
         foreach ($routes as $route) {
@@ -94,6 +95,15 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
         }
 
         return $fallbackRoute;
+=======
+        [$fallbacks, $routes] = (new Collection($routes))->partition(function ($route) {
+            return $route->isFallback;
+        });
+
+        return $routes->merge($fallbacks)->first(
+            fn (Route $route) => $route->matches($request, $includingMethod)
+        );
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -210,6 +220,7 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
     {
         $symfonyRoutes = new SymfonyRouteCollection;
 
+<<<<<<< HEAD
         $fallbackRoutes = [];
 
         foreach ($this->getRoutes() as $route) {
@@ -224,6 +235,20 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
 
         foreach ($fallbackRoutes as $route) {
             $symfonyRoutes = $this->addToSymfonyRoutesCollection($symfonyRoutes, $route);
+=======
+        $routes = $this->getRoutes();
+
+        foreach ($routes as $route) {
+            if (! $route->isFallback) {
+                $symfonyRoutes = $this->addToSymfonyRoutesCollection($symfonyRoutes, $route);
+            }
+        }
+
+        foreach ($routes as $route) {
+            if ($route->isFallback) {
+                $symfonyRoutes = $this->addToSymfonyRoutesCollection($symfonyRoutes, $route);
+            }
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         return $symfonyRoutes;

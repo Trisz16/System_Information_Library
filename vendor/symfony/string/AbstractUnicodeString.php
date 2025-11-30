@@ -264,7 +264,11 @@ abstract class AbstractUnicodeString extends AbstractString
 
     public function normalize(int $form = self::NFC): static
     {
+<<<<<<< HEAD
         if (!\in_array($form, [self::NFC, self::NFD, self::NFKC, self::NFKD], true)) {
+=======
+        if (!\in_array($form, [self::NFC, self::NFD, self::NFKC, self::NFKD])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             throw new InvalidArgumentException('Unsupported normalization form.');
         }
 
@@ -360,7 +364,11 @@ abstract class AbstractUnicodeString extends AbstractString
     public function reverse(): static
     {
         $str = clone $this;
+<<<<<<< HEAD
         $str->string = implode('', array_reverse(grapheme_str_split($str->string)));
+=======
+        $str->string = implode('', array_reverse(preg_split('/(\X)/u', $str->string, -1, \PREG_SPLIT_DELIM_CAPTURE | \PREG_SPLIT_NO_EMPTY)));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         return $str;
     }

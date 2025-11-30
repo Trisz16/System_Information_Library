@@ -17,7 +17,10 @@ use function dirname;
 use function explode;
 use function implode;
 use function is_file;
+<<<<<<< HEAD
 use function sha1_file;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use function str_ends_with;
 use function str_replace;
 use function str_starts_with;
@@ -77,7 +80,10 @@ final readonly class Builder
                         new File(
                             $key,
                             $root,
+<<<<<<< HEAD
                             sha1_file($filename),
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                             $value['lineCoverage'],
                             $value['functionCoverage'],
                             $tests,
@@ -142,9 +148,12 @@ final readonly class Builder
     {
         $result = [];
 
+<<<<<<< HEAD
         $lineCoverage     = $data->lineCoverage();
         $functionCoverage = $data->functionCoverage();
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         foreach ($data->coveredFiles() as $originalPath) {
             $path    = explode(DIRECTORY_SEPARATOR, $originalPath);
             $pointer = &$result;
@@ -161,8 +170,13 @@ final readonly class Builder
             }
 
             $pointer = [
+<<<<<<< HEAD
                 'lineCoverage'     => $lineCoverage[$originalPath] ?? [],
                 'functionCoverage' => $functionCoverage[$originalPath] ?? [],
+=======
+                'lineCoverage'     => $data->lineCoverage()[$originalPath] ?? [],
+                'functionCoverage' => $data->functionCoverage()[$originalPath] ?? [],
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             ];
         }
 
@@ -208,14 +222,22 @@ final readonly class Builder
      */
     private function reducePaths(ProcessedCodeCoverageData $coverage): string
     {
+<<<<<<< HEAD
         $coveredFiles = $coverage->coveredFiles();
 
         if ($coveredFiles === []) {
+=======
+        if ($coverage->coveredFiles() === []) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return '.';
         }
 
         $commonPath = '';
+<<<<<<< HEAD
         $paths      = $coveredFiles;
+=======
+        $paths      = $coverage->coveredFiles();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         if (count($paths) === 1) {
             $commonPath = dirname($paths[0]) . DIRECTORY_SEPARATOR;
@@ -267,7 +289,11 @@ final readonly class Builder
             }
         }
 
+<<<<<<< HEAD
         $original = $coveredFiles;
+=======
+        $original = $coverage->coveredFiles();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         $max      = count($original);
 
         for ($i = 0; $i < $max; $i++) {

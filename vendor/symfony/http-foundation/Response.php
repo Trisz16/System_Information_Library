@@ -261,7 +261,11 @@ class Response
             }
 
             // Fix Content-Type
+<<<<<<< HEAD
             $charset = $this->charset ?: 'utf-8';
+=======
+            $charset = $this->charset ?: 'UTF-8';
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             if (!$headers->has('Content-Type')) {
                 $headers->set('Content-Type', 'text/html; charset='.$charset);
             } elseif (0 === stripos($headers->get('Content-Type') ?? '', 'text/') && false === stripos($headers->get('Content-Type') ?? '', 'charset')) {
@@ -317,12 +321,15 @@ class Response
     {
         // headers have already been sent by the developer
         if (headers_sent()) {
+<<<<<<< HEAD
             if (!\in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
                 $statusCode ??= $this->statusCode;
                 trigger_deprecation('symfony/http-foundation', '7.4', 'Trying to use "%s::sendHeaders()" after headers have already been sent is deprecated and will throw a PHP warning in 8.0. Use a "StreamedResponse" instead.', static::class);
                 // header(\sprintf('HTTP/%s %s %s', $this->version, $statusCode, $this->statusText), true, $statusCode);
             }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return $this;
         }
 
@@ -545,7 +552,11 @@ class Response
      */
     public function isCacheable(): bool
     {
+<<<<<<< HEAD
         if (!\in_array($this->statusCode, [200, 203, 300, 301, 302, 404, 410], true)) {
+=======
+        if (!\in_array($this->statusCode, [200, 203, 300, 301, 302, 404, 410])) {
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             return false;
         }
 
@@ -1254,7 +1265,11 @@ class Response
      */
     public function isRedirect(?string $location = null): bool
     {
+<<<<<<< HEAD
         return \in_array($this->statusCode, [201, 301, 302, 303, 307, 308], true) && (null === $location ?: $location == $this->headers->get('Location'));
+=======
+        return \in_array($this->statusCode, [201, 301, 302, 303, 307, 308]) && (null === $location ?: $location == $this->headers->get('Location'));
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**
@@ -1264,7 +1279,11 @@ class Response
      */
     public function isEmpty(): bool
     {
+<<<<<<< HEAD
         return \in_array($this->statusCode, [204, 304], true);
+=======
+        return \in_array($this->statusCode, [204, 304]);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     }
 
     /**

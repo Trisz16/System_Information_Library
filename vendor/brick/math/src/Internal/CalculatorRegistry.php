@@ -25,7 +25,11 @@ final class CalculatorRegistry
      *
      * @param Calculator|null $calculator The calculator instance, or null to revert to autodetect.
      */
+<<<<<<< HEAD
     final public static function set(?Calculator $calculator): void
+=======
+    final public static function set(?Calculator $calculator) : void
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         self::$instance = $calculator;
     }
@@ -40,7 +44,11 @@ final class CalculatorRegistry
      *
      * @pure
      */
+<<<<<<< HEAD
     final public static function get(): Calculator
+=======
+    final public static function get() : Calculator
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         /** @phpstan-ignore impure.staticPropertyAccess */
         if (self::$instance === null) {
@@ -56,10 +64,16 @@ final class CalculatorRegistry
      * Returns the fastest available Calculator implementation.
      *
      * @pure
+<<<<<<< HEAD
      *
      * @codeCoverageIgnore
      */
     private static function detect(): Calculator
+=======
+     * @codeCoverageIgnore
+     */
+    private static function detect() : Calculator
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         if (extension_loaded('gmp')) {
             return new Calculator\GmpCalculator();

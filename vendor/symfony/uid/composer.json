@@ -24,7 +24,11 @@
         "symfony/polyfill-uuid": "^1.15"
     },
     "require-dev": {
+<<<<<<< HEAD
         "symfony/console": "^6.4|^7.0|^8.0"
+=======
+        "symfony/console": "^6.4|^7.0"
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     },
     "autoload": {
         "psr-4": { "Symfony\\Component\\Uid\\": "" },

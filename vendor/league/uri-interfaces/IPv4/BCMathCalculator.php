@@ -53,12 +53,20 @@ final class BCMathCalculator implements Calculator
         return bcpow((string) $value, (string) $exponent, self::SCALE);
     }
 
+<<<<<<< HEAD
     public function compare(mixed $value1, mixed $value2): int
+=======
+    public function compare(mixed $value1, $value2): int
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return bccomp((string) $value1, (string) $value2, self::SCALE);
     }
 
+<<<<<<< HEAD
     public function multiply(mixed $value1, mixed $value2): string
+=======
+    public function multiply(mixed $value1, $value2): string
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
     {
         return bcmul((string) $value1, (string) $value2, self::SCALE);
     }

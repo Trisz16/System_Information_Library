@@ -116,12 +116,20 @@ class ErrorHandler
             $handler = new static();
         }
 
+<<<<<<< HEAD
         if (null === $prev = get_error_handler()) {
             // Specifying the error types earlier would expose us to https://bugs.php.net/63206
             set_error_handler([$handler, 'handleError'], $handler->thrownErrors | $handler->loggedErrors);
             $handler->isRoot = true;
         } else {
             set_error_handler([$handler, 'handleError']);
+=======
+        if (null === $prev = set_error_handler([$handler, 'handleError'])) {
+            restore_error_handler();
+            // Specifying the error types earlier would expose us to https://bugs.php.net/63206
+            set_error_handler([$handler, 'handleError'], $handler->thrownErrors | $handler->loggedErrors);
+            $handler->isRoot = true;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         if ($handlerIsNew && \is_array($prev) && $prev[0] instanceof self) {
@@ -363,8 +371,14 @@ class ErrorHandler
     private function reRegister(int $prev): void
     {
         if ($prev !== ($this->thrownErrors | $this->loggedErrors)) {
+<<<<<<< HEAD
             $handler = get_error_handler();
             $handler = \is_array($handler) ? $handler[0] : null;
+=======
+            $handler = set_error_handler(static fn () => null);
+            $handler = \is_array($handler) ? $handler[0] : null;
+            restore_error_handler();
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             if ($handler === $this) {
                 restore_error_handler();
                 if ($this->isRoot) {

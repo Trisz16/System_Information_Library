@@ -20,11 +20,19 @@
         "symfony/deprecation-contracts": "^2.5|^3"
     },
     "require-dev": {
+<<<<<<< HEAD
         "symfony/config": "^6.4|^7.0|^8.0",
         "symfony/http-foundation": "^6.4|^7.0|^8.0",
         "symfony/yaml": "^6.4|^7.0|^8.0",
         "symfony/expression-language": "^6.4|^7.0|^8.0",
         "symfony/dependency-injection": "^6.4|^7.0|^8.0",
+=======
+        "symfony/config": "^6.4|^7.0",
+        "symfony/http-foundation": "^6.4|^7.0",
+        "symfony/yaml": "^6.4|^7.0",
+        "symfony/expression-language": "^6.4|^7.0",
+        "symfony/dependency-injection": "^6.4|^7.0",
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         "psr/log": "^1|^2|^3"
     },
     "conflict": {

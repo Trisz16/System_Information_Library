@@ -15,14 +15,24 @@ use function str_ends_with;
 use function str_replace;
 use function substr;
 use Countable;
+<<<<<<< HEAD
 use SebastianBergmann\CodeCoverage\Data\ProcessedClassType;
 use SebastianBergmann\CodeCoverage\Data\ProcessedFunctionType;
 use SebastianBergmann\CodeCoverage\Data\ProcessedTraitType;
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 use SebastianBergmann\CodeCoverage\StaticAnalysis\LinesOfCode;
 use SebastianBergmann\CodeCoverage\Util\Percentage;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for phpunit/php-code-coverage
+<<<<<<< HEAD
+=======
+ *
+ * @phpstan-import-type ProcessedFunctionType from File
+ * @phpstan-import-type ProcessedClassType from File
+ * @phpstan-import-type ProcessedTraitType from File
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  */
 abstract class AbstractNode implements Countable
 {
@@ -185,11 +195,19 @@ abstract class AbstractNode implements Countable
         $ccn = 0;
 
         foreach ($this->classesAndTraits() as $classLike) {
+<<<<<<< HEAD
             $ccn += $classLike->ccn;
         }
 
         foreach ($this->functions() as $function) {
             $ccn += $function->ccn;
+=======
+            $ccn += $classLike['ccn'];
+        }
+
+        foreach ($this->functions() as $function) {
+            $ccn += $function['ccn'];
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
 
         return $ccn;

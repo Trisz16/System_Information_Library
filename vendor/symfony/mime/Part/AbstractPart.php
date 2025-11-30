@@ -62,6 +62,7 @@ abstract class AbstractPart
     abstract public function getMediaType(): string;
 
     abstract public function getMediaSubtype(): string;
+<<<<<<< HEAD
 
     public function __serialize(): array
     {
@@ -113,4 +114,6 @@ abstract class AbstractPart
             }
         }, $this, static::class)($data);
     }
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 }

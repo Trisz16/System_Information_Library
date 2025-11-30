@@ -219,7 +219,11 @@ class Application extends SymfonyApplication implements ApplicationContract
     public function addCommands(array $commands): void
     {
         foreach ($commands as $command) {
+<<<<<<< HEAD
             $this->addCommand($command);
+=======
+            $this->add($command);
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         }
     }
 
@@ -232,6 +236,7 @@ class Application extends SymfonyApplication implements ApplicationContract
     #[\Override]
     public function add(SymfonyCommand $command): ?SymfonyCommand
     {
+<<<<<<< HEAD
         return $this->addCommand($command);
     }
 
@@ -243,6 +248,8 @@ class Application extends SymfonyApplication implements ApplicationContract
      */
     public function addCommand(SymfonyCommand|callable $command): ?SymfonyCommand
     {
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         if ($command instanceof Command) {
             $command->setLaravel($this->laravel);
         }
@@ -258,11 +265,14 @@ class Application extends SymfonyApplication implements ApplicationContract
      */
     protected function addToParent(SymfonyCommand $command)
     {
+<<<<<<< HEAD
         if (method_exists(SymfonyApplication::class, 'addCommand')) {
             /** @phpstan-ignore staticMethod.notFound */
             return parent::addCommand($command);
         }
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         return parent::add($command);
     }
 

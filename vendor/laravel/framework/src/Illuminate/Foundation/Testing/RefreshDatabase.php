@@ -85,8 +85,11 @@ trait RefreshDatabase
 
             $this->app[Kernel::class]->setArtisan(null);
 
+<<<<<<< HEAD
             $this->updateLocalCacheOfInMemoryDatabases();
 
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             RefreshDatabaseState::$migrated = true;
         }
 
@@ -94,6 +97,7 @@ trait RefreshDatabase
     }
 
     /**
+<<<<<<< HEAD
      * Update locally cached in-memory PDO connections after migration.
      *
      * @return void
@@ -110,6 +114,8 @@ trait RefreshDatabase
     }
 
     /**
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      * Migrate the database.
      *
      * @return void

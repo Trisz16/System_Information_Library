@@ -32,10 +32,17 @@ class CodeArgument extends InputArgument
     /**
      * Constructor.
      *
+<<<<<<< HEAD
      * @param string   $name        The argument name
      * @param int|null $mode        The argument mode: self::REQUIRED or self::OPTIONAL
      * @param string   $description A description text
      * @param mixed    $default     The default value (for self::OPTIONAL mode only)
+=======
+     * @param string $name        The argument name
+     * @param int    $mode        The argument mode: self::REQUIRED or self::OPTIONAL
+     * @param string $description A description text
+     * @param mixed  $default     The default value (for self::OPTIONAL mode only)
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
      *
      * @throws \InvalidArgumentException When argument mode is not valid
      */

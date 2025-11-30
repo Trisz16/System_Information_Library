@@ -23,8 +23,13 @@ use function array_reduce;
 use function array_unique;
 use function preg_match_all;
 use function preg_replace;
+<<<<<<< HEAD
 use function str_replace;
 use function strpbrk;
+=======
+use function str_contains;
+use function str_replace;
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
 use const PREG_SET_ORDER;
 
@@ -65,7 +70,13 @@ final class Template implements Stringable
         $template = (string) $template;
         /** @var string $remainder */
         $remainder = preg_replace(self::REGEXP_EXPRESSION_DETECTOR, '', $template);
+<<<<<<< HEAD
         false === strpbrk($remainder, '{}') || throw new SyntaxError('The template "'.$template.'" contains invalid expressions.');
+=======
+        if (str_contains($remainder, '{') || str_contains($remainder, '}')) {
+            throw new SyntaxError('The template "'.$template.'" contains invalid expressions.');
+        }
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
 
         preg_match_all(self::REGEXP_EXPRESSION_DETECTOR, $template, $founds, PREG_SET_ORDER);
 

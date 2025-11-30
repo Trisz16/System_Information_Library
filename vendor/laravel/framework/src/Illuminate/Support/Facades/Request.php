@@ -29,7 +29,10 @@ namespace Illuminate\Support\Facades;
  * @method static string|null ip()
  * @method static array ips()
  * @method static string|null userAgent()
+<<<<<<< HEAD
  * @method static array getAcceptableContentTypes()
+=======
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * @method static \Illuminate\Http\Request merge(array $input)
  * @method static \Illuminate\Http\Request mergeIfMissing(array $input)
  * @method static \Illuminate\Http\Request replace(array $input)
@@ -116,6 +119,10 @@ namespace Illuminate\Support\Facades;
  * @method static string[] getLanguages()
  * @method static string[] getCharsets()
  * @method static string[] getEncodings()
+<<<<<<< HEAD
+=======
+ * @method static string[] getAcceptableContentTypes()
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * @method static bool isXmlHttpRequest()
  * @method static bool preferSafeContent()
  * @method static bool isFromTrustedProxy()
@@ -144,7 +151,11 @@ namespace Illuminate\Support\Facades;
  * @method static array keys()
  * @method static array all(mixed $keys = null)
  * @method static mixed input(string|null $key = null, mixed $default = null)
+<<<<<<< HEAD
  * @method static \Illuminate\Support\Fluent fluent(array|string|null $key = null, array $default = [])
+=======
+ * @method static \Illuminate\Support\Fluent fluent(array|string|null $key = null)
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
  * @method static string|array|null query(string|null $key = null, string|array|null $default = null)
  * @method static string|array|null post(string|null $key = null, string|array|null $default = null)
  * @method static bool hasCookie(string $key)

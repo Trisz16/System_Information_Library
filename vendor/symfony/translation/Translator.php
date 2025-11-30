@@ -307,6 +307,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
         $fallbackContent = $this->getFallbackContent($this->catalogues[$locale]);
 
         $content = \sprintf(<<<EOF
+<<<<<<< HEAD
             <?php
 
             use Symfony\Component\Translation\MessageCatalogue;
@@ -317,6 +318,19 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
             return \$catalogue;
 
             EOF,
+=======
+<?php
+
+use Symfony\Component\Translation\MessageCatalogue;
+
+\$catalogue = new MessageCatalogue('%s', %s);
+
+%s
+return \$catalogue;
+
+EOF
+            ,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
             $locale,
             var_export($this->getAllMessages($this->catalogues[$locale]), true),
             $fallbackContent
@@ -337,10 +351,18 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
             $currentSuffix = ucfirst(preg_replace($replacementPattern, '_', $current));
 
             $fallbackContent .= \sprintf(<<<'EOF'
+<<<<<<< HEAD
                 $catalogue%s = new MessageCatalogue('%s', %s);
                 $catalogue%s->addFallbackCatalogue($catalogue%s);
 
                 EOF,
+=======
+$catalogue%s = new MessageCatalogue('%s', %s);
+$catalogue%s->addFallbackCatalogue($catalogue%s);
+
+EOF
+                ,
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
                 $fallbackSuffix,
                 $fallback,
                 var_export($this->getAllMessages($fallbackCatalogue), true),

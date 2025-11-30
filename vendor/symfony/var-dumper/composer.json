@@ -21,10 +21,17 @@
         "symfony/polyfill-mbstring": "~1.0"
     },
     "require-dev": {
+<<<<<<< HEAD
         "symfony/console": "^6.4|^7.0|^8.0",
         "symfony/http-kernel": "^6.4|^7.0|^8.0",
         "symfony/process": "^6.4|^7.0|^8.0",
         "symfony/uid": "^6.4|^7.0|^8.0",
+=======
+        "symfony/console": "^6.4|^7.0",
+        "symfony/http-kernel": "^6.4|^7.0",
+        "symfony/process": "^6.4|^7.0",
+        "symfony/uid": "^6.4|^7.0",
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         "twig/twig": "^3.12"
     },
     "conflict": {

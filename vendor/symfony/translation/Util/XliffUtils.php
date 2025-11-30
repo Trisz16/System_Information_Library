@@ -31,6 +31,10 @@ class XliffUtils
      */
     public static function getVersionNumber(\DOMDocument $dom): string
     {
+<<<<<<< HEAD
+=======
+        /** @var \DOMNode $xliff */
+>>>>>>> 049e9c5cd56276e2255d7f3c44e689248e341a1e
         foreach ($dom->getElementsByTagName('xliff') as $xliff) {
             $version = $xliff->attributes->getNamedItem('version');
             if ($version) {
